@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create a new app &mdash; NovalandGuide 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="oTree Project" href="otreeProject.html" />
+    <link rel="prev" title="PyCharmOverview" href="PyCharmOverview.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> NovalandGuide
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PyCharmOverview.html">PyCharmOverview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Create a new app</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="otreeProject.html">oTree Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CreateANewPage.html">Create a new page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicStructureOfAPage.html">Basic structure of the page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Buttons.html">Buttons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DynamicText.html">Dynamic Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WaitPages.html">Wait Pages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AddPictures.html">Add Pictures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ModifyingHTML.html">Modifying HTML with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SendDataLive.html">Send Data with a live Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RandomiseValues.html">Randomise Values for the participant</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BankAccount.html">Bank Account</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DataRetrievalwithSessionFieldValue.html">Data Retrieval with Session Field variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Election.html">Election</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Heroku.html">Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IndividualSettingsForTheSession.html">Individual settings for the session:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DataCollection.html">Data Collection</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">NovalandGuide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Create a new app</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/CreateANewApp.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="create-a-new-app">
+<h1>Create a new app<a class="headerlink" href="#create-a-new-app" title="Permalink to this heading"></a></h1>
+<p>In oTree, an app is a group of pages that are related and perform a specific functionality within an oTree experiment.</p>
+<p>Apps can be used to isolate and organize specific parts of an experiment, making it easier to manage and navigate.
+Each app has its own folder within the oTree project and contains specific files, such as HTML templates, Python modules, CSS and JavaScript files, that are required for the app’s functionality.</p>
+<p>oTree allows multiple apps to be used within an experiment, defining and managing different parts of the experiment.
+Separating the experiment into apps allows changes to be made to one part of the experiment without affecting other parts.</p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>To create a new app in oTree, follow these steps:</p>
+<ol class="arabic">
+<li><dl>
+<dt>Open the command prompt or terminal and navigate to the directory where your oTree project is located.</dt><dd><p>To navigate to a specific directory using the command line, you can use the ‘cd’ command followed by the path of the directory you want to go to. If you’re already in the parent directory, you can simply type ‘cd’ followed by the name of the subdirectory you want to navigate to.</p>
+<p>For example, if you want to navigate to a directory named ‘my_folder’ located in the ‘Documents’ directory, you would type ‘cd Documents/my_folder’. If you’re already in the ‘Documents’ directory, you can simply type ‘cd my_folder’.</p>
+<p>The ‘cd’ command stands for ‘change directory’ and is a basic command used in the command line to navigate through the file system.</p>
+</dd>
+</dl>
+</li>
+<li><p>Run the following command to create a new app:</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">otree startapp app_name</span>
+</pre></div>
+</div>
+<p>Replace “app_name” with the name you want to give your app.</p>
+<ol class="arabic simple" start="3">
+<li><p>Enter a brief description of the app when prompted.</p></li>
+<li><p>Upon completion, a new folder with your app’s name will be created, containing the necessary files to build an app.</p></li>
+<li><p>You can now modify the files in your newly created app folder and make the necessary changes to add the desired functionality.</p></li>
+<li><p>To display the app to participants, you need to add it to the settings.py file. Go to ‘SESSION_CONFIGS’ and add the app under the app_sequence. The exact name and order are important.</p></li>
+<li><p>Save the changes and restart the oTree server. Your new app should now be available in your project.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="PyCharmOverview.html" class="btn btn-neutral float-left" title="PyCharmOverview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="otreeProject.html" class="btn btn-neutral float-right" title="oTree Project" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, University Duisburg.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

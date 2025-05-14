@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Election &mdash; NovalandGuide 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Heroku" href="Heroku.html" />
+    <link rel="prev" title="Data Retrieval with Session Field variables" href="DataRetrievalwithSessionFieldValue.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> NovalandGuide
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PyCharmOverview.html">PyCharmOverview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CreateANewApp.html">Create a new app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otreeProject.html">oTree Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CreateANewPage.html">Create a new page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicStructureOfAPage.html">Basic structure of the page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Buttons.html">Buttons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DynamicText.html">Dynamic Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WaitPages.html">Wait Pages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AddPictures.html">Add Pictures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ModifyingHTML.html">Modifying HTML with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SendDataLive.html">Send Data with a live Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RandomiseValues.html">Randomise Values for the participant</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BankAccount.html">Bank Account</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DataRetrievalwithSessionFieldValue.html">Data Retrieval with Session Field variables</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Election</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduce-parties">Introduce Parties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-code-for-selecting-a-political-party">Basic code for selecting a political party.</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#code-explanation">Code Explanation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#radio-buttons">Radio Buttons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clickable-pictures">Clickable pictures</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#save-the-election-value-in-the-backend">Save the election value in the backend</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get-the-values-of-all-participants">Get the values of all participants</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#visual-representation">Visual representation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#diagram">Diagram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dynamic-text">Dynamic Text</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Heroku.html">Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IndividualSettingsForTheSession.html">Individual settings for the session:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DataCollection.html">Data Collection</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">NovalandGuide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Election</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Election.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="election">
+<h1>Election<a class="headerlink" href="#election" title="Permalink to this heading"></a></h1>
+<p>Elections in Novaland play a significant role as they have an impact on the income of participating individuals.
+Throughout Novaland, parties are introduced and each participating person can choose a party.
+In this chapter, we will discuss all the elements that deal with the elections.</p>
+<section id="introduce-parties">
+<h2>Introduce Parties<a class="headerlink" href="#introduce-parties" title="Permalink to this heading"></a></h2>
+<p>To introduce the parties, it is sufficient to show a text with the corresponding image on the page to the participating individuals.
+Columns are used to ensure that the text is displayed next to the image.
+These columns can be modified in terms of style using CSS code on the page or in the stylesheet.
+The following CSS code can be used to style the columns:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{% block style %}</span>
+<span class="go">{% load staticfiles %}</span>
+<span class="go">&lt;link href=&quot;{% static &#39;NovalandStyle.css&#39; %}&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;</span>
+<span class="go">    &lt;style&gt;</span>
+<span class="go">    .column1{</span>
+<span class="go">        float: left;        # Determines which side the column should be aligned to</span>
+<span class="go">        width: 70%;         # Percentage of the screen width</span>
+<span class="go">        padding: 10px;      # The amount of space to be left around the object</span>
+<span class="go">        height: 200px;      # The height of the column</span>
+<span class="go">}</span>
+<span class="go">    }</span>
+<span class="go">   .column2{</span>
+<span class="go">        float: right;</span>
+<span class="go">        width: 30%;</span>
+<span class="go">        padding: 10px;</span>
+<span class="go">        height: 200px;</span>
+<span class="go">    }</span>
+<span class="go">    &lt;/style&gt;</span>
+<span class="go">{% endblock %}</span>
+</pre></div>
+</div>
+<p>With this CSS code, the text can be placed in one column and the image in the other column.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;h2&gt; Social Party Novaland &lt;/h2&gt;</span>
+<span class="go">&lt;hr&gt;</span>
+<span class="go">&lt;br&gt;</span>
+<span class="go">&lt;div class=&quot;row&quot;&gt;</span>
+<span class="go">    &lt;div class=&quot;column1&quot;&gt;</span>
+<span class="go">        &lt;p class=&quot;p&quot;&gt; The SPN (Social Party Novaland) wants &lt;strong&gt;more social benefits, even if that means higher taxes and levies.&lt;/strong&gt;</span>
+<span class="go">            &lt;br&gt;</span>
+<span class="go">The incomes of people with &lt;strong&gt;high incomes should decrease by about 5%, while the incomes of people with &lt;strong&gt;low incomes should increase by about 10%&lt;/strong&gt;.&lt;/strong&gt;.</span>
+
+<span class="go">            &lt;br&gt;</span>
+<span class="go">            The SPN wants to &lt;strong&gt;restrict the opportunities for foreigners to immigrate to Novaland.&lt;/strong&gt;&lt;/p&gt;</span>
+<span class="go">            &lt;br&gt;&lt;br&gt;</span>
+<span class="go">        &lt;button class=&#39;button&#39; type=&#39;button&#39; onclick=&#39;Next()&#39;&gt; Next &lt;/button&gt;</span>
+<span class="go">    &lt;/div&gt;</span>
+<span class="go">    &lt;div class=&quot;column2&quot;&gt;</span>
+<span class="go">        &lt;img src=&quot;{% static &#39;phase_3/SPN.png&#39; %}&quot; width=&quot;80%&quot;&gt;</span>
+<span class="go">    &lt;/div&gt;</span>
+<span class="go">&lt;/div&gt;</span>
+
+<span class="go">This code displays the Social Party Novaland (SPN) and their policies.</span>
+<span class="go">The text provides an overview of the party&#39;s political stance and their plans for the country.</span>
+<span class="go">The image shows the party&#39;s logo or a representative image of the party.</span>
+<span class="go">By using columns and CSS code, the page layout is structured, and the text and images are presented in a visually appealing way.</span>
+</pre></div>
+</div>
+</section>
+<section id="basic-code-for-selecting-a-political-party">
+<h2>Basic code for selecting a political party.<a class="headerlink" href="#basic-code-for-selecting-a-political-party" title="Permalink to this heading"></a></h2>
+<p>To select a political party as a participant, once all the parties have been introduced, we provide an overview of all the parties using Rows, which display the parties in a 2 x 2 grid. If you require more or fewer parties, this can be customized accordingly.
+To create a user-friendly interface, we add a radio button to each image. When you click on the image, the corresponding radio button is selected.
+The following code creates an HTML page with four images of party logos and radio buttons for selecting a party. The images are arranged in two rows with two columns each, with each column containing a logo and an associated radio button.</p>
+<p>Election HTML Code:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{% block content %}</span>
+<span class="gp"># </span>First<span class="w"> </span>Row
+<span class="go">&lt;div class=&quot;row&quot;&gt;</span>
+<span class="go">    &lt;div class=&quot;column3&quot;&gt;       # First Party</span>
+<span class="go">        &lt;img src=&quot;{% static &#39;Party1PNG&#39; %}&quot; width=&quot;30%&quot; class=&quot;center&quot; onclick=&quot;Party1()&quot;&gt;      # Party Image &#39;Party1PNG&#39; from the static folder + &#39;onclick&#39; function &#39;Party1()&#39;</span>
+<span class="go">        &lt;p class=&quot;p&quot; style=&quot;text-align: center&quot;&gt; &lt;input type=&quot;radio&quot; id=&quot;election1&quot; name=&quot;Party&quot; value=&quot;Party 1&quot;&gt; Party 1 &lt;/p&gt;      # Radio button with the id&#39;election1&#39;, the name &#39;Party and the value &#39;Party 1&#39;</span>
+<span class="go">    &lt;/div&gt;</span>
+
+<span class="go">    &lt;div class=&quot;column3&quot;&gt;</span>
+<span class="go">        &lt;img src=&quot;{% static &#39;Party2PNG.png&#39; %}&quot; width=&quot;30%&quot; class=&quot;center&quot; onclick=&quot;Party2()&quot;&gt;</span>
+<span class="go">       &lt;p class=&quot;p&quot; style=&quot;text-align: center&quot;&gt; &lt;input type=&quot;radio&quot; id=&quot;election2&quot; name=&quot;Party&quot; value=&quot;Party 2&quot;&gt;  Party 2 &lt;/p&gt;</span>
+<span class="go">    &lt;/div&gt;</span>
+<span class="go">&lt;/div&gt;</span>
+<span class="go">    &lt;br&gt;</span>
+<span class="gp"># </span>Second<span class="w"> </span>Row
+<span class="go">&lt;div class=&quot;row&quot;&gt;</span>
+<span class="go">    &lt;div class=&quot;column3&quot;&gt;</span>
+<span class="go">        &lt;img src=&quot;{% static &#39;Party3PNG.png&#39; %}&quot; width=&quot;30%&quot; class=&quot;center&quot; onclick=&quot;Party3()&quot;&gt;</span>
+<span class="go">        &lt;p class=&quot;p&quot; style=&quot;text-align: center&quot;&gt; &lt;input type=&quot;radio&quot; id=&quot;wahlen3&quot; name=&quot;Party&quot; value=&quot;Party 3&quot;&gt;  Party 3 &lt;/p&gt;</span>
+<span class="go">    &lt;/div&gt;</span>
+
+<span class="go">    &lt;div class=&quot;column3&quot;&gt;</span>
+<span class="go">        &lt;img src=&quot;{% static &#39;Party4PNG.png&#39; %}&quot; width=&quot;30%&quot; class=&quot;center&quot; onclick=&quot;Party4()&quot;&gt;</span>
+<span class="go">        &lt;p class=&quot;p&quot; style=&quot;text-align: center&quot;&gt; &lt;input type=&quot;radio&quot; id=&quot;wahlen4&quot; name=&quot;Party&quot; value=&quot;Party 4&quot;&gt;  Party 4 &lt;/p&gt;</span>
+<span class="go">    &lt;/div&gt;</span>
+<span class="go">&lt;/div&gt;</span>
+<span class="go">{% endblock %}</span>
+
+<span class="go">{% block script %}</span>
+<span class="go">&lt;script&gt;    # Javascript are to define the functions</span>
+<span class="go">    function Party1(){</span>
+<span class="go">        document.getElementById(&quot;Election1&quot;).checked = true</span>
+<span class="go">    }</span>
+<span class="go">    function Party2(){</span>
+<span class="go">        document.getElementById(&quot;Election2&quot;).checked = true</span>
+<span class="go">    }</span>
+<span class="go">    function Party3(){</span>
+<span class="go">        document.getElementById(&quot;Election3&quot;).checked = true</span>
+<span class="go">    }</span>
+<span class="go">    function Party4(){</span>
+<span class="go">        document.getElementById(&quot;Election4&quot;).checked = true</span>
+<span class="go">    }</span>
+
+<span class="go">&lt;/script&gt;</span>
+<span class="go">{% endblock %}</span>
+</pre></div>
+</div>
+<section id="code-explanation">
+<h3>Code Explanation<a class="headerlink" href="#code-explanation" title="Permalink to this heading"></a></h3>
+<p>We will now discuss individual elements from the code to ensure better understanding.
+If you have understood everything in the above code, you can skip this subsection.</p>
+</section>
+<section id="radio-buttons">
+<h3>Radio Buttons<a class="headerlink" href="#radio-buttons" title="Permalink to this heading"></a></h3>
+<p>To allow participants to choose between the parties, we create radio buttons that can be clicked by the participants.
+These buttons contain the names of the parties to choose from</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;p class=&quot;p&quot; style=&quot;text-align: center&quot;&gt; &lt;input type=&quot;radio&quot; id=&quot;election1&quot; name=&quot;Party&quot; value=&quot;Party 1&quot;&gt; Party Name 1 &lt;/p&gt;</span>
+<span class="go">&lt;p class=&quot;p&quot; style=&quot;text-align: center&quot;&gt; &lt;input type=&quot;radio&quot; id=&quot;election2&quot; name=&quot;Party&quot; value=&quot;Party 2&quot;&gt; Party Name 2 &lt;/p&gt;</span>
+</pre></div>
+</div>
+<p>The input field is set to type ‘radio’ so that it gets the design and functionality of a radio button.
+To link the radio buttons together so that only one option can be selected, the ‘name’ attribute must be the same.
+Additionally, the ‘name’ attribute links the selection to the backend form field, which must have the same name.
+The ‘value’ is the content that will be transferred to the ‘Party’ form field.</p>
+</section>
+<section id="clickable-pictures">
+<h3>Clickable pictures<a class="headerlink" href="#clickable-pictures" title="Permalink to this heading"></a></h3>
+<p>To link the selection function to the images, we give the images an ‘onclick’ attribute to trigger a JavaScript function.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;img src=&quot;{% static &#39;Party1PNG&#39; %}&quot; width=&quot;30%&quot; class=&quot;center&quot; onclick=&quot;Party1()&quot;&gt;</span>
+</pre></div>
+</div>
+<p>This JavaScript function, triggered by the onclick function, triggers the corresponding radio button.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">If the radio button looks like this:</span>
+<span class="go">    &lt;p class=&quot;p&quot; style=&quot;text-align: center&quot;&gt; &lt;input type=&quot;radio&quot; id=&quot;election1&quot; name=&quot;Party&quot; value=&quot;Party 1&quot;&gt; Party Name 1 &lt;/p&gt;</span>
+
+<span class="go">Then this is the desired function for it:</span>
+<span class="go">    function Party1(){</span>
+<span class="go">            document.getElementById(&quot;election1&quot;).checked = true</span>
+<span class="go">        }</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="save-the-election-value-in-the-backend">
+<h2>Save the election value in the backend<a class="headerlink" href="#save-the-election-value-in-the-backend" title="Permalink to this heading"></a></h2>
+<p>To save the selection of participants, we simply use a form field with the term ‘Party’ in the backend, in the init.py file.</p>
+<p>init.py:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">class PageName(Page):</span>
+<span class="go">    form_model = &#39;player&#39;</span>
+<span class="go">    form_fields = [&#39;Party&#39;]</span>
+</pre></div>
+</div>
+<p>In the HTML Election code, we selected a value named ‘Party’ to trigger exactly this variable in the backend and store the information there.
+It is important that the name of the input field is exactly the same as the name in the ‘form_field’.</p>
+<section id="get-the-values-of-all-participants">
+<h3>Get the values of all participants<a class="headerlink" href="#get-the-values-of-all-participants" title="Permalink to this heading"></a></h3>
+<p>After all participants have voted, these values must be stored in the SESSION FIELDS.
+This is to make sure that all elected parties are in one place so that they can be counted.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">class Phase_4_Page_10(Page):</span>
+<span class="go">    @staticmethod</span>
+<span class="go">    def vars_for_template(player: Player):</span>
+<span class="go">        try:</span>
+<span class="go">            player.session.PARTY = player.session.PARTY + player.Party</span>
+<span class="go">        except KeyError:</span>
+<span class="go">            player.session.PARTY = player.Party</span>
+</pre></div>
+</div>
+<p>To begin with, we take the session field file containing the party votes and count the number of votes for each party within the session field.
+From this, we can calculate the percentage of each party, which is important to display the results visually for the participants.</p>
+<p>Next, we create a list that includes the order of the participants’ votes.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">AllVotes = player.session.PARTEI</span>
+
+<span class="go">Party1Votes = AllVotes.count(&quot;Party1&quot;)</span>
+<span class="go">Party2Votes = AllVotes.count(&quot;Party2&quot;)</span>
+<span class="go">Party3Votes = AllVotes.count(&quot;Party3&quot;)</span>
+<span class="go">Party4Votes = AllVotes.count(&quot;Party4&quot;)</span>
+
+<span class="go">Party1Percent = (Party1Votes / AllVotes) * 100</span>
+<span class="go">Party2Percent = (Party2Votes / AllVotes) * 100</span>
+<span class="go">Party3Percent = (Party3Votes / AllVotes) * 100</span>
+<span class="go">Party4Percent = (Party4Votes / AllVotes) * 100</span>
+
+<span class="go">ElectionList = sorted([Party1Percent, Party2Percent, Party3Percent, Party4Percent])</span>
+</pre></div>
+</div>
+<p>These values are the basis for the visual representation and for the further course of the study.
+Since these values have an influence on the formation of government in Novaland.
+These variables can now be saved.</p>
+</section>
+</section>
+<section id="visual-representation">
+<h2>Visual representation<a class="headerlink" href="#visual-representation" title="Permalink to this heading"></a></h2>
+<p>In order to present the results we have decided to use different options.</p>
+<section id="diagram">
+<h3>Diagram<a class="headerlink" href="#diagram" title="Permalink to this heading"></a></h3>
+<p>This diagram serves as a guideline for the participants on how decisions were made in Novaland. Such a diagram can be designed using CSS.
+Here we provide an example of such a diagram.</p>
+<p>It is a larger diagram that will be commented on separately and explanations will follow.
+The main focus is to understand how to work with it.</p>
+<p>In essence, this code defines a layout consisting of a box containing four skills represented by bar graphs with percentage values.
+The four skills are Party1, Party2, Party 3, and Party4. Each bar has a name centered below it.</p>
+<p>The box is relatively positioned and horizontally and vertically centered.
+The skills are arranged using flexbox, so they are evenly distributed across the available space.</p>
+<p>The bar graphs are styled using the .graph selector.
+Each bar graph has an absolute positioning command and a percentage value that specifies the height of the bar. The bars also have a background color and a foreground color created by a linear gradient.</p>
+<p>The percentage values are displayed in a centered text element with a black font.
+The name of the skill is also centered below the bar graph and has a black background and white text.</p>
+<p>CSS definition:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>section<span class="w"> </span>defines<span class="w"> </span>a<span class="w"> </span>container<span class="w"> </span>that<span class="w"> </span>spans<span class="w"> </span>the<span class="w"> </span>entire<span class="w"> </span>width<span class="w"> </span>and<span class="w"> </span>height<span class="w"> </span>of<span class="w"> </span>its<span class="w"> </span>parent<span class="w"> </span>container.
+<span class="go">.section{</span>
+<span class="go">         width: 100%;</span>
+<span class="go">         height: 100%;</span>
+<span class="go">     }</span>
+
+<span class="gp"># </span>.box<span class="w"> </span>defines<span class="w"> </span>a<span class="w"> </span>container<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>four<span class="w"> </span>skills<span class="w"> </span>and<span class="w"> </span>their<span class="w"> </span>corresponding<span class="w"> </span>bar<span class="w"> </span>charts.
+<span class="gp"># </span>It<span class="w"> </span>is<span class="w"> </span>positioned<span class="w"> </span>relatively,<span class="w"> </span>so<span class="w"> </span>it<span class="w"> </span>is<span class="w"> </span>centered<span class="w"> </span>horizontally<span class="w"> </span>and<span class="w"> </span>vertically<span class="w"> </span>using<span class="w"> </span>the<span class="w"> </span>transform<span class="w"> </span>property.
+<span class="gp"># </span>It<span class="w"> </span>also<span class="w"> </span>has<span class="w"> </span>a<span class="w"> </span>background<span class="w"> </span>color,<span class="w"> </span>border,<span class="w"> </span>and<span class="w"> </span>a<span class="w"> </span>fixed<span class="w"> </span>height<span class="w"> </span>of<span class="w"> </span><span class="m">300</span><span class="w"> </span>pixels.
+<span class="go">     .box{</span>
+<span class="go">         position: relative;</span>
+<span class="go">         top: 50%;</span>
+<span class="go">         left: 50%;</span>
+<span class="go">         transform: translate(-50%, -50%);</span>
+<span class="go">         width: 100%;</span>
+<span class="go">         height: 300px;</span>
+<span class="go">         background: transparent;</span>
+<span class="go">         border-bottom: 1px solid #000;</span>
+<span class="go">         border-left: 1px solid #000;</span>
+<span class="go">         display: flex;</span>
+<span class="go">     }</span>
+
+<span class="gp"># </span>.box<span class="w"> </span>.skill<span class="w"> </span>defines<span class="w"> </span>a<span class="w"> </span>container<span class="w"> </span><span class="k">for</span><span class="w"> </span>each<span class="w"> </span>skill<span class="w"> </span>and<span class="w"> </span>its<span class="w"> </span>bar<span class="w"> </span>chart.
+<span class="gp"># </span>It<span class="w"> </span>is<span class="w"> </span><span class="nb">set</span><span class="w"> </span>to<span class="w"> </span>flex<span class="w"> </span>and<span class="w"> </span>has<span class="w"> </span>a<span class="w"> </span>flex:<span class="w"> </span><span class="m">1</span><span class="w"> </span>property<span class="w"> </span>to<span class="w"> </span>distribute<span class="w"> </span>the<span class="w"> </span>available<span class="w"> </span>space<span class="w"> </span>evenly<span class="w"> </span>among<span class="w"> </span>the<span class="w"> </span>four<span class="w"> </span>skills.
+<span class="go">     .box .skill {</span>
+<span class="go">         position: relative;</span>
+<span class="go">         flex: 1;</span>
+<span class="go">         text-align: center;</span>
+
+<span class="go">     }</span>
+
+<span class="gp"># </span>box<span class="w"> </span>.skill<span class="w"> </span>.graph<span class="w"> </span>defines<span class="w"> </span>the<span class="w"> </span>container<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>bar<span class="w"> </span>chart<span class="w"> </span>and<span class="w"> </span>its<span class="w"> </span>associated<span class="w"> </span>styles.
+<span class="gp"># </span>It<span class="w"> </span>has<span class="w"> </span>absolute<span class="w"> </span>positioning,<span class="w"> </span>with<span class="w"> </span>a<span class="w"> </span>width<span class="w"> </span>of<span class="w"> </span><span class="m">20</span>%<span class="w"> </span>and<span class="w"> </span>a<span class="w"> </span>bottom<span class="w"> </span>position<span class="w"> </span>of<span class="w"> </span><span class="m">0</span><span class="w"> </span>so<span class="w"> </span>it<span class="w"> </span>aligns<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>bottom<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>skill<span class="w"> </span>container.
+<span class="gp"># </span>It<span class="w"> </span>also<span class="w"> </span>has<span class="w"> </span>a<span class="w"> </span>background<span class="w"> </span>color<span class="w"> </span>and<span class="w"> </span>a<span class="w"> </span>linear<span class="w"> </span>gradient<span class="w"> </span>to<span class="w"> </span>give<span class="w"> </span>the<span class="w"> </span>bar<span class="w"> </span>chart<span class="w"> </span>a<span class="w"> </span>gradient<span class="w"> </span>effect.
+<span class="go">     .box .skill .graph{</span>
+<span class="go">         position: absolute;</span>
+<span class="go">         width: 20%;</span>
+<span class="go">         bottom: 0;</span>
+<span class="go">         background: rgba(0,0,0,.1);</span>
+<span class="go">         left: 50%;</span>
+<span class="go">         transform: translateX(-50%);</span>
+<span class="go">     }</span>
+
+<span class="gp"># </span>box<span class="w"> </span>.skill<span class="w"> </span>.graph:before<span class="w"> </span>and<span class="w"> </span>.box<span class="w"> </span>.skill<span class="w"> </span>.graph:after<span class="w"> </span>define<span class="w"> </span>the<span class="w"> </span>top<span class="w"> </span>and<span class="w"> </span>bottom<span class="w"> </span>layers<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>linear<span class="w"> </span>gradient<span class="w"> </span>applied<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>bar<span class="w"> </span>chart.
+<span class="gp"># </span>They<span class="w"> </span>are<span class="w"> </span>also<span class="w"> </span>positioned<span class="w"> </span>absolutely<span class="w"> </span>to<span class="w"> </span>fill<span class="w"> </span>the<span class="w"> </span>entire<span class="w"> </span>bar<span class="w"> </span>chart<span class="w"> </span>container.
+<span class="go">     .box .skill .graph:before{</span>
+<span class="go">         content: &#39;&#39;;</span>
+<span class="go">         position: absolute;</span>
+<span class="go">         top: 2px;</span>
+<span class="go">         left: 1px;</span>
+<span class="go">         right: 1px;</span>
+<span class="go">         bottom: 0;</span>
+<span class="go">         background: linear-gradient(0deg, #000000,#200000 );</span>
+<span class="go">     }</span>
+
+<span class="go">     .box .skill .graph:after{</span>
+<span class="go">         content: &#39;&#39;;</span>
+<span class="go">         position: absolute;</span>
+<span class="go">         top: 2px;</span>
+<span class="go">         left: 1px;</span>
+<span class="go">         right: 1px;</span>
+<span class="go">         bottom: 0;</span>
+<span class="go">         background: linear-gradient(0deg, #000000,#200000 );</span>
+<span class="go">     }</span>
+
+<span class="gp"># </span>box<span class="w"> </span>.skill<span class="w"> </span>.graph<span class="w"> </span>.percent<span class="w"> </span>defines<span class="w"> </span>the<span class="w"> </span>text<span class="w"> </span>element<span class="w"> </span>that<span class="w"> </span>displays<span class="w"> </span>the<span class="w"> </span>percentage<span class="w"> </span>value<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>bar<span class="w"> </span>chart.
+<span class="gp"># </span>It<span class="w"> </span>is<span class="w"> </span>positioned<span class="w"> </span>absolutely<span class="w"> </span>above<span class="w"> </span>the<span class="w"> </span>bar<span class="w"> </span>chart,<span class="w"> </span>centered<span class="w"> </span>horizontally<span class="w"> </span>using<span class="w"> </span>the<span class="w"> </span>transform<span class="w"> </span>property,<span class="w"> </span>and<span class="w"> </span>styled<span class="w"> </span>with<span class="w"> </span>a<span class="w"> </span>black<span class="w"> </span>font<span class="w"> </span>color<span class="w"> </span>and<span class="w"> </span>bold<span class="w"> </span>font<span class="w"> </span>weight.
+<span class="go">     .box .skill .graph .percent {</span>
+<span class="go">         position: absolute;</span>
+<span class="go">         top: -20px;</span>
+<span class="go">         left: 50%;</span>
+<span class="go">         transform: translateX(-50%);</span>
+<span class="go">         test-align: center;</span>
+<span class="go">         color: black;</span>
+<span class="go">         front-weight: bold;</span>
+<span class="go">     }</span>
+
+<span class="gp"># </span>box<span class="w"> </span>.skill<span class="w"> </span>.name<span class="w"> </span>defines<span class="w"> </span>the<span class="w"> </span>text<span class="w"> </span>element<span class="w"> </span>that<span class="w"> </span>displays<span class="w"> </span>the<span class="w"> </span>skill<span class="w"> </span>name<span class="w"> </span>below<span class="w"> </span>the<span class="w"> </span>bar<span class="w"> </span>chart.
+<span class="gp"># </span>It<span class="w"> </span>is<span class="w"> </span>positioned<span class="w"> </span>absolutely<span class="w"> </span>below<span class="w"> </span>the<span class="w"> </span>bar<span class="w"> </span>chart,<span class="w"> </span>centered<span class="w"> </span>horizontally<span class="w"> </span>using<span class="w"> </span>the<span class="w"> </span>transform<span class="w"> </span>property,<span class="w"> </span>and<span class="w"> </span>styled<span class="w"> </span>with<span class="w"> </span>a<span class="w"> </span>black<span class="w"> </span>font<span class="w"> </span>color,<span class="w"> </span>white<span class="w"> </span>background<span class="w"> </span>color,<span class="w"> </span>and<span class="w"> </span>rounded<span class="w"> </span>border.
+<span class="go">     .box .skill .name{</span>
+<span class="go">         position: absolute;</span>
+<span class="go">         bottom: -30%;</span>
+<span class="go">         left: 50%;</span>
+<span class="go">         transform: translateX(-50%);</span>
+<span class="go">         text-align: center;</span>
+<span class="go">         color: black;</span>
+<span class="go">         padding: 1px 3px;</span>
+<span class="go">         border-radius: 4px;</span>
+<span class="go">     }</span>
+</pre></div>
+</div>
+<p>Use the CSS in HTML Area to define the diagram:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Here<span class="w"> </span>the<span class="w"> </span>different<span class="w"> </span>CSS<span class="w"> </span>classes<span class="w"> </span>are<span class="w"> </span>called,<span class="w"> </span>which<span class="w"> </span>rely<span class="w"> </span>on<span class="w"> </span>each<span class="w"> </span>other<span class="w"> </span>to<span class="w"> </span>display<span class="w"> </span>the<span class="w"> </span>diagram
+<span class="go">&lt;section class=&quot;section&quot;&gt; #</span>
+<span class="go">    &lt;div class=&quot;box&quot;&gt;</span>
+
+<span class="gp">        # </span>Party<span class="w"> </span><span class="m">1</span>
+<span class="go">        &lt;div class=&quot;skill&quot;&gt; # The individual skills are defined here as bars</span>
+<span class="go">            &lt;div class=&quot;graph&quot; style=&quot;height:{%Party1Percent%}%&quot;&gt;   # This area defines the size of the bar based on the percentage</span>
+<span class="go">                &lt;div class=&quot;percent&quot;&gt; {% Party1Percent %}%&lt;/div&gt;    # The visual representation of the percentage</span>
+<span class="go">            &lt;/div&gt;</span>
+<span class="go">            &lt;div class=&quot;name&quot;&gt; Party1 &lt;/div&gt; # Shown name below the bar</span>
+<span class="go">        &lt;/div&gt;</span>
+
+<span class="gp">        # </span>Party<span class="w"> </span><span class="m">2</span>
+<span class="go">        &lt;div class=&quot;skill&quot;&gt;</span>
+<span class="go">            &lt;div class=&quot;graph&quot;style=&quot;height:{%SPNProzent%}%&quot;&gt;</span>
+<span class="go">                &lt;div class=&quot;percent&quot;&gt; {% SPNProzent %}%&lt;/div&gt;</span>
+<span class="go">            &lt;/div&gt;</span>
+<span class="go">            &lt;div class=&quot;name&quot;&gt; SPN &lt;/div&gt;</span>
+<span class="go">        &lt;/div&gt;</span>
+
+<span class="gp">        # </span>Party<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="p">&amp;</span><span class="w"> </span><span class="m">4</span><span class="w"> </span>uses<span class="w"> </span>the<span class="w"> </span>same<span class="w"> </span>schema
+<span class="go">        ...</span>
+<span class="go">&lt;/section&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="dynamic-text">
+<h3>Dynamic Text<a class="headerlink" href="#dynamic-text" title="Permalink to this heading"></a></h3>
+<p>Now, using the results, various dynamic texts can be displayed based only on the final outcome.
+To achieve this, if functions can be easily used.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">HTML Example:</span>
+<span class="go">{% if Party1Percent &gt; 10 %}</span>
+<span class="go">Party 1 has reached more than 10 percent</span>
+<span class="go">{% endif %}</span>
+
+<span class="go">Python Example:</span>
+<span class="go">if Party1Votes + Party2Votes &gt; Party3Votes + Party4Votes:</span>
+<span class="go">    Party1andParty2 = &quot;Party1 and Party2 have more votes&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="DataRetrievalwithSessionFieldValue.html" class="btn btn-neutral float-left" title="Data Retrieval with Session Field variables" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Heroku.html" class="btn btn-neutral float-right" title="Heroku" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, University Duisburg.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+==================================
+Modifying HTML with JavaScript
+==================================
+
+The section of an HTML document that needs to be modified can be specified using the <div> attribute.
+The code that requires modification should be enclosed within the <div> tags and assigned a unique ID.
+
+For instance:
+
+.. code-block:: console
+
+    <div id='uniqueID'>
+        # your code
+    </div>
+
+To change the content of this area, we can use a JavaScript function based on the example given below:
+
+.. code-block:: console
+
+    document.getElementById('uniqueID').innerHTML = 'Your change';
+
+This code will select the element with the ID 'uniqueID' and change its content to 'Your change'.
+
+As an example, a button can be defined which changes the text on the page when clicked:
+
+.. code-block:: console
+
+    {% block content %}
+    <div id='uniqueID'>
+        Button is not pressed
+    </div>
+
+    <br>
+    <button class='button' type='button' onclick='changeFunction()'> Change Text </button>
+    {% endblock %}
+
+    {% block script %}
+    function changeFunction() {
+        document.getElementById("uniqueID").innerHTML = 'Button is pressed'
+    }
+    {% endblock %}
+
+The above code defines a button that, when clicked, changes the text within the <div> tag with the ID 'uniqueID' from "Button is not pressed" to "Button is pressed" by invoking the JavaScript function 'changeFunction()'.

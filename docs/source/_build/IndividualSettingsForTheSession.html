@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Individual settings for the session: &mdash; NovalandGuide 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data Collection" href="DataCollection.html" />
+    <link rel="prev" title="Heroku" href="Heroku.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> NovalandGuide
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PyCharmOverview.html">PyCharmOverview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CreateANewApp.html">Create a new app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otreeProject.html">oTree Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CreateANewPage.html">Create a new page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicStructureOfAPage.html">Basic structure of the page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Buttons.html">Buttons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DynamicText.html">Dynamic Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WaitPages.html">Wait Pages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AddPictures.html">Add Pictures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ModifyingHTML.html">Modifying HTML with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SendDataLive.html">Send Data with a live Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RandomiseValues.html">Randomise Values for the participant</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BankAccount.html">Bank Account</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DataRetrievalwithSessionFieldValue.html">Data Retrieval with Session Field variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Election.html">Election</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Heroku.html">Heroku</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Individual settings for the session:</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#individual-novaland-settings">Individual Novaland Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DataCollection.html">Data Collection</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">NovalandGuide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Individual settings for the session:</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/IndividualSettingsForTheSession.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="individual-settings-for-the-session">
+<h1>Individual settings for the session:<a class="headerlink" href="#individual-settings-for-the-session" title="Permalink to this heading"></a></h1>
+<p>To be able to make individual settings, these must already be defined in the Settings.py file in PyCharm.</p>
+<p>To start a session, you can go to the Session Settings section.
+There, you can make settings that are either predefined by oTree or that you can determine yourself in the settings.py file under SESSION_CONFIGS. Under the ‘dict’ section, you can define individual variables.
+In the example code provided, SESSION_CONFIGS is a list of dictionaries, with each dictionary containing key-value pairs representing settings for a particular session configuration.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">SESSION_CONFIGS = [</span>
+<span class="go">    dict()</span>
+<span class="go">]</span>
+</pre></div>
+</div>
+<p>To define your own variables that can affect the study, you need to open the settings.py file and enter your values under SESSION_CONFIGS.
+These values can then be changed when starting the app on Heroku under the Session Settings.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">SESSION_CONFIGS = [</span>
+<span class="go">    dict(</span>
+<span class="go">        Page1Visible=False;</span>
+<span class="go">    )</span>
+<span class="go">]</span>
+</pre></div>
+</div>
+<p>For example, the provided variable ‘Page1Visible’ could be used to either show or hide certain pages using the ‘is_displayed’ function.
+In this case, the ‘is_displayed’ function could look like:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">class PageName(Page):</span>
+<span class="go">    @staticmethod</span>
+<span class="go">    def is_displayed(player: Player):</span>
+<span class="go">        if player.session.config[&#39;Page1Visble&#39;] == True:</span>
+<span class="go">            return True</span>
+<span class="go">        else:</span>
+<span class="go">            return False</span>
+</pre></div>
+</div>
+<section id="individual-novaland-settings">
+<h2>Individual Novaland Settings<a class="headerlink" href="#individual-novaland-settings" title="Permalink to this heading"></a></h2>
+<p>Novaland’s functionality is dependent on specific dates and times, as different phases occur at predetermined times.
+To ensure that these phases are not released until the designated date and time, we define our variables in settings.py to suit our needs.
+These variables can be adjusted again when opening the app on Heroku.</p>
+<p>An example might be:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">SESSION_CONFIGS = [</span>
+<span class="go">    dict(</span>
+<span class="go">        name=&#39;phase_1&#39;,</span>
+<span class="go">        display_name=&#39;phase_1&#39;,</span>
+<span class="go">        app_sequence=[&#39;phase_1&#39;],</span>
+<span class="go">        waitingPagePhase1=False,        # Activates/Deactivates the waiting page for the first Phase</span>
+<span class="go">        timeWaitingPagePhase1=&#39;1900&#39;,   # Determined when to see the first phase of the app for the pariticipants</span>
+<span class="go">        waitingPagePhase4=False,        # Activates/Deactivates the waiting page for the second Phase</span>
+<span class="go">        timeWaitingPagePhase4=&#39;1930&#39;,   # Determined when to see the second phase of the app for the pariticipants</span>
+<span class="go">        waitingPagePhase5=False,        # Activates/Deactivates the waiting page for the third Phase</span>
+<span class="go">        timeWaitingPagePhase5=&#39;1940&#39;,   # Determined when to see the third phase of the app for the pariticipants</span>
+<span class="go">        dateNovaland=&#39;0911&#39;,            # Sets the date when Novaland should start</span>
+<span class="go">        doc=&quot;Time: &#39;hhmm&#39;; date: &#39;ddmm&quot;</span>
+<span class="go">    )</span>
+<span class="go">]</span>
+</pre></div>
+</div>
+<p>This information can be used to display different pages and phases for the participants.
+To display a waiting page when the date and time have not yet been reached, or to make it disappear when the conditions have been met, we define a page with an “is_displayed” function.
+We also need to use the “datetime” function.</p>
+<p>To call the SESSION_CONFIGS variables, we use the names that we defined in the dictionary within SESSION_CONFIGS.
+They are called like this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">player.session.config[&#39;SessionConfigDictVariableName&#39;]</span>
+</pre></div>
+</div>
+<p>Based on this, we can write the “if” conditions for the “is_displayed” function:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">class Phase_1_Waiting_Page_0(Page):</span>
+<span class="go">@staticmethod</span>
+<span class="go">def is_displayed(player: Player):</span>
+<span class="go">    if player.session.config[&#39;waitingPagePhase1&#39;] and datetime.datetime.now() &lt; datetime.datetime(2022, int(</span>
+<span class="go">            player.session.config[&#39;dateNovaland&#39;][2:4]), int(player.session.config[&#39;dateNovaland&#39;][:2]), int(</span>
+<span class="go">        player.session.config[&#39;timeWaitingPagePhase1&#39;][:2]), int(</span>
+<span class="go">        player.session.config[&#39;timeWaitingPagePhase1&#39;][2:4]), 0):</span>
+<span class="go">        return True</span>
+<span class="go">    else:</span>
+<span class="go">        return False</span>
+
+<span class="go">The method checks the &quot;waitingPagePhase1&quot; parameter in the session configuration and compares the current datetime with the date and time specified in the &quot;timeWaitingPagePhase1&quot; and &quot;dateNovaland&quot; parameters.</span>
+<span class="go">If the &quot;waitingPagePhase1&quot; parameter is True and the current datetime is before the specified datetime, the method returns True, indicating that the waiting page should be displayed.</span>
+<span class="go">Otherwise, the method returns False and the page is not displayed.</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Heroku.html" class="btn btn-neutral float-left" title="Heroku" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="DataCollection.html" class="btn btn-neutral float-right" title="Data Collection" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, University Duisburg.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

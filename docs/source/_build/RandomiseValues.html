@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Randomise Values for the participant &mdash; NovalandGuide 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Bank Account" href="BankAccount.html" />
+    <link rel="prev" title="Send Data with a live Method" href="SendDataLive.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> NovalandGuide
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PyCharmOverview.html">PyCharmOverview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CreateANewApp.html">Create a new app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otreeProject.html">oTree Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CreateANewPage.html">Create a new page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicStructureOfAPage.html">Basic structure of the page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Buttons.html">Buttons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DynamicText.html">Dynamic Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WaitPages.html">Wait Pages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AddPictures.html">Add Pictures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ModifyingHTML.html">Modifying HTML with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SendDataLive.html">Send Data with a live Method</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Randomise Values for the participant</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-and-import-a-csv-data">Create and import a CSV Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="BankAccount.html">Bank Account</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DataRetrievalwithSessionFieldValue.html">Data Retrieval with Session Field variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Election.html">Election</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Heroku.html">Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IndividualSettingsForTheSession.html">Individual settings for the session:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DataCollection.html">Data Collection</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">NovalandGuide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Randomise Values for the participant</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/RandomiseValues.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="randomise-values-for-the-participant">
+<h1>Randomise Values for the participant<a class="headerlink" href="#randomise-values-for-the-participant" title="Permalink to this heading"></a></h1>
+<p>There are several ways to randomise numbers and inputs.
+In Novaland, we have used the tactic of creating a table and determining the values that have an impact on the game beforehand.
+This way, we prevent too many similar results from occurring.</p>
+<section id="create-and-import-a-csv-data">
+<h2>Create and import a CSV Data<a class="headerlink" href="#create-and-import-a-csv-data" title="Permalink to this heading"></a></h2>
+<p>There are many different tools that can be used to create CSV data, including Excel, for example.</p>
+<p>When creating a CSV file, there are several things to keep in mind:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Delimiter: CSV stands for “comma-separated values,” so the values in each row should be separated by commas. However, depending on your locale or data formatting needs, you may need to use a different delimiter, such as a semicolon or tab.</p></li>
+<li><p>Header row: It’s a good practice to include a header row at the top of your CSV file that describes the contents of each column.</p></li>
+<li><p>Quotes: If any of your values contain commas or other special characters, you should enclose them in double quotes to ensure they are correctly parsed.</p></li>
+<li><p>Encoding: Make sure to use an appropriate character encoding for your data. UTF-8 is a common encoding that supports a wide range of characters and is widely supported.</p></li>
+<li><p>Consistency: Ensure that the data in your CSV file is consistent, with the same number of columns in each row and consistent data types (e.g., dates formatted the same way).</p></li>
+<li><p>Cleanliness: Remove any unnecessary characters, formatting or other data that isn’t relevant to the data being recorded in the CSV file.</p></li>
+<li><p>File extension: Use the .csv file extension to ensure that the file is recognized as a CSV file and can be opened correctly by programs that support CSV files.</p></li>
+</ol>
+</div></blockquote>
+<p>Now you can place the CSV file in the Novaland folder and use it from there.</p>
+<p>To be able to use the individual values in your project, we will write some code in the init.py file, in which the program reads the values and assigns them to each participant.</p>
+<p>First, we need to install the CSV library:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">import csv</span>
+</pre></div>
+</div>
+<p>Then we write a for-loop that reads all the data from the table and assigns it to the participants.</p>
+<p>For Example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">def creating_session(subsession: Subsession):</span>
+<span class="go">    f = open(&#39;participants_data.csv&#39;, encoding=&#39;utf-8-sig&#39;)</span>
+
+<span class="go">    rows = list(csv.DictReader(f))</span>
+<span class="go">    players = subsession.get_players()</span>
+<span class="go">    for i in range(len(players)):</span>
+<span class="go">        row = rows[i]</span>
+<span class="go">        player = players[i]</span>
+<span class="go">        player.Income = int(row[&#39;Income&#39;])</span>
+<span class="go">        player.Corruption = int(row[&#39;Corruption&#39;])</span>
+<span class="go">        player.Jobless = int(row[&#39;Jobless&#39;])</span>
+<span class="go">        player.FireAffected = int(row[&#39;FireAffected&#39;])</span>
+<span class="go">        player.participant.CSVIncome = int(row[&#39;Income&#39;])</span>
+<span class="go">        player.participant.CSVCorruption = int(row[&#39;Corruption&#39;])</span>
+<span class="go">        player.participant.CSVJobless = int(row[&#39;Jobless&#39;])</span>
+<span class="go">        player.participant.CSVFireAffected = int(row[&#39;FireAffected&#39;])</span>
+</pre></div>
+</div>
+<p>Explanation about the Example Code:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">f = open(&#39;participants_data.csv&#39;, encoding=&#39;utf-8-sig&#39;)</span>
+</pre></div>
+</div>
+<p>The ‘open’ function is used to access a file called ‘participants_data.csv’.
+It has two parts: the first part is the name of the file, and the second part is how the file should be opened.
+The ‘encoding’ parameter tells the computer which characters are used in the file.
+In this case, ‘utf-8-sig’ is used, which is a way of encoding that includes a special marker at the beginning of the file.
+This marker tells the computer which way the data is arranged in the file and helps some programs figure out what kind of text it is.</p>
+<p>Once the file is opened, the returned file object is assigned to the variable ‘f’. The file object can then be used to read data from the file using various methods.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">rows = list(csv.DictReader(f))</span>
+</pre></div>
+</div>
+<p>The ‘DictReader’ function reads a CSV file and returns a special type of list that is made up of dictionaries. Each dictionary represents a row in the CSV file, where the keys are the column headers and the values are the corresponding values in each row.
+This makes it easy to access the data by column name instead of position.
+In this code, the ‘f’ variable represents the CSV file that was opened earlier, and the resulting list of dictionaries is stored in the ‘rows’ variable for later use.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">players = subsession.get_players()</span>
+</pre></div>
+</div>
+<p>The line retrieves a list of all the players in the current subsession.
+This is done by calling the “get_players()” method on the subsession object, which returns a list of player objects.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">for i in range(len(players)):</span>
+<span class="go">    row = rows[i]</span>
+<span class="go">    player = players[i]</span>
+<span class="go">    player.Income = int(row[&#39;Income&#39;])</span>
+<span class="go">    player.Corruption = int(row[&#39;Corruption&#39;])</span>
+<span class="go">    player.Jobless = int(row[&#39;Jobless&#39;])</span>
+<span class="go">    player.FireAffected = int(row[&#39;FireAffected&#39;])</span>
+<span class="go">    player.participant.CSVIncome = int(row[&#39;Income&#39;])</span>
+<span class="go">    player.participant.CSVCorruption = int(row[&#39;Corruption&#39;])</span>
+<span class="go">    player.participant.CSVJobless = int(row[&#39;Jobless&#39;])</span>
+<span class="go">    player.participant.CSVFireAffected = int(row[&#39;FireAffected&#39;])</span>
+</pre></div>
+</div>
+<p>The function then gets a list of players from the “subsession” object and loops over them.
+For each player, it retrieves the corresponding row of data from the list of dictionaries and sets the player’s attributes (Income, Corruption, Jobless, FireAffected) to the values from the row.
+The function also sets the values from the row to these participant values (CSVIncome, CSVCorruption, CSVJobless, CSVFireAffected).</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="SendDataLive.html" class="btn btn-neutral float-left" title="Send Data with a live Method" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="BankAccount.html" class="btn btn-neutral float-right" title="Bank Account" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, University Duisburg.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
