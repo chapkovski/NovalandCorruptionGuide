@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a06cd224-6ee4-4c51-b987-3a5ec98dee81" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/NovalandCorruptionGuide.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/NovalandGuide.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.readthedocs.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_build/doctrees/environment.pickle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_build/doctrees/index.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_build/html/.buildinfo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_build/html/_sources/index.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_build/html/_static/alabaster.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_build/html/_static/basic.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_build/html/_static/custom.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_build/html/_static/doctools.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_build/html/_static/documentation_options.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_build/html/_static/file.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_build/html/_static/language_data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_build/html/_static/minus.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_build/html/_static/plus.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_build/html/_static/pygments.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_build/html/_static/searchtools.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_build/html/_static/sphinx_highlight.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_build/html/genindex.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_build/html/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_build/html/objects.inv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_build/html/search.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_build/html/searchindex.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/conf.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/index.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/make.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/make.bat" beforeDir="false" afterPath="$PROJECT_DIR$/docs/make.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/AddPictures.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/BankAccount.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/BasicStructureOfAPage.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/Bots.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/Buttons.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/CSV.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/Chats.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/CreateANewApp.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/CreateANewPage.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/DataCollection.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/DataRetrievalwithSessionFieldValue.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/Deployment.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/DynamicText.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/Election.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/Heroku.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/IndividualSettingsForTheSession.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/Links/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/Links/links.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/ModifyingHTML.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/Novaland.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/OfflineBots.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/OfflineCommandLineBots.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/OnlineBotsWithAWS.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/OnlineCommandLineBots.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/Pages.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/ProjectOverview.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/PyCharmOverview.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/RandomiseValues.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/SavingAndUsingParticipantInputInOtree.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/SendDataLive.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/ShortOtreeProject.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/WaitPages.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/WorkingWithData.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/.buildinfo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/.doctrees/AddPictures.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/.doctrees/BankAccount.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/.doctrees/BasicStructureOfAPage.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/.doctrees/Buttons.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/.doctrees/CreateANewApp.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/.doctrees/CreateANewPage.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/.doctrees/DataCollection.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/.doctrees/DataRetrievalwithSessionFieldValue.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/.doctrees/DynamicText.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/.doctrees/Election.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/.doctrees/Heroku.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/.doctrees/IndividualSettingsForTheSession.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/.doctrees/ModifyingHTML.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/.doctrees/PyCharmOverview.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/.doctrees/RandomiseValues.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/.doctrees/SendDataLive.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/.doctrees/WaitPages.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/.doctrees/environment.pickle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/.doctrees/index.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/.doctrees/installation.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/.doctrees/otreeProject.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/AddPictures.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/BankAccount.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/BasicStructureOfAPage.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/Buttons.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/CreateANewApp.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/CreateANewPage.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/DataCollection.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/DataRetrievalwithSessionFieldValue.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/DynamicText.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/Election.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/Heroku.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/IndividualSettingsForTheSession.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/ModifyingHTML.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/PyCharmOverview.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/RandomiseValues.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/SendDataLive.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/WaitPages.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_sources/AddPictures.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_sources/BankAccount.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_sources/BasicStructureOfAPage.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_sources/Buttons.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_sources/CreateANewApp.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_sources/CreateANewPage.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_sources/DataCollection.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_sources/DataRetrievalwithSessionFieldValue.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_sources/DynamicText.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_sources/Election.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_sources/Heroku.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_sources/IndividualSettingsForTheSession.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_sources/ModifyingHTML.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_sources/PyCharmOverview.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_sources/RandomiseValues.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_sources/SendDataLive.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_sources/WaitPages.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_sources/index.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_sources/installation.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_sources/otreeProject.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/Object_hierarchy.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/Overview_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/Overview_1_vers2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/_sphinx_javascript_frameworks_compat.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/basic.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/css/badge_only.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/css/fonts/Roboto-Slab-Bold.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/css/fonts/Roboto-Slab-Bold.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/css/fonts/Roboto-Slab-Regular.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/css/fonts/Roboto-Slab-Regular.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/css/fonts/fontawesome-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/css/fonts/fontawesome-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/css/fonts/fontawesome-webfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/css/fonts/fontawesome-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/css/fonts/fontawesome-webfont.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/css/fonts/lato-bold-italic.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/css/fonts/lato-bold-italic.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/css/fonts/lato-bold.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/css/fonts/lato-bold.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/css/fonts/lato-normal-italic.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/css/fonts/lato-normal-italic.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/css/fonts/lato-normal.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/css/fonts/lato-normal.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/css/theme.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/custom.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/doctools.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/documentation_options.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/file.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/jquery-3.6.0.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/js/badge_only.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/js/html5shiv-printshiv.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/js/html5shiv.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/js/theme.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/language_data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/minus.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/plus.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/pycharm.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/pygments.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/searchtools.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/sphinx_highlight.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/underscore-1.13.1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/_static/underscore.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/genindex.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/installation.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/objects.inv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/otreeProject.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/search.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_build/searchindex.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_static/CSVEXAMPLE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_static/CSV_Data.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_static/Doku1.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_static/Doku10.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_static/Doku11.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_static/Doku12.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_static/Doku13.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_static/Doku14.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_static/Doku2.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_static/Doku3.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_static/Doku4.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_static/Doku5.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_static/Doku6.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_static/Doku7.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_static/Doku8.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_static/Doku9.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_static/ExampleCSV.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_static/Object_hierarchy.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_static/Overview_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_static/Overview_1_vers2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_static/custom.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_static/doku55.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_static/pycharm.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/api.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/conf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/index.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/installation.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/otreeProject.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/runningNovaland.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/settings-py.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/usage.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lumache.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Leetream&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Leetream/NovalandCorruptionGuide&quot;,
+    &quot;accountId&quot;: &quot;92b07485-5daf-4fcb-b38c-a62de2d749c5&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2x2nveYMOO2Qi8jeGOmbm4LOdyM" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kemper/Documents/GitHub/novaland2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/NovalandCorruptionGuide/docs/docs/_build/html/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.index.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PY-241.19416.19" />
+        <option value="bundled-python-sdk-337b0a7a993a-2767605e8bc2-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.19416.19" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a06cd224-6ee4-4c51-b987-3a5ec98dee81" name="Changes" comment="" />
+      <created>1747145269517</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1747145269517</updated>
+      <workItem from="1747145271023" duration="2235000" />
+      <workItem from="1747210577589" duration="4315000" />
+      <workItem from="1747298058241" duration="827000" />
+      <workItem from="1747299185461" duration="881000" />
+      <workItem from="1747372086992" duration="593000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
