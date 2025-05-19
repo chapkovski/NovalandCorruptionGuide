@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Functionality of the Introduction &mdash; NovalandCorruptionGuide 2025 documentation</title>
+  <title>The Introduction App &mdash; NovalandCorruptionGuide 2025 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
@@ -21,8 +21,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Functionality of the Experimental Treatment" href="CodeStructureMain.html" />
-    <link rel="prev" title="Functionality of the project code" href="CodeStructure.html" /> 
+    <link rel="next" title="The Stay in Novaland" href="CodeStructureMain.html" />
+    <link rel="prev" title="Project-wide files" href="CodeStructureGlobalFiles.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,10 +47,18 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="ProjectStructure.html">Structure of the oTree project</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="CodeStructure.html">Functionality of the project code</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Functionality of the Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="CodeStructureMain.html">Functionality of the Experimental Treatment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="CodeStructureElection.html">Functionality of the Election</a></li>
-<li class="toctree-l2"><a class="reference internal" href="CodeStructurePost.html">Functionality of the Post-Experimental Questionnaire</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="CodeStructure.html#contents">Contents</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="CodeStructureGlobalFiles.html">Project-wide files</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">The Introduction App</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#basic-functionality">Basic functionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pages-of-the-intro-questionnaire">Pages of the intro questionnaire</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="CodeStructureMain.html">The Stay in Novaland</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CodeStructureElection.html">The Election in Novaland</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CodeStructurePost.html">The Post-Experimental Questionnaire</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deploying the oTree project on Heroku</a></li>
@@ -71,7 +79,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="CodeStructure.html">Functionality of the project code</a></li>
-      <li class="breadcrumb-item active">Functionality of the Introduction</li>
+      <li class="breadcrumb-item active">The Introduction App</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/CodeStructureIntro.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -81,8 +89,102 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="functionality-of-the-introduction">
-<h1>Functionality of the Introduction<a class="headerlink" href="#functionality-of-the-introduction" title="Link to this heading"></a></h1>
+  <section id="the-introduction-app">
+<h1>The Introduction App<a class="headerlink" href="#the-introduction-app" title="Link to this heading"></a></h1>
+<p>This section explains the intro app, which contains the introductory questionnaire. Here, participants were welcomed, asked for their consent to participate, informed about the procedure of the study, and asked basic socio-demographic questions.</p>
+<section id="basic-functionality">
+<h2>Basic functionality<a class="headerlink" href="#basic-functionality" title="Link to this heading"></a></h2>
+<p>The first part of the questionnaire is also the simplest one code-wise.
+In the __init__.py file, the variables used to store participants’ data in are defined, along with the content and data processing of the pages that appear in the app.</p>
+<section id="global-settings">
+<h3>Global settings<a class="headerlink" href="#global-settings" title="Link to this heading"></a></h3>
+<p>The global settings of the project are defined in the class called <code class="code docutils literal notranslate"><span class="pre">C</span></code>, which contains some constant variables that define some fundamental characteristics of the app:</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">ROOMS</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">C</span><span class="p">(</span><span class="n">BaseConstants</span><span class="p">):</span>
+    <span class="n">NAME_IN_URL</span> <span class="o">=</span> <span class="s1">&#39;introduction&#39;</span> <span class="c1">#displayed name for participants</span>
+    <span class="n">PLAYERS_PER_GROUP</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># no interactions between participants</span>
+    <span class="n">NUM_ROUNDS</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># only one round, no repeated functionality</span>
+
+    <span class="n">ENDOWMENT</span> <span class="o">=</span> <span class="n">cu</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span> <span class="c1"># not relevant for this study</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="variables-for-data-storage">
+<h3>Variables for data storage<a class="headerlink" href="#variables-for-data-storage" title="Link to this heading"></a></h3>
+<p>The variables used to store participants’ data are defined in the class called <code class="code docutils literal notranslate"><span class="pre">Player</span></code>. It contains the variables that are used to store the data collected from the participants during the questionnaire. The variables are defined as fields of the class, and each field has a specific type and properties. There are three sets of variables defined here: First, some variables that collect data on the devices that participants used to complete the questionnaire. These variables are defined in the <code class="code docutils literal notranslate"><span class="pre">user_agent_XXX</span></code> block. The second block contains the variables that are used to collect the participants’ consent to participate in the study and their agreement on the comprehension questions with their filter function. The third block contains the socio-demographic variables that were asked for in the questionnaire.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">Intro App Variables</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Player</span><span class="p">(</span><span class="n">BasePlayer</span><span class="p">):</span>
+    <span class="c1"># Set of variables that collect data on the devices that participants used to complete the questionnaire</span>
+    <span class="n">user_agent_browser</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">StringField</span><span class="p">()</span>
+    <span class="n">user_agent_browser_version</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">StringField</span><span class="p">()</span>
+    <span class="n">user_agent_os</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">StringField</span><span class="p">()</span>
+    <span class="n">user_agent_os_version</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">StringField</span><span class="p">()</span>
+    <span class="n">user_agent_device</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">StringField</span><span class="p">()</span>
+    <span class="n">user_agent_is_bot</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">()</span>
+    <span class="n">user_agent_is_mobile</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">()</span>
+    <span class="n">user_agent_is_tablet</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">()</span>
+    <span class="n">user_agent_is_pc</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">()</span>
+
+
+    <span class="c1"># Set of variables that collect the participants&#39; consent to participate in the study and with the comprehension questions</span>
+    <span class="n">data_consent</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Ich bin damit einverstanden, an der aktuellen Studie &quot;</span>
+                                                    <span class="s2">&quot;teilzunehmen. Mir ist bewusst, dass ich meine Zustimmung zur &quot;</span>
+                                                    <span class="s2">&quot;Teilnahme jederzeit widerrufen kann und dass ich mit meiner &quot;</span>
+                                                    <span class="s2">&quot;Zustimmung nicht auf meine gesetzlichen Rechte verzichte.&quot;</span><span class="p">]],</span>
+                                       <span class="n">widget</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">RadioSelect</span><span class="p">,</span>
+                                       <span class="n">label</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">comprehension_consent</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Ich habe verstanden, dass ich die Studie nur &quot;</span>
+                                                             <span class="s2">&quot;abschließen kann, wenn ich die Verständnisfragen &quot;</span>
+                                                             <span class="s2">&quot;korrekt beantworte.&quot;</span><span class="p">]],</span>
+                                                <span class="n">widget</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">RadioSelect</span><span class="p">,</span>
+                                                <span class="n">label</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Set of socio-demographic variables</span>
+    <span class="n">age</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;In welchem Jahr sind Sie geboren (z. B. 1987)?&lt;br&gt;&quot;</span>
+                                   <span class="s2">&quot;Geben Sie bitte Ihr Geburtsjahr an:&quot;</span><span class="p">,</span>
+                                <span class="nb">min</span><span class="o">=</span><span class="mi">1924</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">2024</span><span class="p">)</span>
+    <span class="n">edu</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Wie viele Jahre haben Sie insgesamt eine Schule besucht, &quot;</span>
+                                    <span class="s2">&quot;inklusive des etwaigen Besuchs einer Berufsschule oder Hochschule? &quot;</span>
+                                    <span class="s2">&quot;Berücksichtigen Sie bitte alle Voll- und Teilzeitausbildungen, &quot;</span>
+                                    <span class="s2">&quot;und rechnen Sie die Gesamtdauer Ihrer Schul- bzw. Ausbildungszeit &quot;</span>
+                                    <span class="s2">&quot;in ganze Jahre um.&quot;</span><span class="p">,</span>
+                              <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">99</span><span class="p">)</span>
+    <span class="n">gndr</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Sie sind...&quot;</span><span class="p">,</span>
+                                <span class="n">choices</span><span class="o">=</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Männlich&quot;</span><span class="p">],</span>
+                                         <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;Weiblich&quot;</span><span class="p">],</span>
+                                         <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;Divers&quot;</span><span class="p">]],</span>
+                                <span class="n">widget</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">RadioSelect</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="html-files">
+<h3>HTML files<a class="headerlink" href="#html-files" title="Link to this heading"></a></h3>
+<p>In the HTML files, the layout and design of each page is defined. For a more detailed documentation on the structure of the HTML files, please refer to the <a class="reference internal" href="HtmlPages.html"><span class="doc">HTML Pages</span></a> section. Here, only the specific content of the HTML files is described. Each page of the questionnaire has its own HTML file, which is used to define the layout and design of that specific page. The HTML files are named according to the pages they represent, and they are included in the app’s code using the <code class="code docutils literal notranslate"><span class="pre">page_sequence</span></code> variable at the very bottom of the intro app’s init file.</p>
+</section>
+</section>
+<section id="pages-of-the-intro-questionnaire">
+<h2>Pages of the intro questionnaire<a class="headerlink" href="#pages-of-the-intro-questionnaire" title="Link to this heading"></a></h2>
+<p>Here, the pages of the intro questionnaire are described in the order in which they appear in the questionnaire.</p>
+<section id="welcome-page">
+<h3>Welcome page<a class="headerlink" href="#welcome-page" title="Link to this heading"></a></h3>
+</section>
+<section id="data-protection-page">
+<h3>Data protection page<a class="headerlink" href="#data-protection-page" title="Link to this heading"></a></h3>
+</section>
+<section id="comprehension-info-page">
+<h3>Comprehension info page<a class="headerlink" href="#comprehension-info-page" title="Link to this heading"></a></h3>
+</section>
+<section id="socio-demographic-questions">
+<h3>Socio-demographic questions<a class="headerlink" href="#socio-demographic-questions" title="Link to this heading"></a></h3>
+</section>
+<section id="study-layout-page">
+<h3>Study Layout page<a class="headerlink" href="#study-layout-page" title="Link to this heading"></a></h3>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 <span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">Show example code</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
@@ -92,13 +194,15 @@
 </div>
 </div>
 </details></section>
+</section>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="CodeStructure.html" class="btn btn-neutral float-left" title="Functionality of the project code" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="CodeStructureMain.html" class="btn btn-neutral float-right" title="Functionality of the Experimental Treatment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="CodeStructureGlobalFiles.html" class="btn btn-neutral float-left" title="Project-wide files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="CodeStructureMain.html" class="btn btn-neutral float-right" title="The Stay in Novaland" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

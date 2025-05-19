@@ -1,8 +1,111 @@
-Functionality of the Introduction
-=================================
+The Introduction App
+======================
+This section explains the intro app, which contains the introductory questionnaire. Here, participants were welcomed, asked for their consent to participate, informed about the procedure of the study, and asked basic socio-demographic questions.
+
+Basic functionality
+--------------------
+The first part of the questionnaire is also the simplest one code-wise.
+In the __init__.py file, the variables used to store participants' data in are defined, along with the content and data processing of the pages that appear in the app.
+
+Global settings
+^^^^^^^^^^^^^^^^^^^^^
+The global settings of the project are defined in the class called :code:`C`, which contains some constant variables that define some fundamental characteristics of the app:
+
+.. dropdown:: ROOMS
+   :icon: terminal
+
+   .. code-block:: python
+
+
+    class C(BaseConstants):
+        NAME_IN_URL = 'introduction' #displayed name for participants
+        PLAYERS_PER_GROUP = None # no interactions between participants
+        NUM_ROUNDS = 1 # only one round, no repeated functionality
+
+        ENDOWMENT = cu(1000) # not relevant for this study
+
+
+Variables for data storage
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The variables used to store participants' data are defined in the class called :code:`Player`. It contains the variables that are used to store the data collected from the participants during the questionnaire. The variables are defined as fields of the class, and each field has a specific type and properties. There are three sets of variables defined here: First, some variables that collect data on the devices that participants used to complete the questionnaire. These variables are defined in the :code:`user_agent_XXX` block. The second block contains the variables that are used to collect the participants' consent to participate in the study and their agreement on the comprehension questions with their filter function. The third block contains the socio-demographic variables that were asked for in the questionnaire.
+
+.. dropdown:: Intro App Variables
+   :icon: terminal
+
+   .. code-block:: python
+
+
+    class Player(BasePlayer):
+        # Set of variables that collect data on the devices that participants used to complete the questionnaire
+        user_agent_browser = models.StringField()
+        user_agent_browser_version = models.StringField()
+        user_agent_os = models.StringField()
+        user_agent_os_version = models.StringField()
+        user_agent_device = models.StringField()
+        user_agent_is_bot = models.BooleanField()
+        user_agent_is_mobile = models.BooleanField()
+        user_agent_is_tablet = models.BooleanField()
+        user_agent_is_pc = models.BooleanField()
+
+
+        # Set of variables that collect the participants' consent to participate in the study and with the comprehension questions
+        data_consent = models.IntegerField(choices=[[1, "Ich bin damit einverstanden, an der aktuellen Studie "
+                                                        "teilzunehmen. Mir ist bewusst, dass ich meine Zustimmung zur "
+                                                        "Teilnahme jederzeit widerrufen kann und dass ich mit meiner "
+                                                        "Zustimmung nicht auf meine gesetzlichen Rechte verzichte."]],
+                                           widget=widgets.RadioSelect,
+                                           label="")
+        comprehension_consent = models.IntegerField(choices=[[1, "Ich habe verstanden, dass ich die Studie nur "
+                                                                 "abschließen kann, wenn ich die Verständnisfragen "
+                                                                 "korrekt beantworte."]],
+                                                    widget=widgets.RadioSelect,
+                                                    label="")
+
+        # Set of socio-demographic variables
+        age = models.IntegerField(label="In welchem Jahr sind Sie geboren (z. B. 1987)?<br>"
+                                       "Geben Sie bitte Ihr Geburtsjahr an:",
+                                    min=1924, max=2024)
+        edu = models.IntegerField(label="Wie viele Jahre haben Sie insgesamt eine Schule besucht, "
+                                        "inklusive des etwaigen Besuchs einer Berufsschule oder Hochschule? "
+                                        "Berücksichtigen Sie bitte alle Voll- und Teilzeitausbildungen, "
+                                        "und rechnen Sie die Gesamtdauer Ihrer Schul- bzw. Ausbildungszeit "
+                                        "in ganze Jahre um.",
+                                  min=0, max=99)
+        gndr = models.IntegerField(label="Sie sind...",
+                                    choices=[[1, "Männlich"],
+                                             [2, "Weiblich"],
+                                             [3, "Divers"]],
+                                    widget=widgets.RadioSelect)
 
 
 
+
+HTML files
+^^^^^^^^^^^^
+In the HTML files, the layout and design of each page is defined. For a more detailed documentation on the structure of the HTML files, please refer to the :doc:`HTML Pages <HtmlPages>` section. Here, only the specific content of the HTML files is described. Each page of the questionnaire has its own HTML file, which is used to define the layout and design of that specific page. The HTML files are named according to the pages they represent, and they are included in the app's code using the :code:`page_sequence` variable at the very bottom of the intro app's init file.
+
+Pages of the intro questionnaire
+---------------------------------
+Here, the pages of the intro questionnaire are described in the order in which they appear in the questionnaire.
+
+Welcome page
+^^^^^^^^^^^^^^
+
+
+Data protection page
+^^^^^^^^^^^^^^^^^^^^
+
+
+Comprehension info page
+^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Socio-demographic questions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Study Layout page
+^^^^^^^^^^^^^^^^^
 
 
 

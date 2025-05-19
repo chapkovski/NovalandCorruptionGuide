@@ -1,6 +1,5 @@
-Functionality of the Post-Experimental Questionnaire
-====================================================
-
+The Post-Experimental Questionnaire
+=============================================================
 
 
 
