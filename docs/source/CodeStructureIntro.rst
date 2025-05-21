@@ -11,7 +11,7 @@ Global settings
 ^^^^^^^^^^^^^^^^^^^^^
 The global settings of the project are defined in the class called :code:`C`, which contains some constant variables that define some fundamental characteristics of the app:
 
-.. dropdown:: ROOMS
+.. dropdown:: Intro App Global Settings
    :icon: terminal
 
    .. code-block:: python
@@ -90,29 +90,50 @@ Here, the pages of the intro questionnaire are described in the order in which t
 
 Welcome page
 ^^^^^^^^^^^^^^
+The welcome page consists of text only and has no special functionality to participants other than being informed about the general purpose of the study and the contact information of the researchers.
+In the background, several variables are processed to identify participants' browser, operating system, and device type. This information is used to ensure that the questionnaire is displayed correctly on the participants' devices and to collect data on the devices used by the participants. The data is stored in the :code:`user_agent_XXX` variables defined in the :code:`Player` class.
 
-
-Data protection page
-^^^^^^^^^^^^^^^^^^^^
-
-
-Comprehension info page
-^^^^^^^^^^^^^^^^^^^^^^^
-
-
-Socio-demographic questions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-
-Study Layout page
-^^^^^^^^^^^^^^^^^
-
-
-
-.. dropdown:: Show example code
+.. dropdown:: Welcome Page
    :icon: terminal
 
    .. code-block:: python
 
-      def greet(name):
-          print(f"Hello, {name}!")
+
+    class Welcome(Page):
+        def get(self, *args, **kwargs):
+            user_agent_string = self.request.headers.get('User-Agent')
+            user_agent = parse(user_agent_string)
+
+            res = {
+                'browser': user_agent.browser.family,
+                'browser_version': user_agent.browser.version_string,
+                'os': user_agent.os.family,
+                'os_version': user_agent.os.version_string,
+                'device': user_agent.device.family,
+                'is_mobile': user_agent.is_mobile,
+                'is_tablet': user_agent.is_tablet,
+                'is_pc': user_agent.is_pc,
+                'is_bot': user_agent.is_bot
+            }
+            for k,v in res.items():
+                try:
+                    self.player.__setattr__(f'user_agent_{k}', v)
+                except AttributeError:
+                    print(f"{f'user_agent_{k}'} not found in player model")
+            return super().get(*args, **kwargs)
+
+Data protection page
+^^^^^^^^^^^^^^^^^^^^
+Participants are informed about the data protection regulations and their rights as participants in the study. This page is also used to collect the participants' consent to participate in the study and to process the data. The consent variable is stored in the :code:`data_consent` variable.
+
+Comprehension info page
+^^^^^^^^^^^^^^^^^^^^^^^
+Participants are informed about the comprehension questions that will be asked within the questionnaire. They are also informed that they need to answer these questions correctly in order to complete the questionnaire. This page is also used to collect the participants' agreement on the comprehension questions. The comprehension variable is stored in the :code:`comprehension_consent` variable.
+
+Socio-demographic questions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+On the pages 'Age', 'Gender', and 'Edu', participants are asked some socio-demographic questions. The answers to these questions are stored in the :code:`age`, :code:`gndr`, and :code:`edu` variables.
+
+Study Layout page
+^^^^^^^^^^^^^^^^^
+This page is used to inform participants about the layout of the study. No data was processed here.

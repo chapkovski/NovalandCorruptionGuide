@@ -51,7 +51,7 @@
 <li class="toctree-l3"><a class="reference internal" href="CodeStructureGlobalFiles.html">Project-wide files</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">The Introduction App</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#basic-functionality">Basic functionality</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pages-of-the-intro-questionnaire">Pages of the intro questionnaire</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-pages-of-the-intro-questionnaire">The pages of the intro questionnaire</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="CodeStructureMain.html">The Stay in Novaland</a></li>
@@ -101,7 +101,7 @@ In the __init__.py file, the variables used to store participants’ data in are
 <p>The global settings of the project are defined in the class called <code class="code docutils literal notranslate"><span class="pre">C</span></code>, which contains some constant variables that define some fundamental characteristics of the app:</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
-<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">ROOMS</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">Intro App Global Settings</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">C</span><span class="p">(</span><span class="n">BaseConstants</span><span class="p">):</span>
     <span class="n">NAME_IN_URL</span> <span class="o">=</span> <span class="s1">&#39;introduction&#39;</span> <span class="c1">#displayed name for participants</span>
     <span class="n">PLAYERS_PER_GROUP</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># no interactions between participants</span>
@@ -168,32 +168,58 @@ In the __init__.py file, the variables used to store participants’ data in are
 <p>In the HTML files, the layout and design of each page is defined. For a more detailed documentation on the structure of the HTML files, please refer to the <a class="reference internal" href="HtmlPages.html"><span class="doc">HTML Pages</span></a> section. Here, only the specific content of the HTML files is described. Each page of the questionnaire has its own HTML file, which is used to define the layout and design of that specific page. The HTML files are named according to the pages they represent, and they are included in the app’s code using the <code class="code docutils literal notranslate"><span class="pre">page_sequence</span></code> variable at the very bottom of the intro app’s init file.</p>
 </section>
 </section>
-<section id="pages-of-the-intro-questionnaire">
-<h2>Pages of the intro questionnaire<a class="headerlink" href="#pages-of-the-intro-questionnaire" title="Link to this heading"></a></h2>
+<section id="the-pages-of-the-intro-questionnaire">
+<h2>The pages of the intro questionnaire<a class="headerlink" href="#the-pages-of-the-intro-questionnaire" title="Link to this heading"></a></h2>
 <p>Here, the pages of the intro questionnaire are described in the order in which they appear in the questionnaire.</p>
 <section id="welcome-page">
 <h3>Welcome page<a class="headerlink" href="#welcome-page" title="Link to this heading"></a></h3>
-</section>
-<section id="data-protection-page">
-<h3>Data protection page<a class="headerlink" href="#data-protection-page" title="Link to this heading"></a></h3>
-</section>
-<section id="comprehension-info-page">
-<h3>Comprehension info page<a class="headerlink" href="#comprehension-info-page" title="Link to this heading"></a></h3>
-</section>
-<section id="socio-demographic-questions">
-<h3>Socio-demographic questions<a class="headerlink" href="#socio-demographic-questions" title="Link to this heading"></a></h3>
-</section>
-<section id="study-layout-page">
-<h3>Study Layout page<a class="headerlink" href="#study-layout-page" title="Link to this heading"></a></h3>
+<p>The welcome page consists of text only and has no special functionality to participants other than being informed about the general purpose of the study and the contact information of the researchers.
+In the background, several variables are processed to identify participants’ browser, operating system, and device type. This information is used to ensure that the questionnaire is displayed correctly on the participants’ devices and to collect data on the devices used by the participants. The data is stored in the <code class="code docutils literal notranslate"><span class="pre">user_agent_XXX</span></code> variables defined in the <code class="code docutils literal notranslate"><span class="pre">Player</span></code> class.</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
-<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">Show example code</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">greet</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">Welcome Page</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Welcome</span><span class="p">(</span><span class="n">Page</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">user_agent_string</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">)</span>
+        <span class="n">user_agent</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">user_agent_string</span><span class="p">)</span>
+
+        <span class="n">res</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;browser&#39;</span><span class="p">:</span> <span class="n">user_agent</span><span class="o">.</span><span class="n">browser</span><span class="o">.</span><span class="n">family</span><span class="p">,</span>
+            <span class="s1">&#39;browser_version&#39;</span><span class="p">:</span> <span class="n">user_agent</span><span class="o">.</span><span class="n">browser</span><span class="o">.</span><span class="n">version_string</span><span class="p">,</span>
+            <span class="s1">&#39;os&#39;</span><span class="p">:</span> <span class="n">user_agent</span><span class="o">.</span><span class="n">os</span><span class="o">.</span><span class="n">family</span><span class="p">,</span>
+            <span class="s1">&#39;os_version&#39;</span><span class="p">:</span> <span class="n">user_agent</span><span class="o">.</span><span class="n">os</span><span class="o">.</span><span class="n">version_string</span><span class="p">,</span>
+            <span class="s1">&#39;device&#39;</span><span class="p">:</span> <span class="n">user_agent</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">family</span><span class="p">,</span>
+            <span class="s1">&#39;is_mobile&#39;</span><span class="p">:</span> <span class="n">user_agent</span><span class="o">.</span><span class="n">is_mobile</span><span class="p">,</span>
+            <span class="s1">&#39;is_tablet&#39;</span><span class="p">:</span> <span class="n">user_agent</span><span class="o">.</span><span class="n">is_tablet</span><span class="p">,</span>
+            <span class="s1">&#39;is_pc&#39;</span><span class="p">:</span> <span class="n">user_agent</span><span class="o">.</span><span class="n">is_pc</span><span class="p">,</span>
+            <span class="s1">&#39;is_bot&#39;</span><span class="p">:</span> <span class="n">user_agent</span><span class="o">.</span><span class="n">is_bot</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">res</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;user_agent_</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="sa">f</span><span class="s1">&#39;user_agent_</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">&#39;</span><span class="si">}</span><span class="s2"> not found in player model&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </details></section>
+<section id="data-protection-page">
+<h3>Data protection page<a class="headerlink" href="#data-protection-page" title="Link to this heading"></a></h3>
+<p>Participants are informed about the data protection regulations and their rights as participants in the study. This page is also used to collect the participants’ consent to participate in the study and to process the data. The consent variable is stored in the <code class="code docutils literal notranslate"><span class="pre">data_consent</span></code> variable.</p>
+</section>
+<section id="comprehension-info-page">
+<h3>Comprehension info page<a class="headerlink" href="#comprehension-info-page" title="Link to this heading"></a></h3>
+<p>Participants are informed about the comprehension questions that will be asked within the questionnaire. They are also informed that they need to answer these questions correctly in order to complete the questionnaire. This page is also used to collect the participants’ agreement on the comprehension questions. The comprehension variable is stored in the <code class="code docutils literal notranslate"><span class="pre">comprehension_consent</span></code> variable.</p>
+</section>
+<section id="socio-demographic-questions">
+<h3>Socio-demographic questions<a class="headerlink" href="#socio-demographic-questions" title="Link to this heading"></a></h3>
+<p>On the pages ‘Age’, ‘Gender’, and ‘Edu’, participants are asked some socio-demographic questions. The answers to these questions are stored in the <code class="code docutils literal notranslate"><span class="pre">age</span></code>, <code class="code docutils literal notranslate"><span class="pre">gndr</span></code>, and <code class="code docutils literal notranslate"><span class="pre">edu</span></code> variables.</p>
+</section>
+<section id="study-layout-page">
+<h3>Study Layout page<a class="headerlink" href="#study-layout-page" title="Link to this heading"></a></h3>
+<p>This page is used to inform participants about the layout of the study. No data was processed here.</p>
+</section>
 </section>
 </section>
 

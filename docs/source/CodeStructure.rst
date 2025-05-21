@@ -8,8 +8,7 @@ In the following subsections, we will first explain the files that are used on a
 In the process, we will briefly explain some basic elements of oTree that are necessary to understand the code that is customized for the project. We will also provide some examples of the code that is used in the project to illustrate this functionality in practice.
 
 
-Contents
------------------------------------------
+
 .. toctree::
    :maxdepth: 2
 
