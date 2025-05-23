@@ -57,16 +57,18 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#the-pages-of-the-main-app">The pages of the main app</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#additional-code-for-extended-background-functionality">Additional code for extended background functionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-introduction-to-novaland">1. The introduction to Novaland</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nine-days-in-novaland">2. Nine days in Novaland</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#additional-code-for-extended-background-functionality">Additional code for extended background functionality</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="CodeStructureElection.html">The Election in Novaland</a></li>
 <li class="toctree-l2"><a class="reference internal" href="CodeStructurePost.html">The Post-Experimental Questionnaire</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deploying the oTree project on Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deploying the oTree project</a></li>
 </ul>
 
         </div>
@@ -251,8 +253,53 @@
 <h2>The pages of the main app<a class="headerlink" href="#the-pages-of-the-main-app" title="Link to this heading"></a></h2>
 <p>Here, the pages of the main questionnaire are described in the order in which they appear in the questionnaire. Participants lived through nine days in Novaland. The main app contains eight of those, while the last day is the voting day, which is implemented in the <code class="code docutils literal notranslate"><span class="pre">election</span></code> app.</p>
 <p>The main app is structured in <strong>two distinct parts</strong>: First participants received information about Novaland and are asked some questions about this. The then began their actual stay in the country, where they were presented with various situations and are asked to answer questions about them.</p>
+<section id="the-introduction-to-novaland">
+<h3>1. The introduction to Novaland<a class="headerlink" href="#the-introduction-to-novaland" title="Link to this heading"></a></h3>
+<p>The introductory part of the main app consists of four <strong>NovalandIntro</strong> pages, on which participants are informed about their stay in Novaland as citizens of the fictional country and about some characteristics of the country itself. The text that was included on these pages can be found in the <code class="code docutils literal notranslate"><span class="pre">main/instructions/</span></code> folder. There is one file for each of these four information pages.</p>
+<p>On the fourth NovalandIntro page, the first experimental treatment takes place. Participants were randomly assigned to two groups: the first group is informed about the social norm of bribing in Novaland (6 out of 10 citizens of Novaland are willing to pay a bribe for a service). Participants in the second group do not receive any information. The variable that determines if participants received this information is called <code class="code docutils literal notranslate"><span class="pre">corruption_info</span></code> and is stored in the <code class="code docutils literal notranslate"><span class="pre">Participant</span></code> object. The variable is set to 1 if participants received the information and 0 if they did not. This variable is used to determine which text is displayed on the page and is passed to the HTML template (<code class="code docutils literal notranslate"><span class="pre">main/instructions/instructions_4.html</span></code>). There, the conditional statement of showing the social norm information works with this variable: <code class="code docutils literal notranslate"><span class="pre">{{</span> <span class="pre">if</span> <span class="pre">participant.vars.corruption_info</span> <span class="pre">==</span> <span class="pre">1</span> <span class="pre">}}</span></code>.</p>
+<p>The next page is the <strong>Comprehension</strong> page. On this page, participants had to answer three comprehension questions correctly in order to continue with the questionnaire. The questions are about the information that was provided on the previous pages. The questions are defined in the player models <code class="code docutils literal notranslate"><span class="pre">comprehension_citizen</span></code>, <code class="code docutils literal notranslate"><span class="pre">comprehension_income</span></code>, and <code class="code docutils literal notranslate"><span class="pre">comprehension_financing</span></code>. These three questions are defined as <code class="code docutils literal notranslate"><span class="pre">form_fields</span></code> in the <code class="code docutils literal notranslate"><span class="pre">Comprehension</span></code> page class and called by the page’s HTML template using <code class="code docutils literal notranslate"><span class="pre">{{formfields}}</span></code>.</p>
+<p>We gave participants the possibility to receive the respective pieces of information again using an “instructions” button that was embedded on the page. For this, we used the <code class="code docutils literal notranslate"><span class="pre">live_method</span></code> in the init file and the following code in the HTML template to dynamically animate the window with the text from the <code class="code docutils literal notranslate"><span class="pre">main/instructions/</span></code> HTML files that were also used to display the information on the previous pages. The code runs as soon as participants click on the instructions button:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="linenos">2</span><span class="w">    </span><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">3</span><span class="w">        </span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#instruction_button&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">4</span><span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s1">&#39;button clicked&#39;</span><span class="p">);</span>
+<span class="linenos">5</span><span class="w">            </span><span class="nx">liveSend</span><span class="p">(</span><span class="s1">&#39;button_clicked&#39;</span><span class="p">);</span>
+<span class="linenos">6</span><span class="w">        </span><span class="p">});</span>
+<span class="linenos">7</span><span class="w">    </span><span class="p">});</span>
+<span class="linenos">8</span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Participants had two attempts to answer all comprehension questions correctly. If they tried to submit the page with incorrect answers, the <code class="code docutils literal notranslate"><span class="pre">error_counter</span></code> increases and an error message appears. The page is then reloaded. They are then informed that they have one attempt left. If they submit the page again with incorrect answers for the second time, they will be filtered out. We also set a timeout counter on this page to prevent participants from spending too much time on it. If they exceed the time limit, they were also filtered out. The timeout counter is set to five minutes, which is more than enough time to answer the questions.</p>
+<p>If participants failed to answer the comprehension questions correctly two times, or if they exceeded the time limit, they were next redirected to the <strong>TerminationPage</strong>. This page is not shown to participants, but is only used for background functionality. Only participants who fulfill one of these two criteria are redirected to this page, the other ones skip it, as defined in</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nd">@staticmethod</span>
+<span class="linenos">2</span><span class="k">def</span><span class="w"> </span><span class="nf">is_displayed</span><span class="p">(</span><span class="n">player</span><span class="p">:</span> <span class="n">Player</span><span class="p">):</span>
+<span class="linenos">3</span>    <span class="k">return</span> <span class="n">player</span><span class="o">.</span><span class="n">error_counter</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">player</span><span class="o">.</span><span class="n">comprehension_timeouted</span>
+</pre></div>
+</div>
+<p>As soon as participants reached this page, they were directly redirected using a link provided by the panel provider, defined in <code class="code docutils literal notranslate"><span class="pre">TERMINATION_LINK</span></code>. Participants were then informed that they failed to comply with the requirements of the study and were thus filtered out.</p>
+<p>Those participants who answered all three comprehension questions correctly, reached the last page of the introduction to Novaland. On the <strong>IntroVignette</strong> page, participants were informed that they will encounter several situations on the next pages, that they are a citizen of Novaland in this context and that they should answer the questions as themselves.</p>
+</section>
+<section id="nine-days-in-novaland">
+<h3>2. Nine days in Novaland<a class="headerlink" href="#nine-days-in-novaland" title="Link to this heading"></a></h3>
+<p>After receiving all this information and passing the comprehension checks, participants began their stay in Novaland. For an overview of the fictional stay, please refer to the <a class="reference internal" href="Novaland2Layout.html#flowchart"><span class="std std-ref">flowchart of the novaland stay</span></a>.</p>
+<p>Before we discuss how the experience on each page was created, we first have to take a step back and talk about the underlying logic of the main app. While participants experience their fictional stay as one continuous trip, the app does not run only once. Instead, it runs seven rounds. The flow of the Novaland stay is created by defining for each page in which round it is displayed. One special XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+<p>SMOKESCREEN_ROUNDS = [1, 5, ]
+VIGNETTE_ROUNDS = [3, 4, 6, 7]</p>
+<p><strong>Order of the smokescreens and vignettes</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">p</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;timeline&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+<span class="linenos">2</span>        <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;smokescreen_order&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span>  <span class="c1"># note that the quiz page comes after the first smokescreen</span>
+<span class="linenos">3</span>        <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;quiz_page&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span>  <span class="c1"># quiz page</span>
+<span class="linenos">4</span>        <span class="n">p</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;vignette_order&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span>  <span class="c1"># the first two vignettes</span>
+<span class="linenos">5</span>        <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;smokescreen_order&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span>  <span class="c1"># the second smokescreen</span>
+<span class="linenos">6</span>        <span class="n">p</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;vignette_order&#39;</span><span class="p">][</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>  <span class="c1"># the last two vignettes</span>
+<span class="linenos">7</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here is what the timeline tells us:</p>
+</section>
+</section>
 <section id="additional-code-for-extended-background-functionality">
-<h3>Additional code for extended background functionality<a class="headerlink" href="#additional-code-for-extended-background-functionality" title="Link to this heading"></a></h3>
+<h2>Additional code for extended background functionality<a class="headerlink" href="#additional-code-for-extended-background-functionality" title="Link to this heading"></a></h2>
 <p>In addition to the code described above, there are some additional code snippets that are used to implement the extended background functionality of the questionnaire. These snippets are not directly related to the main functionality of the questionnaire, but they are used to enhance the user experience and provide additional features.</p>
 <p><strong>Progress bar</strong></p>
 <p>At the top of the main app’s __init__.py file, the <code class="code docutils literal notranslate"><span class="pre">Page</span></code> class is defined. This is the parent class for all pages in the app. This means that the code that is defined within it is executed by all survey pages across the app.
@@ -288,7 +335,6 @@ This class is used to automatically retrieve the current page number and maximum
 </div>
 </div>
 </details><p><strong>Animating the status bar</strong> XXXXXXXXXXXXXXXXXXXXXXXX</p>
-</section>
 </section>
 </section>
 

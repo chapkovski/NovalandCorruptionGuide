@@ -5,7 +5,7 @@ The fictional country of Novaland
 Participants' time in Novaland
 -------------------------------------------
 
-
+.. _flowchart:
 Flowchart of the Novaland stay
 -------------------------------------------
 Participants lived through nine virtual days in Novaland. Their stay began on a Saturday and ended on the next week's Sunday.

@@ -1,5 +1,14 @@
-Deploying the oTree project on Heroku
+Deploying the oTree project
 =====================================
+
+Deploying locally
+----------------------------------
+
+ö
+
+Deploying on Heroku
+----------------------------------
+
 Heroku is a Platform-as-a-Service (PaaS) solution that allows developers to host, manage, and scale applications
 in the cloud.
 Heroku supports a variety of programming languages and provides an easy, fast, and reliable way to deploy applications
