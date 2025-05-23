@@ -21,7 +21,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Structure of the oTree project" href="ProjectStructure.html" /> 
+    <link rel="next" title="The fictional country of Novaland" href="Novaland2Layout.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,6 +44,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
+<li class="toctree-l1"><a class="reference internal" href="Novaland2Layout.html">The fictional country of Novaland</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ProjectStructure.html">Structure of the oTree project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CodeStructure.html">Functionality of the project code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deploying the oTree project on Heroku</a></li>
@@ -76,76 +77,51 @@
   <section id="novaland-corruption-paper-documentation">
 <h1>Novaland Corruption Paper Documentation<a class="headerlink" href="#novaland-corruption-paper-documentation" title="Link to this heading"></a></h1>
 <p>This is the documentation of the technical setup that was used to conduct the data collection for the paper <strong>How the Experience of Public-Service Quality and Corruption Shapes Political Solidarity and Trust: Experimental Evidence from a Novel Virtual-State Approach</strong>.
-The paper and this documentation was written by the team of Achim Goerres at the University of Duisburg-Essen as part of the ERC-funded project <strong>POLITSOLID</strong>. The project team members were: Achim Goerres, Philipp Chapkovski, Jakob Eicheler, and Philipp Kemper.</p>
-<p>For the paper, we use a novel virtual-state approach to conduct a large-scale online experiment. The virtual state was named <strong>Novaland</strong>. The experiment was designed to experimentally test the effects of different levels of public service quality and corruption on political solidarity and political trust.</p>
+The paper and this documentation was written by the team of Achim Goerres at the University of Duisburg-Essen as part of the ERC-funded project <strong>POLITSOLID</strong>. The project team members were: Prof. Dr. Achim Goerres, Dr. Philipp Chapkovski, Jakob Eicheler, and Philipp Kemper.</p>
+<p>For this study, we used a novel virtual-state approach to conduct a large-scale online experiment. The virtual state was named <strong>Novaland</strong>. The experiment was designed to experimentally test the effects of different levels of public service quality and corruption on political solidarity and political trust.</p>
 <p>The entire project was written and programmed using oTree.
 oTree  provides a framework for building and running online experiments, allowing researchers to easily create custom games and surveys, manage participants, and collect and analyze data.
 An oTree project consists of a set of components, such as Python scripts and HTML templates, which work together to define the structure and behavior of the experiment.</p>
 <p>The goal of this documentation is to provide a comprehensive overview of the technical setup and implementation of the Novaland experiment, including the file structure, code functionality, and data collection process.</p>
 <p>This documentation is structured as follows:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="ProjectStructure.html"><span class="doc">The first section</span></a> provides an overview of the structure and functionality of the oTree project’s folders and files</p></li>
-<li><p><a class="reference internal" href="CodeStructure.html"><span class="doc">The second section</span></a> goes into detail about which parts of the code produce certain parts of the online questionnaire and experimental treatments</p></li>
-<li><p><a class="reference internal" href="Deployment.html"><span class="doc">The third section</span></a> steps away from the oTree project’s code and explains how the project can be executed, deployed on a server and used for collecting data online.</p></li>
+<li><p><a class="reference internal" href="Novaland2Layout.html"><span class="doc">The first section</span></a> provides an overview of the layout of the Novaland experiment, including the flowchart of the Novaland stay and the randomization of the treatments</p></li>
+<li><p><a class="reference internal" href="ProjectStructure.html"><span class="doc">The second section</span></a> provides an overview of the structure and functionality of the oTree project’s folders and files</p></li>
+<li><p><a class="reference internal" href="CodeStructure.html"><span class="doc">The third section</span></a> goes into detail about which parts of the code produce certain parts of the online questionnaire and experimental treatments</p></li>
+<li><p><a class="reference internal" href="Deployment.html"><span class="doc">The fourth section</span></a> steps away from the oTree project’s code and explains how the project can be executed, deployed on a server and used for collecting data online.</p></li>
 </ul>
 <section id="contents">
 <h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="Novaland2Layout.html">The fictional country of Novaland</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Novaland2Layout.html#participants-time-in-novaland">Participants’ time in Novaland</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Novaland2Layout.html#flowchart-of-the-novaland-stay">Flowchart of the Novaland stay</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Novaland2Layout.html#experimental-treatments-in-novaland">Experimental treatments in Novaland</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="ProjectStructure.html">Structure of the oTree project</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="ProjectStructure.html#visualisation-of-the-project-file-structure">Visualisation of the project file structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ProjectStructure.html#the-file-types-used-in-the-project">The file types used in the project</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ProjectStructure.html#explanation-of-the-project-file-structure">Explanation of the project file structure</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="ProjectStructure.html#files-to-define-project-wide-settings">Files to define project-wide settings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ProjectStructure.html#folders-for-creating-the-questionnaire-and-experiment-apps-intro-main-election-post">Folders for creating the questionnaire and experiment (apps): intro, main, election, post</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ProjectStructure.html#folders-for-storing-data-and-templates">Folders for storing data and templates</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="ProjectStructure.html#explanation-of-the-project-file-structure">Explanation of the project file structure</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="CodeStructure.html">Functionality of the project code</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="CodeStructureGlobalFiles.html">Project-wide files</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="CodeStructureGlobalFiles.html#global-settings">Global settings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="CodeStructureGlobalFiles.html#aesthetics-of-the-web-questionnaire">Aesthetics of the web questionnaire</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="CodeStructureIntro.html">The Introduction App</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="CodeStructureIntro.html#basic-functionality">Basic functionality</a></li>
-<li class="toctree-l3"><a class="reference internal" href="CodeStructureIntro.html#the-pages-of-the-intro-questionnaire">The pages of the intro questionnaire</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="CodeStructureMain.html">The Stay in Novaland</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="CodeStructureMain.html#basic-functionality">Basic functionality</a></li>
-<li class="toctree-l3"><a class="reference internal" href="CodeStructureMain.html#the-pages-of-the-main-app">The pages of the main app</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="CodeStructureGlobalFiles.html">Project-wide files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CodeStructureIntro.html">The Introduction App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CodeStructureMain.html">The Stay in Novaland</a></li>
 <li class="toctree-l2"><a class="reference internal" href="CodeStructureElection.html">The Election in Novaland</a></li>
 <li class="toctree-l2"><a class="reference internal" href="CodeStructurePost.html">The Post-Experimental Questionnaire</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deploying the oTree project on Heroku</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Deployment.html#your-project-on-heroku">Your Project on Heroku</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Deployment.html#overview-of-your-app">Overview of your App:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Deployment.html#open-your-project">Open your project</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="Deployment.html#your-project-on-heroku">Your Project on Heroku</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Deployment.html#monitoring">Monitoring</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Deployment.html#resources">Resources</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Deployment.html#add-a-ressource-to-your-app">Add a ressource to your app</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="Deployment.html#heroku-postgres">Heroku Postgres</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Deployment.html#save-the-participant-data">Save the participant data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Deployment.html#download-the-participant-data">Download the participant data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Deployment.html#reset-the-database">Reset the Database</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="Deployment.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Deployment.html#heroku-postgres">Heroku Postgres</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Deployment.html#papertrail">Papertrail</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Deployment.html#sentry">Sentry</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Deployment.html#metrics">Metrics:</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Deployment.html#how-to-read-and-interpret-the-metrics-of-your-heroku-app-to-optimize-and-improve-your-application">How to read and interpret the metrics of your Heroku app to optimize and improve your application.</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="Deployment.html#metrics">Metrics:</a></li>
 </ul>
 </li>
 </ul>
@@ -157,7 +133,7 @@ An oTree project consists of a set of components, such as Python scripts and HTM
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="ProjectStructure.html" class="btn btn-neutral float-right" title="Structure of the oTree project" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Novaland2Layout.html" class="btn btn-neutral float-right" title="The fictional country of Novaland" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

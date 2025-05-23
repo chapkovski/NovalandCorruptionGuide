@@ -6,9 +6,9 @@ Novaland Corruption Paper Documentation
 =======================================
 
 This is the documentation of the technical setup that was used to conduct the data collection for the paper **How the Experience of Public-Service Quality and Corruption Shapes Political Solidarity and Trust: Experimental Evidence from a Novel Virtual-State Approach**.
-The paper and this documentation was written by the team of Achim Goerres at the University of Duisburg-Essen as part of the ERC-funded project **POLITSOLID**. The project team members were: Achim Goerres, Philipp Chapkovski, Jakob Eicheler, and Philipp Kemper.
+The paper and this documentation was written by the team of Achim Goerres at the University of Duisburg-Essen as part of the ERC-funded project **POLITSOLID**. The project team members were: Prof. Dr. Achim Goerres, Dr. Philipp Chapkovski, Jakob Eicheler, and Philipp Kemper.
 
-For the paper, we use a novel virtual-state approach to conduct a large-scale online experiment. The virtual state was named **Novaland**. The experiment was designed to experimentally test the effects of different levels of public service quality and corruption on political solidarity and political trust.
+For this study, we used a novel virtual-state approach to conduct a large-scale online experiment. The virtual state was named **Novaland**. The experiment was designed to experimentally test the effects of different levels of public service quality and corruption on political solidarity and political trust.
 
 The entire project was written and programmed using oTree.
 oTree  provides a framework for building and running online experiments, allowing researchers to easily create custom games and surveys, manage participants, and collect and analyze data.
@@ -18,17 +18,19 @@ The goal of this documentation is to provide a comprehensive overview of the tec
 
 This documentation is structured as follows:
 
-* :doc:`The first section <ProjectStructure>` provides an overview of the structure and functionality of the oTree project's folders and files
-* :doc:`The second section <CodeStructure>` goes into detail about which parts of the code produce certain parts of the online questionnaire and experimental treatments
-* :doc:`The third section <Deployment>` steps away from the oTree project's code and explains how the project can be executed, deployed on a server and used for collecting data online.
+* :doc:`The first section <Novaland2Layout>` provides an overview of the layout of the Novaland experiment, including the flowchart of the Novaland stay and the randomization of the treatments
+* :doc:`The second section <ProjectStructure>` provides an overview of the structure and functionality of the oTree project's folders and files
+* :doc:`The third section <CodeStructure>` goes into detail about which parts of the code produce certain parts of the online questionnaire and experimental treatments
+* :doc:`The fourth section <Deployment>` steps away from the oTree project's code and explains how the project can be executed, deployed on a server and used for collecting data online.
 
 
 Contents
 -----------------------------------------
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
 
+   Novaland2Layout
    ProjectStructure
    CodeStructure
    Deployment

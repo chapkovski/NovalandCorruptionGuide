@@ -66,8 +66,8 @@ The file types used in the project
 ----------------------------------
 Before going into detail about the project structure, it is important to understand the different file types used in the project.
 
-#. **.py** files: These are Python files that contain the code for the oTree project. They define the underlying functionality of the project.
-#. **.html** files: These are HTML files that define the structure and layout of the web pages used in the project. They can include both static and dynamic content. Each html file is a template that can be rendered by oTree to display the corresponding page to the participants.
+#. **.py** files: These are Python files that contain the code for the oTree project. They define the underlying functionality of the project. For more information about the code structure and functionality of the init.py files, please refer to the :doc:`Init Pages <InitPages>` section.
+#. **.html** files: These are HTML files that define the structure and layout of the web pages used in the project. They can include both static and dynamic content. Each html file is a template that can be rendered by oTree to display the corresponding page to the participants. For more information about how the HTML files are structured, please refer to the :doc:`HTML Pages <HtmlPages>` section.
 #. **.yaml** files: These are YAML files that contain configuration data for the project. They are used to define settings and parameters that can be easily modified without changing the code.
 #. **.css** files: These are CSS files that define the styles and layout of the web pages used in the project. They are used to customize the appearance of the project.
 #. **.js** files: These are JavaScript files that contain code for client-side functionality. They are used to add interactivity and dynamic behavior to the web pages.
@@ -87,7 +87,7 @@ Files to define project-wide settings
     #. **requirements.txt**: This file lists the dependencies and packages required to run the oTree project. It is used to install the necessary libraries and modules.
 
 Folders for creating the questionnaire and experiment (apps): intro, main, election, post
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     #. The **intro** folder contains the files for the introduction pages of the project. The following pages are produces by this app:
         #. one introduction page that participants see when they first enter the project and that contains information about their participation
         #. one page for the informed consent

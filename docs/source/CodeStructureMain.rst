@@ -8,7 +8,7 @@ Basic functionality
 
 Global settings
 ^^^^^^^^^^^^^^^^^^^^^
-The global settings of the project are defined in the class called :code:`C`, which contains some constant variables that define some fundamental characteristics of the app:
+The global settings of the project are defined in the :code:`C` class, which contains constant variables that define the fundamental functionality and variables of the app.
 
 
 .. dropdown:: Main App Global Settings
@@ -31,12 +31,13 @@ The global settings of the project are defined in the class called :code:`C`, wh
         SMOKESCREEN_ROUNDS = [1, 5, ] # app rounds that contain smokescreens
         VIGNETTE_ROUNDS = [3, 4, 6, 7] # app rounds that contain vignettes
         BRIBE_THRESHOLD = 300 # not used in this study
+
         vignettes = ['doctor', 'handyman', 'kindergarten', 'passport']  # names of the vignettes
         POS = "pos" # Represents a positive outcome
         NEG = "neg" # Represents a negative outcome
         CORR = "corr"  # Represents a corrupt outcome
 
-        # Define the outcomes combinations
+        # Define the outcomes combinations to which participants were randomly assigned
         outcomes_combinations_collection = [
             [POS, POS, POS, POS],
             [POS, POS, POS, NEG],
@@ -49,13 +50,13 @@ The global settings of the project are defined in the class called :code:`C`, wh
 
         smokescreens = ['pets', 'restaurant']  # names of the smokescreens
 
-        # Error handling
+        # Error handling, used in development
         assert len(smokescreens) == len(SMOKESCREEN_ROUNDS), "Number of smokescreens and smokescreen rounds must be equal"
         assert len(vignettes) == len(outcomes_combinations_collection[0]), "Number of vignettes and outcomes must be equal"
         assert len(vignettes) == len(VIGNETTE_ROUNDS), "Number of vignettes and vignette rounds must be equal"
 
-        # Define the service levels
-        service_levels = ['pos', 'corr', 'neg']  # service levels
+        # Define the service levels for the vignettes
+        service_levels = ['pos', 'corr', 'neg']
 
         # Define the number of rounds for later referencing
         NUM_ROUNDS = len(vignettes) + len(smokescreens) + 1
@@ -66,8 +67,105 @@ The global settings of the project are defined in the class called :code:`C`, wh
 
         ENDOWMENT = cu(1000) # not used in this study
 
-Variables for data storage
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Random assignment to treatments and order of vignettes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The logic that the main app follows is a bit more complex than the other apps. Most importantly, the main app consists of numerous rounds. The issue here is that in oTree, the variables stored in the :code:`Player` object are reset at the beginning of each round.
+
+This means that if we want to define how the app behaves across the entirety of this app, we need to store them in the :code:`Participant` object. This is done in the :code:`creating_session` function, which is called once for each participant when they first enter the app (after completing the intro questionnaire). In this function, we create a random order of vignettes, outcomes of the vignettes, and smokescreens for each participant. This is done by creating a list for each possible orders of those, and then randomly assigning one entry from that list to each participant.
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+.. dropdown:: Randomization in the main app
+   :icon: terminal
+
+   .. code-block:: python
+
+
+    def creating_session(subsession: Subsession):
+    # create random order of vignettes, smokescreens, and dependent variables once at the beginning of the session
+    if subsession.round_number == 1:
+        # calculate execution time
+        start_time = time.time()
+        cycle_collection = cycle(C.outcomes_combinations_collection)
+        for p in subsession.session.get_participants():
+            # randomize the order of vignettes
+            vignettes = C.vignettes.copy()
+            random.shuffle(vignettes)
+            p.vars['vignette_order'] = vignettes
+
+            # choose outcomes combination
+            # outcomes_collection = C.outcomes_combinations_collection.copy()
+            outcomes_collection = next(cycle_collection)
+
+            # randomize the order of outcomes
+            outcomes = outcomes_collection.copy()
+            random.shuffle(outcomes)
+
+            # create outcomes variable for uniform outcomes treatment sessions
+            treatment = subsession.session.config.get('treatment')
+            if subsession.session.config.get('treatment'):
+                outcomes = [treatment] * len(outcomes)
+
+            # create participant variables for vignettes and outcomes
+            p.vars['outcomes_collection'] = outcomes_collection
+            p.vars['vignette_outcomes'] = outcomes
+            p.vars['vignettes_with_outcomes'] = OrderedDict(zip(vignettes, outcomes))
+
+            # randomize the order of smokescreens
+            smokescreens = C.smokescreens.copy()
+            random.shuffle(smokescreens)
+            p.vars['smokescreen_order'] = smokescreens
+
+            # create variable for quiz page
+            p.vars['quiz_page'] = ['quiz_page']
+
+            # create timeline over the 9 days in Novaland at participant level
+            p.vars['timeline'] = (
+                    [p.vars['smokescreen_order'][0]] +  # note that the quiz page comes after the first smokescreen
+                    [p.vars['quiz_page'][0]] +  # quiz page
+                    p.vars['vignette_order'][0:2] +  # the first two vignettes
+                    [p.vars['smokescreen_order'][1]] +  # the second smokescreen
+                    p.vars['vignette_order'][2:4]  # the last two vignettes
+            )
+
+            # create variable on corruption info treatment
+            corruption_info = random.choice([0, 1])
+            p.vars['corruption_info'] = corruption_info
+
+            # create variable for randomized order of pollster questions
+            pollster_questions = ["pollster_question_gov_trust", "pollster_question_taxes_welfare",
+                                  "pollster_question_perc_corruption"]
+            pollster_order = random.sample(pollster_questions, 3)
+            p.vars['pollster_order'] = pollster_order
+        end_time = time.time()
+        print(f'PARTIICPANT BLOCK Execution time: {end_time - start_time}')
+
+    start_time = time.time()
+    # access the order of vignettes, smokescreens, and dependent variables for each player (per round)
+    for p in subsession.get_players():
+        participant = p.participant
+        p.dump_collection = json.dumps(participant.vars['outcomes_collection'])
+        p.scenario_order = json.dumps(participant.vars['timeline'])
+        p.current_scenario = participant.vars['timeline'][p.round_number - 1]
+        if p.current_scenario in C.vignettes:
+            p.vignette_order = json.dumps(participant.vars['vignette_order'])
+            p.service_level = participant.vars['vignettes_with_outcomes'][p.current_scenario]
+            # p.num_pos_vign_before = [p.field_maybe_none('service_level') for p in p.in_previous_rounds()].count('pos')
+            # p.num_neg_vign_before = [p.field_maybe_none('service_level') for p in p.in_previous_rounds()].count('neg')
+            # p.num_corr_vign_before = [p.field_maybe_none('service_level') for p in p.in_previous_rounds()].count('corr')
+        p.pollster_order = json.dumps(participant.vars['pollster_order'])
+    end_time = time.time()
+    print(f'PLAYER BLOCK Execution time: {end_time - start_time}')
+
+
+
+The pages of the main app
+-------------------------------------
+Here, the pages of the main questionnaire are described in the order in which they appear in the questionnaire. Participants lived through nine days in Novaland. The main app contains eight of those, while the last day is the voting day, which is implemented in the :code:`election` app.
+
+The main app is structured in **two distinct parts**: First participants received information about Novaland and are asked some questions about this. The then began their actual stay in the country, where they were presented with various situations and are asked to answer questions about them.
+
 
 
 Additional code for extended background functionality
@@ -111,10 +209,5 @@ This class is used to automatically retrieve the current page number and maximum
             r['instructions'] = self.instructions
             return r
 
-HTML files
-^^^^^^^^^^^^
-In the HTML files, the layout and design of each page is defined. For a more detailed documentation on the structure of the HTML files, please refer to the :doc:`HTML Pages <HtmlPages>` section. Here, only the specific content of the HTML files is described. Each page of the questionnaire has its own HTML file, which is used to define the layout and design of that specific page. The HTML files are named according to the pages they represent, and they are included in the app's code using the :code:`page_sequence` variable at the very bottom of the intro app's init file.
 
-The pages of the main app
--------------------------------------
-Here, the pages of the intro questionnaire are described in the order in which they appear in the questionnaire.
+**Animating the status bar** XXXXXXXXXXXXXXXXXXXXXXXX

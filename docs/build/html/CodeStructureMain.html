@@ -45,6 +45,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Novaland2Layout.html">The fictional country of Novaland</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ProjectStructure.html">Structure of the oTree project</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="CodeStructure.html">Functionality of the project code</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="CodeStructureGlobalFiles.html">Project-wide files</a></li>
@@ -52,12 +53,13 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">The Stay in Novaland</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#basic-functionality">Basic functionality</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#global-settings">Global settings</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#variables-for-data-storage">Variables for data storage</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#additional-code-for-extended-background-functionality">Additional code for extended background functionality</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#html-files">HTML files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#random-assignment-to-treatments-and-order-of-vignettes">Random assignment to treatments and order of vignettes</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#the-pages-of-the-main-app">The pages of the main app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-pages-of-the-main-app">The pages of the main app</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#additional-code-for-extended-background-functionality">Additional code for extended background functionality</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="CodeStructureElection.html">The Election in Novaland</a></li>
@@ -99,7 +101,7 @@
 <h2>Basic functionality<a class="headerlink" href="#basic-functionality" title="Link to this heading"></a></h2>
 <section id="global-settings">
 <h3>Global settings<a class="headerlink" href="#global-settings" title="Link to this heading"></a></h3>
-<p>The global settings of the project are defined in the class called <code class="code docutils literal notranslate"><span class="pre">C</span></code>, which contains some constant variables that define some fundamental characteristics of the app:</p>
+<p>The global settings of the project are defined in the <code class="code docutils literal notranslate"><span class="pre">C</span></code> class, which contains constant variables that define the fundamental functionality and variables of the app.</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 <span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">Main App Global Settings</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
@@ -118,12 +120,13 @@
     <span class="n">SMOKESCREEN_ROUNDS</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="p">]</span> <span class="c1"># app rounds that contain smokescreens</span>
     <span class="n">VIGNETTE_ROUNDS</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span> <span class="c1"># app rounds that contain vignettes</span>
     <span class="n">BRIBE_THRESHOLD</span> <span class="o">=</span> <span class="mi">300</span> <span class="c1"># not used in this study</span>
+
     <span class="n">vignettes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;doctor&#39;</span><span class="p">,</span> <span class="s1">&#39;handyman&#39;</span><span class="p">,</span> <span class="s1">&#39;kindergarten&#39;</span><span class="p">,</span> <span class="s1">&#39;passport&#39;</span><span class="p">]</span>  <span class="c1"># names of the vignettes</span>
     <span class="n">POS</span> <span class="o">=</span> <span class="s2">&quot;pos&quot;</span> <span class="c1"># Represents a positive outcome</span>
     <span class="n">NEG</span> <span class="o">=</span> <span class="s2">&quot;neg&quot;</span> <span class="c1"># Represents a negative outcome</span>
     <span class="n">CORR</span> <span class="o">=</span> <span class="s2">&quot;corr&quot;</span>  <span class="c1"># Represents a corrupt outcome</span>
 
-    <span class="c1"># Define the outcomes combinations</span>
+    <span class="c1"># Define the outcomes combinations to which participants were randomly assigned</span>
     <span class="n">outcomes_combinations_collection</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">[</span><span class="n">POS</span><span class="p">,</span> <span class="n">POS</span><span class="p">,</span> <span class="n">POS</span><span class="p">,</span> <span class="n">POS</span><span class="p">],</span>
         <span class="p">[</span><span class="n">POS</span><span class="p">,</span> <span class="n">POS</span><span class="p">,</span> <span class="n">POS</span><span class="p">,</span> <span class="n">NEG</span><span class="p">],</span>
@@ -136,13 +139,13 @@
 
     <span class="n">smokescreens</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pets&#39;</span><span class="p">,</span> <span class="s1">&#39;restaurant&#39;</span><span class="p">]</span>  <span class="c1"># names of the smokescreens</span>
 
-    <span class="c1"># Error handling</span>
+    <span class="c1"># Error handling, used in development</span>
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">smokescreens</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">SMOKESCREEN_ROUNDS</span><span class="p">),</span> <span class="s2">&quot;Number of smokescreens and smokescreen rounds must be equal&quot;</span>
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">vignettes</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">outcomes_combinations_collection</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="s2">&quot;Number of vignettes and outcomes must be equal&quot;</span>
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">vignettes</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">VIGNETTE_ROUNDS</span><span class="p">),</span> <span class="s2">&quot;Number of vignettes and vignette rounds must be equal&quot;</span>
 
-    <span class="c1"># Define the service levels</span>
-    <span class="n">service_levels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">,</span> <span class="s1">&#39;corr&#39;</span><span class="p">,</span> <span class="s1">&#39;neg&#39;</span><span class="p">]</span>  <span class="c1"># service levels</span>
+    <span class="c1"># Define the service levels for the vignettes</span>
+    <span class="n">service_levels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">,</span> <span class="s1">&#39;corr&#39;</span><span class="p">,</span> <span class="s1">&#39;neg&#39;</span><span class="p">]</span>
 
     <span class="c1"># Define the number of rounds for later referencing</span>
     <span class="n">NUM_ROUNDS</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vignettes</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">smokescreens</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
@@ -156,9 +159,98 @@
 </div>
 </div>
 </details></section>
-<section id="variables-for-data-storage">
-<h3>Variables for data storage<a class="headerlink" href="#variables-for-data-storage" title="Link to this heading"></a></h3>
+<section id="random-assignment-to-treatments-and-order-of-vignettes">
+<h3>Random assignment to treatments and order of vignettes<a class="headerlink" href="#random-assignment-to-treatments-and-order-of-vignettes" title="Link to this heading"></a></h3>
+<p>The logic that the main app follows is a bit more complex than the other apps. Most importantly, the main app consists of numerous rounds. The issue here is that in oTree, the variables stored in the <code class="code docutils literal notranslate"><span class="pre">Player</span></code> object are reset at the beginning of each round.</p>
+<p>This means that if we want to define how the app behaves across the entirety of this app, we need to store them in the <code class="code docutils literal notranslate"><span class="pre">Participant</span></code> object. This is done in the <code class="code docutils literal notranslate"><span class="pre">creating_session</span></code> function, which is called once for each participant when they first enter the app (after completing the intro questionnaire). In this function, we create a random order of vignettes, outcomes of the vignettes, and smokescreens for each participant. This is done by creating a list for each possible orders of those, and then randomly assigning one entry from that list to each participant.</p>
+<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">Randomization in the main app</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">creating_session</span><span class="p">(</span><span class="n">subsession</span><span class="p">:</span> <span class="n">Subsession</span><span class="p">):</span>
+<span class="c1"># create random order of vignettes, smokescreens, and dependent variables once at the beginning of the session</span>
+<span class="k">if</span> <span class="n">subsession</span><span class="o">.</span><span class="n">round_number</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="c1"># calculate execution time</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">cycle_collection</span> <span class="o">=</span> <span class="n">cycle</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">outcomes_combinations_collection</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">subsession</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get_participants</span><span class="p">():</span>
+        <span class="c1"># randomize the order of vignettes</span>
+        <span class="n">vignettes</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">vignettes</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">vignettes</span><span class="p">)</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;vignette_order&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vignettes</span>
+
+        <span class="c1"># choose outcomes combination</span>
+        <span class="c1"># outcomes_collection = C.outcomes_combinations_collection.copy()</span>
+        <span class="n">outcomes_collection</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">cycle_collection</span><span class="p">)</span>
+
+        <span class="c1"># randomize the order of outcomes</span>
+        <span class="n">outcomes</span> <span class="o">=</span> <span class="n">outcomes_collection</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">outcomes</span><span class="p">)</span>
+
+        <span class="c1"># create outcomes variable for uniform outcomes treatment sessions</span>
+        <span class="n">treatment</span> <span class="o">=</span> <span class="n">subsession</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;treatment&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">subsession</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;treatment&#39;</span><span class="p">):</span>
+            <span class="n">outcomes</span> <span class="o">=</span> <span class="p">[</span><span class="n">treatment</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">outcomes</span><span class="p">)</span>
+
+        <span class="c1"># create participant variables for vignettes and outcomes</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;outcomes_collection&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">outcomes_collection</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;vignette_outcomes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">outcomes</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;vignettes_with_outcomes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">vignettes</span><span class="p">,</span> <span class="n">outcomes</span><span class="p">))</span>
+
+        <span class="c1"># randomize the order of smokescreens</span>
+        <span class="n">smokescreens</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">smokescreens</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">smokescreens</span><span class="p">)</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;smokescreen_order&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">smokescreens</span>
+
+        <span class="c1"># create variable for quiz page</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;quiz_page&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;quiz_page&#39;</span><span class="p">]</span>
+
+        <span class="c1"># create timeline over the 9 days in Novaland at participant level</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;timeline&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;smokescreen_order&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span>  <span class="c1"># note that the quiz page comes after the first smokescreen</span>
+                <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;quiz_page&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span>  <span class="c1"># quiz page</span>
+                <span class="n">p</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;vignette_order&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span>  <span class="c1"># the first two vignettes</span>
+                <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;smokescreen_order&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span>  <span class="c1"># the second smokescreen</span>
+                <span class="n">p</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;vignette_order&#39;</span><span class="p">][</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>  <span class="c1"># the last two vignettes</span>
+        <span class="p">)</span>
+
+        <span class="c1"># create variable on corruption info treatment</span>
+        <span class="n">corruption_info</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;corruption_info&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">corruption_info</span>
+
+        <span class="c1"># create variable for randomized order of pollster questions</span>
+        <span class="n">pollster_questions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;pollster_question_gov_trust&quot;</span><span class="p">,</span> <span class="s2">&quot;pollster_question_taxes_welfare&quot;</span><span class="p">,</span>
+                              <span class="s2">&quot;pollster_question_perc_corruption&quot;</span><span class="p">]</span>
+        <span class="n">pollster_order</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">pollster_questions</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;pollster_order&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pollster_order</span>
+    <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;PARTIICPANT BLOCK Execution time: </span><span class="si">{</span><span class="n">end_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="c1"># access the order of vignettes, smokescreens, and dependent variables for each player (per round)</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">subsession</span><span class="o">.</span><span class="n">get_players</span><span class="p">():</span>
+    <span class="n">participant</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">participant</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">dump_collection</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">participant</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;outcomes_collection&#39;</span><span class="p">])</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">scenario_order</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">participant</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;timeline&#39;</span><span class="p">])</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">current_scenario</span> <span class="o">=</span> <span class="n">participant</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;timeline&#39;</span><span class="p">][</span><span class="n">p</span><span class="o">.</span><span class="n">round_number</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">current_scenario</span> <span class="ow">in</span> <span class="n">C</span><span class="o">.</span><span class="n">vignettes</span><span class="p">:</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">vignette_order</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">participant</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;vignette_order&#39;</span><span class="p">])</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">service_level</span> <span class="o">=</span> <span class="n">participant</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;vignettes_with_outcomes&#39;</span><span class="p">][</span><span class="n">p</span><span class="o">.</span><span class="n">current_scenario</span><span class="p">]</span>
+        <span class="c1"># p.num_pos_vign_before = [p.field_maybe_none(&#39;service_level&#39;) for p in p.in_previous_rounds()].count(&#39;pos&#39;)</span>
+        <span class="c1"># p.num_neg_vign_before = [p.field_maybe_none(&#39;service_level&#39;) for p in p.in_previous_rounds()].count(&#39;neg&#39;)</span>
+        <span class="c1"># p.num_corr_vign_before = [p.field_maybe_none(&#39;service_level&#39;) for p in p.in_previous_rounds()].count(&#39;corr&#39;)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">pollster_order</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">participant</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;pollster_order&#39;</span><span class="p">])</span>
+<span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;PLAYER BLOCK Execution time: </span><span class="si">{</span><span class="n">end_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
 </section>
+<section id="the-pages-of-the-main-app">
+<h2>The pages of the main app<a class="headerlink" href="#the-pages-of-the-main-app" title="Link to this heading"></a></h2>
+<p>Here, the pages of the main questionnaire are described in the order in which they appear in the questionnaire. Participants lived through nine days in Novaland. The main app contains eight of those, while the last day is the voting day, which is implemented in the <code class="code docutils literal notranslate"><span class="pre">election</span></code> app.</p>
+<p>The main app is structured in <strong>two distinct parts</strong>: First participants received information about Novaland and are asked some questions about this. The then began their actual stay in the country, where they were presented with various situations and are asked to answer questions about them.</p>
 <section id="additional-code-for-extended-background-functionality">
 <h3>Additional code for extended background functionality<a class="headerlink" href="#additional-code-for-extended-background-functionality" title="Link to this heading"></a></h3>
 <p>In addition to the code described above, there are some additional code snippets that are used to implement the extended background functionality of the questionnaire. These snippets are not directly related to the main functionality of the questionnaire, but they are used to enhance the user experience and provide additional features.</p>
@@ -195,15 +287,8 @@ This class is used to automatically retrieve the current page number and maximum
 </pre></div>
 </div>
 </div>
-</details></section>
-<section id="html-files">
-<h3>HTML files<a class="headerlink" href="#html-files" title="Link to this heading"></a></h3>
-<p>In the HTML files, the layout and design of each page is defined. For a more detailed documentation on the structure of the HTML files, please refer to the <a class="reference internal" href="HtmlPages.html"><span class="doc">HTML Pages</span></a> section. Here, only the specific content of the HTML files is described. Each page of the questionnaire has its own HTML file, which is used to define the layout and design of that specific page. The HTML files are named according to the pages they represent, and they are included in the app’s code using the <code class="code docutils literal notranslate"><span class="pre">page_sequence</span></code> variable at the very bottom of the intro app’s init file.</p>
+</details><p><strong>Animating the status bar</strong> XXXXXXXXXXXXXXXXXXXXXXXX</p>
 </section>
-</section>
-<section id="the-pages-of-the-main-app">
-<h2>The pages of the main app<a class="headerlink" href="#the-pages-of-the-main-app" title="Link to this heading"></a></h2>
-<p>Here, the pages of the intro questionnaire are described in the order in which they appear in the questionnaire.</p>
 </section>
 </section>
 
