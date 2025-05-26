@@ -64,7 +64,7 @@
 <li class="toctree-l2"><a class="reference internal" href="CodeStructurePost.html">The Post-Experimental Questionnaire</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deploying the oTree project on Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deploying the oTree project</a></li>
 </ul>
 
         </div>
@@ -100,53 +100,41 @@
 <section id="room">
 <h3>Room<a class="headerlink" href="#room" title="Link to this heading"></a></h3>
 <p>There are a couple of options on how to launch an oTree project for a data collection. Here, setting up a “room” in which the questionnaire is embedded is the most robust one and thus used for this project. Several of these rooms were defined, each of which can be used to launch a separate instance of the questionnaire. The room used in the final data collection is called “study” and is defined as follows.</p>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">ROOMS</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ROOMS</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;study&#39;</span><span class="p">,</span>
-        <span class="n">display_name</span><span class="o">=</span><span class="s2">&quot;Study&quot;</span>
-    <span class="p">),</span>
-<span class="p">]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">ROOMS</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos">2</span>    <span class="nb">dict</span><span class="p">(</span>
+<span class="linenos">3</span>        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;study&#39;</span><span class="p">,</span>
+<span class="linenos">4</span>        <span class="n">display_name</span><span class="o">=</span><span class="s2">&quot;Study&quot;</span>
+<span class="linenos">5</span>    <span class="p">),</span>
+<span class="linenos">6</span><span class="p">]</span>
 </pre></div>
 </div>
-</div>
-</details></section>
+</section>
 <section id="session">
 <h3>Session<a class="headerlink" href="#session" title="Link to this heading"></a></h3>
 <p>Within a room, we have to define a session. A session is a single instance of the questionnaire that participants can join. Each session can have its own configuration, including the number of participants, the apps included in the session, and other settings. The session used in the final data collection is called “Full_game” and is defined as follows.</p>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">SESSIONS</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SESSION_CONFIGS</span> <span class="o">=</span> <span class="p">[</span>
-<span class="nb">dict</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Full_game&#39;</span><span class="p">,</span>
-    <span class="n">app_sequence</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;intro&#39;</span><span class="p">,</span> <span class="s1">&#39;main&#39;</span><span class="p">,</span> <span class="s1">&#39;election&#39;</span><span class="p">,</span> <span class="s1">&#39;post&#39;</span><span class="p">],</span> <span class="c1"># defines the apps used in the session</span>
-    <span class="n">num_demo_participants</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="c1">#used for development only</span>
-<span class="p">),</span>
-<span class="p">]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">SESSION_CONFIGS</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos">2</span><span class="nb">dict</span><span class="p">(</span>
+<span class="linenos">3</span>    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Full_game&#39;</span><span class="p">,</span>
+<span class="linenos">4</span>    <span class="n">app_sequence</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;intro&#39;</span><span class="p">,</span> <span class="s1">&#39;main&#39;</span><span class="p">,</span> <span class="s1">&#39;election&#39;</span><span class="p">,</span> <span class="s1">&#39;post&#39;</span><span class="p">],</span> <span class="c1"># defines the apps used in the session</span>
+<span class="linenos">5</span>    <span class="n">num_demo_participants</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="c1">#used for development only</span>
+<span class="linenos">6</span><span class="p">),</span>
+<span class="linenos">7</span><span class="p">]</span>
 </pre></div>
 </div>
-</div>
-</details></section>
+</section>
 <section id="participant-redirection-to-sample-provider">
 <h3>Participant redirection to sample provider<a class="headerlink" href="#participant-redirection-to-sample-provider" title="Link to this heading"></a></h3>
 <p>The participants of our study were recruited from the sample provider Prolific. From the providers’ website, they were directed to our survey and they were redirected back after completing the questionnaire. To ensure that the participants are redirected back to the provider’s website after completing the questionnaire, we need to define a return URL in the session configuration. This URL is used to redirect participants back to the provider’s website after they have completed the questionnaire. The return URL is defined dynamically, as each participant was assigned a unique URL after completion.</p>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">Redirection to sample provider</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">PROLIFIC_RETURN_CODE</span> <span class="o">=</span> <span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;PROLIFIC_RETURN_CODE&#39;</span><span class="p">,</span> <span class="s1">&#39;NO_CODE&#39;</span><span class="p">)</span>
-
-<span class="n">SESSION_CONFIG_DEFAULTS</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">prolific_return_url</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;https://app.prolific.com/submissions/complete?cc=</span><span class="si">{</span><span class="n">PROLIFIC_RETURN_CODE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="c1"># unique redirection URL for each participant</span>
-    <span class="n">for_prolific</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">real_world_currency_per_point</span><span class="o">=</span><span class="mf">1.00</span><span class="p">,</span> <span class="n">participation_fee</span><span class="o">=</span><span class="mf">0.00</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;&quot;</span> <span class="c1"># not relevant</span>
-<span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">PROLIFIC_RETURN_CODE</span> <span class="o">=</span> <span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;PROLIFIC_RETURN_CODE&#39;</span><span class="p">,</span> <span class="s1">&#39;NO_CODE&#39;</span><span class="p">)</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">SESSION_CONFIG_DEFAULTS</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+<span class="linenos">4</span>    <span class="n">prolific_return_url</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;https://app.prolific.com/submissions/complete?cc=</span><span class="si">{</span><span class="n">PROLIFIC_RETURN_CODE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="c1"># unique redirection URL for each participant</span>
+<span class="linenos">5</span>    <span class="n">for_prolific</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">6</span>    <span class="n">real_world_currency_per_point</span><span class="o">=</span><span class="mf">1.00</span><span class="p">,</span> <span class="n">participation_fee</span><span class="o">=</span><span class="mf">0.00</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;&quot;</span> <span class="c1"># not relevant</span>
+<span class="linenos">7</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</details><p>There are more options defined in the <code class="file docutils literal notranslate"><span class="pre">settings.py</span></code>, but those are not relevant for conducting the data collection and are thus not explained here. For a complete overview of the settings, please refer to the <a class="reference external" href="https://otree.readthedocs.io/en/latest/index.html">official oTree documentation</a>.</p>
+<p>There are more options defined in the <code class="file docutils literal notranslate"><span class="pre">settings.py</span></code>, but those are not relevant for conducting the data collection and are thus not explained here. For a complete overview of the settings, please refer to the <a class="reference external" href="https://otree.readthedocs.io/en/latest/index.html">official oTree documentation</a>.</p>
 </section>
 </section>
 <section id="aesthetics-of-the-web-questionnaire">

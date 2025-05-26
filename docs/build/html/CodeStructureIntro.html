@@ -45,6 +45,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Novaland2Layout.html">The fictional country of Novaland</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ProjectStructure.html">Structure of the oTree project</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="CodeStructure.html">Functionality of the project code</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="CodeStructureGlobalFiles.html">Project-wide files</a></li>
@@ -70,7 +71,7 @@
 <li class="toctree-l2"><a class="reference internal" href="CodeStructurePost.html">The Post-Experimental Questionnaire</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deploying the oTree project on Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deploying the oTree project</a></li>
 </ul>
 
         </div>
@@ -108,19 +109,15 @@ In the __init__.py file, the variables used to store participants’ data in are
 <section id="global-settings">
 <h3>Global settings<a class="headerlink" href="#global-settings" title="Link to this heading"></a></h3>
 <p>The global settings of the project are defined in the class called <code class="code docutils literal notranslate"><span class="pre">C</span></code>, which contains constants that define some fundamental characteristics of the app and the variables used to store participants’ data. The <code class="code docutils literal notranslate"><span class="pre">C</span></code> class contains the following variables:</p>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">Intro App Global Settings</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">C</span><span class="p">(</span><span class="n">BaseConstants</span><span class="p">):</span>
-    <span class="n">NAME_IN_URL</span> <span class="o">=</span> <span class="s1">&#39;introduction&#39;</span> <span class="c1">#displayed name for participants</span>
-    <span class="n">PLAYERS_PER_GROUP</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># no interactions between participants</span>
-    <span class="n">NUM_ROUNDS</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># only one round, no repeated functionality</span>
-
-    <span class="n">ENDOWMENT</span> <span class="o">=</span> <span class="n">cu</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span> <span class="c1"># not relevant for this study</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">class</span><span class="w"> </span><span class="nc">C</span><span class="p">(</span><span class="n">BaseConstants</span><span class="p">):</span>
+<span class="linenos">2</span>    <span class="n">NAME_IN_URL</span> <span class="o">=</span> <span class="s1">&#39;introduction&#39;</span> <span class="c1">#displayed name for participants</span>
+<span class="linenos">3</span>    <span class="n">PLAYERS_PER_GROUP</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># no interactions between participants</span>
+<span class="linenos">4</span>    <span class="n">NUM_ROUNDS</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># only one round, no repeated functionality</span>
+<span class="linenos">5</span>
+<span class="linenos">6</span>    <span class="n">ENDOWMENT</span> <span class="o">=</span> <span class="n">cu</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span> <span class="c1"># not relevant for this study</span>
 </pre></div>
 </div>
-</div>
-</details></section>
+</section>
 <section id="variables-for-data-storage">
 <h3>Variables for data storage<a class="headerlink" href="#variables-for-data-storage" title="Link to this heading"></a></h3>
 <p>The variables used to store participants’ data are defined in the class called <code class="code docutils literal notranslate"><span class="pre">Player</span></code>. It contains the variables that are used to store the data collected from the participants during the questionnaire. The variables are defined as fields of the class, and each field has a specific type and properties. There are three sets of variables defined here: First, some variables that collect data on the devices that participants used to complete the questionnaire. These variables are defined in the <code class="code docutils literal notranslate"><span class="pre">user_agent_XXX</span></code> block. The second block contains the variables that are used to collect the participants’ consent to participate in the study and their agreement on the comprehension questions with their filter function. The third block contains the socio-demographic variables that were asked for in the questionnaire.</p>

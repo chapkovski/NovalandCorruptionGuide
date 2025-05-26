@@ -58,7 +58,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="CodeStructure.html">Functionality of the project code</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deploying the oTree project on Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deploying the oTree project</a></li>
 </ul>
 
         </div>
@@ -91,60 +91,56 @@
 <section id="visualisation-of-the-project-file-structure">
 <h2>Visualisation of the project file structure<a class="headerlink" href="#visualisation-of-the-project-file-structure" title="Link to this heading"></a></h2>
 <p>The following filetree provides an overview of the project’s file structure. Each of the elements will be explained in detail in the following sections. The oTree project itself is named ‘novaland2’. This is because this is the oTree project for the second study that utilizes the virtual state ‘Novaland’.</p>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">oTree Project File Structure</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>novaland2/
-├── settings.py
-├── requirements.txt
-├── intro/
-│   ├── __init__.py
-│   ├── tests.py
-│   └── XXXXX.html
-├── main/
-│   ├── instructions/
-│   │   └── XXXXX.html
-│   ├── outcomes/
-│   │   └── XXXXX.html
-│   ├── smokescreens/
-│   │   └── XXXXX.html
-│   ├── vignettes/
-│   │   └── XXXXX.html
-│   ├── __init__.py
-│   ├── tests.py
-│   └── XXXXX.html
-├── election/
-│   ├── __init__.py
-│   ├── tests.py
-│   └── XXXXX.html
-├── post/
-│   ├── __init__.py
-│   ├── tests.py
-│   └── XXXXX.html
-├── data/
-│   └── XXXXX.yaml
-├── templates/
-│   ├── global/
-│   │   ├── XXXXX.html
-└── _static/
-    ├── certificates/
-    │   └── XXXXX.pdf
-    ├── global/
-    │   └── XXXXX.css
-    ├── images/
-    │   ├── smokeescreens/
-    │   │   └── XXXXX.jpg
-    │   └── vignettes/
-    │       └── XXXXX.jpg
-    ├── surveyjs/
-    │   ├── XXXXX.js
-    │   └── XXXXX.css
-    ├── XXXXX.css
-    └── XXXXX.png
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>  novaland2/
+<span class="linenos"> 2</span>  ├── settings.py
+<span class="linenos"> 3</span>  ├── requirements.txt
+<span class="linenos"> 4</span>  ├── intro/
+<span class="linenos"> 5</span>  │   ├── __init__.py
+<span class="linenos"> 6</span>  │   ├── tests.py
+<span class="linenos"> 7</span>  │   └── XXXXX.html
+<span class="linenos"> 8</span>  ├── main/
+<span class="linenos"> 9</span>  │   ├── instructions/
+<span class="linenos">10</span>  │   │   └── XXXXX.html
+<span class="linenos">11</span>  │   ├── outcomes/
+<span class="linenos">12</span>  │   │   └── XXXXX.html
+<span class="linenos">13</span>  │   ├── smokescreens/
+<span class="linenos">14</span>  │   │   └── XXXXX.html
+<span class="linenos">15</span>  │   ├── vignettes/
+<span class="linenos">16</span>  │   │   └── XXXXX.html
+<span class="linenos">17</span>  │   ├── __init__.py
+<span class="linenos">18</span>  │   ├── tests.py
+<span class="linenos">19</span>  │   └── XXXXX.html
+<span class="linenos">20</span>  ├── election/
+<span class="linenos">21</span>  │   ├── __init__.py
+<span class="linenos">22</span>  │   ├── tests.py
+<span class="linenos">23</span>  │   └── XXXXX.html
+<span class="linenos">24</span>  ├── post/
+<span class="linenos">25</span>  │   ├── __init__.py
+<span class="linenos">26</span>  │   ├── tests.py
+<span class="linenos">27</span>  │   └── XXXXX.html
+<span class="linenos">28</span>  ├── data/
+<span class="linenos">29</span>  │   └── XXXXX.yaml
+<span class="linenos">30</span>  ├── templates/
+<span class="linenos">31</span>  │   ├── global/
+<span class="linenos">32</span>  │   │   ├── XXXXX.html
+<span class="linenos">33</span>  └── _static/
+<span class="linenos">34</span>      ├── certificates/
+<span class="linenos">35</span>      │   └── XXXXX.pdf
+<span class="linenos">36</span>      ├── global/
+<span class="linenos">37</span>      │   └── XXXXX.css
+<span class="linenos">38</span>      ├── images/
+<span class="linenos">39</span>      │   ├── smokeescreens/
+<span class="linenos">40</span>      │   │   └── XXXXX.jpg
+<span class="linenos">41</span>      │   └── vignettes/
+<span class="linenos">42</span>      │       └── XXXXX.jpg
+<span class="linenos">43</span>      ├── surveyjs/
+<span class="linenos">44</span>      │   ├── XXXXX.js
+<span class="linenos">45</span>      │   └── XXXXX.css
+<span class="linenos">46</span>      ├── XXXXX.css
+<span class="linenos">47</span>      └── XXXXX.png
 </pre></div>
 </div>
-</div>
-</details><p><strong>Note:</strong> ‘XXXXX’ is a placeholder for the name of one or more files with the corresponding extension in the respective folder. The actual file names are not relevant for understanding the project’s structure and functionality, so they are not listed here. The functionality of these files is explained below.</p>
+<p><strong>Note:</strong> ‘XXXXX’ is a placeholder for the name of one or more files with the corresponding extension in the respective folder. The actual file names are not relevant for understanding the project’s structure and functionality, so they are not listed here. The functionality of these files is explained below.</p>
 </section>
 <section id="the-file-types-used-in-the-project">
 <h2>The file types used in the project<a class="headerlink" href="#the-file-types-used-in-the-project" title="Link to this heading"></a></h2>

@@ -203,17 +203,25 @@ As soon as participants reached this page, they were directly redirected using a
 
 Those participants who answered all three comprehension questions correctly, reached the last page of the introduction to Novaland. On the **IntroVignette** page, participants were informed that they will encounter several situations on the next pages, that they are a citizen of Novaland in this context and that they should answer the questions as themselves.
 
-2. Nine days in Novaland
+2. Structuring the stay in Novaland
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-After receiving all this information and passing the comprehension checks, participants began their stay in Novaland. For an overview of the fictional stay, please refer to the :ref:`flowchart of the novaland stay <flowchart>`.
+After receiving all this information and passing the comprehension checks, participants began their stay in Novaland. For an overview of the fictional stay, please refer to the :ref:`flowchart of the Novaland stay <flowchart>`.
 
-Before we discuss how the experience on each page was created, we first have to take a step back and talk about the underlying logic of the main app. While participants experience their fictional stay as one continuous trip, the app does not run only once. Instead, it runs seven rounds. The flow of the Novaland stay is created by defining for each page in which round it is displayed. One special XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Before we discuss how the experience on each page was created, we first have to take a step back and talk about the underlying logic of the main app. While participants experience their fictional stay as one continuous trip, the app does not run only once. Instead, oTree runs the :code:`main` app seven rounds. The flow of the Novaland stay is created by defining for each page in which round it is displayed.
+The different rounds of the main app contain the following pages:
 
+#. Round: NovalandIntro Pages, Comprehension Page, IntroVignette Page, First Smokescreen Page
+#. Round: Quiz Page, Quiz Results Page
+#. Round: First Vignette Page, First Vignette Results Page
+#. Round: Second Vignette Page, Second Vignette Results Page
+#. Round: Second Smokescreen Page
+#. Round: Third Vignette Page, Third Vignette Results Page
+#. Round: Fourth Vignette Page, Fourth Vignette Results Page, Pollster Pages, Pollster Results Page
 
-SMOKESCREEN_ROUNDS = [1, 5, ]
-VIGNETTE_ROUNDS = [3, 4, 6, 7]
 
 **Order of the smokescreens and vignettes**
+
+This order is defined in the :code:`timeline` variable in :code:`creating_session` function. By using the list objects for the order of the smokescreens and vignettes, we can define the order in which they are displayed to the participants. Each entry of the list contains a string that identifies the corresponding vignette or smokescreen scenario. We will discuss the functionality of these pages in more detail below.
 
 .. code-block:: python
     :linenos:
@@ -226,7 +234,86 @@ VIGNETTE_ROUNDS = [3, 4, 6, 7]
             p.vars['vignette_order'][2:4]  # the last two vignettes
     )
 
-Here is what the timeline tells us:
+
+3. The smokescreen pages
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The smokescreen pages are designed to immerse participants more into the virtual country and to reduce demand effects by distracting participants from the main purpose of the questionnaire,. They are presented as everyday situations that participants might encounter in Novaland. The smokescreens are displayed in the first and fifth rounds of the main app. The first smokescreen is displayed after the introduction to Novaland, while the second smokescreen is displayed after the second vignette.
+
+The scenarios of the smokescreens contain arbitrary situations that are not directly related to the main purpose of the questionnaire. One smokescreen is about adopting a pet, while the other smokescreen is about visiting a restaurant. The order of these two scenarios was randomized for each participant.
+
+Let's have a detailed look into the code of the smokescreen pages - how they are created, how they are randomized and how they are displayed to the participants.
+
+In the :code:`C` section, the rounds in which the smokescreens are displayed are defined in :code:`SMOKESCREEN_ROUNDS = [1, 5]`.
+The smokescreens are then defined in the :code:`smokescreens` variable as a list of strings: :code:`smokescreens = ['pets', 'restaurant']`. The first smokescreen is called "pets" and the second smokescreen is called "restaurant".
+In the :code:`creating_session` function, the order of the smokescreens is randomized for each participant. This is done by using the :code:`smokescreens` object and then shuffling it using the :code:`random.shuffle()` function. The randomized order is then stored in the :code:`Participant` object as :code:`p.vars['smokescreen_order']`.
+
+The code for the smokescreen pages is implemented in the :code:`Smokescreen` page class:
+
+.. code-block:: python
+    :linenos:
+
+    class Smokescreen(Page):
+        form_model = 'player'
+
+        @staticmethod
+        def is_displayed(player):
+            return player.round_number in C.SMOKESCREEN_ROUNDS
+
+        def get_form_fields(player):
+            return [player.current_scenario]
+
+        @staticmethod
+        def vars_for_template(player: Player):
+            return {
+                'smokescreen': f'main/smokescreens/{player.current_scenario}.html',
+                'smokescreen_header': C.scenario_headers[player.round_number - 1]
+
+The :code:`is_displayed` method is used to determine whether the page should be displayed to the participant. This is done by checking whether the current round number is in the list of smokescreen rounds defined in the :code:`C` class.
+
+The :code:`get_form_fields` method is used to define the form fields that are displayed on the page. In this case, it returns the current scenario of the participant, which is stored in the :code:`current_scenario` variable. This variable is set in the :code:`creating_session` function and contains the name of the current smokescreen scenario for the participant. This dynamic variable function is used to ensure that the correct smokescreen scenario is displayed to the participant. It is required because there is only one HTML template for both smokescreens, which is dynamically filled with the content of the current smokescreen scenario.
+
+The :code:`vars_for_template` method is used to pass variables to the HTML template. In this case, it passes the path to the HTML template of the current smokescreen scenario and the header for the smokescreen page. This is used because the HTML template for the smokescreen pages is the same for both smokescreens and the content is dynamically filled with the current smokescreen scenario.
+
+The path to the HTML template is constructed using the :code:`main/smokescreens/` folder and the name of the current scenario, as this folder contains the two HTML files (:code:`pets.html` and :code:`restaurant.html`) that define the text of the smokescreen pages.
+The header of the page is defined in the :code:`scenario_headers` variable in the :code:`C` class and contains the name of the day on which the smokescreen is displayed. This dynamic variable function is used to ensure that the correct header is displayed on the page, depending on the round number in which the smokescreen is displayed. It contains the number of the day in Novaland and the current day of the week.
+
+The participants were asked to answer a question about the smokescreen scenario - either to adopt a pet or to choose the restaurant they want to visit. Again, we used a dynamic variable function to ensure that the correct question is displayed to the participant. The question object were defined in the :code:`Player` model as :code:`pets` and :code:`restaurant`, respectively. The question is then displayed in the HTML template using the :code:`{{ formfields }}` variable, which is defined in the :code:`get_form_fields` method of the :code:`Smokescreen` page class.
+
+With this setup, we ensure that the smokescreen pages are displayed correctly to the participants - at the correct time, and with the correct content according to the randomized order of the smokescreens.
+
+4. The news quiz pages
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The **Quiz** was used to both test participants' attention, to check if they understood the information provided on the previous pages, and to distract them from the main purpose of the questionnaire by making this check an in-experience situation. The quiz was presented as a news quiz about Novaland, which participants had to answer correctly in order to continue with the questionnaire. The quiz was displayed in the second round of the main app, after the first smokescreen and before the first vignette.
+
+This page is implemented in the :code:`Quiz` page class.. The quiz consists of two questions, which are defined as :code:`form_fields` in the page class. The questions are: First, :code:`quiz_event`, asking which public event is scheduled in the next days in Novaland.The correct answer was the national election. And second, :code:`quiz_income`, asking about the average income in Novaland. The correct answer being 3000 Nova Dollars.
+
+Those participants who received the information about the social norm of bribing in Novaland on the previous pages were also asked a third question, :code:`quiz_corr`, asking how many citizens of Novaland were willing to pay a bribe for a service. The correct answer was 6 out of 10 citizens. This is done by using two pieces of code. In the :code:`get_form_fields` method, we check whether the participant received the information about the social norm of bribing in Novaland. If they did, we add the third question to the list of form fields that are displayed on the page. This is done by checking the :code:`corruption_info` variable in the :code:`Participant` object, which is set to 1 if participants received the information and 0 if they did not.
+In the page's HTML template, we then check whether the :code:`corruption_info` variable is set to 1. If it is, we display the third question. This is done using the conditional statement :code:`{{ if corruption_info == 1 }} {{ formfield player.quiz_corr }}`.
+
+After participants submitted their answers, some calculations were automatically conducted by oTree to analyse the quiz results. Within the page class, the :code:`before_next_page` function is used to calculate the number of correct answers and whether the participant answered all questions correctly. This is done by comparing the participants' answers with the correct answers defined in the :code:`quiz_correspondence` dictionary, which contains the correct answers for each question.
+
+.. code-block:: python
+    :linenos:
+
+    def before_next_page(player, timeout_happened):
+        fields = Quiz.get_form_fields(player) # get questions
+        correct_answers = {k: quiz_correspondence[k] for k in fields} # compare answers with correct answers defined in the quiz_correspondence dictionary
+        answers = {k: getattr(player, k) for k in fields} # get participants' answers
+        are_answers_correct = [answers[k] == correct_answers[k] for k in fields] # check if answers are correct
+        player.quiz_correct_answers = sum(are_answers_correct) # calculate number of correct answers
+        player.quiz_num_questions = len(fields) # calculate number of questions
+        player.quiz_fully_correct = all(are_answers_correct) # check if all answers are correct
+
+After the quiz page, participants saw the **QuizResults** page. On this page, they were informed about the correct answers to the quiz questions. Again, we used the :code:`corruption_info` variable to determine whether the third question was displayed. If it was, the correct answer to this question was also displayed on the page. After the participants submitted the page, they were redirected to the first vignette page.
+
+
+5. The vignette pages
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+6. The pollster pages
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 
 Additional code for extended background functionality

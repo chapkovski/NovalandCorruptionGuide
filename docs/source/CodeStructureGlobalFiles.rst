@@ -9,10 +9,8 @@ Room
 ^^^^^^^^^^^^^^^^^^
 There are a couple of options on how to launch an oTree project for a data collection. Here, setting up a "room" in which the questionnaire is embedded is the most robust one and thus used for this project. Several of these rooms were defined, each of which can be used to launch a separate instance of the questionnaire. The room used in the final data collection is called "study" and is defined as follows.
 
-.. dropdown:: ROOMS
-   :icon: terminal
-
-   .. code-block:: python
+.. code-block:: python
+    :linenos:
 
 
     ROOMS = [
@@ -27,10 +25,8 @@ Session
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Within a room, we have to define a session. A session is a single instance of the questionnaire that participants can join. Each session can have its own configuration, including the number of participants, the apps included in the session, and other settings. The session used in the final data collection is called "Full_game" and is defined as follows.
 
-.. dropdown:: SESSIONS
-   :icon: terminal
-
-   .. code-block:: python
+.. code-block:: python
+    :linenos:
 
 
     SESSION_CONFIGS = [
@@ -46,10 +42,8 @@ Participant redirection to sample provider
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 The participants of our study were recruited from the sample provider Prolific. From the providers' website, they were directed to our survey and they were redirected back after completing the questionnaire. To ensure that the participants are redirected back to the provider's website after completing the questionnaire, we need to define a return URL in the session configuration. This URL is used to redirect participants back to the provider's website after they have completed the questionnaire. The return URL is defined dynamically, as each participant was assigned a unique URL after completion.
 
-.. dropdown:: Redirection to sample provider
-   :icon: terminal
-
-   .. code-block:: python
+.. code-block:: python
+    :linenos:
 
 
     PROLIFIC_RETURN_CODE = environ.get('PROLIFIC_RETURN_CODE', 'NO_CODE')

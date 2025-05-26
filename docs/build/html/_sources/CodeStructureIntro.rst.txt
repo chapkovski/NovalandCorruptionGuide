@@ -11,11 +11,8 @@ Global settings
 ^^^^^^^^^^^^^^^^^^^^^
 The global settings of the project are defined in the class called :code:`C`, which contains constants that define some fundamental characteristics of the app and the variables used to store participants' data. The :code:`C` class contains the following variables:
 
-.. dropdown:: Intro App Global Settings
-   :icon: terminal
-
-   .. code-block:: python
-
+.. code-block:: python
+    :linenos:
 
     class C(BaseConstants):
         NAME_IN_URL = 'introduction' #displayed name for participants

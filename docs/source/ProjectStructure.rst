@@ -7,10 +7,8 @@ Visualisation of the project file structure
 -------------------------------------------
 The following filetree provides an overview of the project's file structure. Each of the elements will be explained in detail in the following sections. The oTree project itself is named 'novaland2'. This is because this is the oTree project for the second study that utilizes the virtual state 'Novaland'.
 
-.. dropdown:: oTree Project File Structure
-   :icon: terminal
-
-   .. code-block:: text
+.. code-block:: text
+    :linenos:
 
       novaland2/
       ├── settings.py
