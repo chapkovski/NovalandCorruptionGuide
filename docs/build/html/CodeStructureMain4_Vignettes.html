@@ -107,6 +107,19 @@
 <p>The <code class="code docutils literal notranslate"><span class="pre">render_survey</span></code> method is used to render the YAML file that contains the questions for the vignette. The YAML file is read from the <code class="code docutils literal notranslate"><span class="pre">data/vignette_q.yaml</span></code> file, which is defined in the <code class="code docutils literal notranslate"><span class="pre">C</span></code> class. The method uses the <code class="code docutils literal notranslate"><span class="pre">Template</span></code> class from the Jinja2 library to render the YAML file with the variables defined in the <code class="code docutils literal notranslate"><span class="pre">variables</span></code> dictionary. The rendered YAML file is then converted to a JSON string and returned.</p>
 <section id="implementation-of-the-experimental-treatments">
 <h2>Implementation of the experimental treatments<a class="headerlink" href="#implementation-of-the-experimental-treatments" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">class</span><span class="w"> </span><span class="nc">C</span><span class="p">(</span><span class="n">BaseConstants</span><span class="p">):</span>
+<span class="linenos">2</span>    <span class="n">file_path</span> <span class="o">=</span> <span class="s1">&#39;data/vignette_q.yaml&#39;</span>
+<span class="linenos">3</span>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">yaml_file</span><span class="p">:</span>
+<span class="linenos">4</span>        <span class="n">yaml_template</span> <span class="o">=</span> <span class="n">yaml_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="linenos">5</span>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/corrupt_endings.yaml&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+<span class="linenos">6</span>        <span class="n">CORRUPT_ENDINGS</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+<span class="linenos">7</span>    <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/VignetteScreenshot.jpeg"><img alt="Vignette Screenshot" class="align-center" src="_images/VignetteScreenshot.jpeg" style="width: 75%;" />
+</a>
+<a class="reference internal image-reference" href="_images/VignetteScreenshotRepeatEnding.jpeg"><img alt="Vignette Screenshot with repeated ending" class="align-center" src="_images/VignetteScreenshotRepeatEnding.jpeg" style="width: 75%;" />
+</a>
 </section>
 <section id="the-outcome-page">
 <h2>The Outcome Page<a class="headerlink" href="#the-outcome-page" title="Link to this heading"></a></h2>

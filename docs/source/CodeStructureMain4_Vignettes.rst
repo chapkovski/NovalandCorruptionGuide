@@ -15,6 +15,29 @@ Implementation of the experimental treatments
 ----------------------------------------------------
 
 
+.. code-block:: python
+    :linenos:
+
+    class C(BaseConstants):
+        file_path = 'data/vignette_q.yaml'
+        with open(file_path, 'r', encoding="utf-8") as yaml_file:
+            yaml_template = yaml_file.read()
+        with open('data/corrupt_endings.yaml', 'r', encoding="utf-8") as file:
+            CORRUPT_ENDINGS = yaml.safe_load(file)
+        [...]
+
+
+
+.. image:: /_static/VignetteScreenshot.jpeg
+   :width: 75%
+   :align: center
+   :alt: Vignette Screenshot
+
+
+.. image:: /_static/VignetteScreenshotRepeatEnding.jpeg
+   :width: 75%
+   :align: center
+   :alt: Vignette Screenshot with repeated ending
 
 The Outcome Page
 ---------------------------------
