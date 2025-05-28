@@ -1,0 +1,157 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Additional code for extended background functionality &mdash; NovalandCorruptionGuide 2025 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=cb975c41"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            NovalandCorruptionGuide
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="Novaland2Layout.html">The fictional country of Novaland - WIP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ProjectStructure.html">Structure of the oTree project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureGlobalFiles.html">Part 0: Project-wide files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureIntro.html">Part 1: The Introduction App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureMain.html">Part 2: The Stay in Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureElection.html">Part 3: The Election in Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructurePost.html">Part 4: The Post-Experimental Questionnaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HtmlPages.html">HTML Pages - WIP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deploying the oTree project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">NovalandCorruptionGuide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Additional code for extended background functionality</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/CodeStructureMain6_AdditionalCode.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="additional-code-for-extended-background-functionality">
+<h1>Additional code for extended background functionality<a class="headerlink" href="#additional-code-for-extended-background-functionality" title="Link to this heading"></a></h1>
+<p>In addition to the code described above, there are some additional code snippets that are used to implement the extended background functionality of the questionnaire. These snippets are not directly related to the main functionality of the questionnaire, but they are used to enhance the user experience and provide additional features.</p>
+<section id="the-progress-bar">
+<h2>The progress bar<a class="headerlink" href="#the-progress-bar" title="Link to this heading"></a></h2>
+<p>At the top of the main app’s __init__.py file, the <code class="code docutils literal notranslate"><span class="pre">Page</span></code> class is defined. This is the parent class for all pages in the app. This means that the code that is defined within it is executed by all survey pages across the app.
+This class is used to automatically retrieve the current page number and maximum page number of the questionnaire using the <code class="code docutils literal notranslate"><span class="pre">get_context_data</span></code> function. This function then calculates the progress percentage. The progress percentage is then passed to the HTML template, where it is displayed as a progress bar.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">Progress bar calculations</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Page</span><span class="p">(</span><span class="n">oTreePage</span><span class="p">):</span>
+    <span class="n">instructions</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">context</span><span class="p">):</span>
+        <span class="n">NUM_SURVEY_PAGES</span> <span class="o">=</span> <span class="mi">36</span>
+        <span class="n">app_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__module__</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">page_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="k">if</span> <span class="n">page_name</span> <span class="o">!=</span> <span class="s1">&#39;PostSurvey&#39;</span> <span class="ow">and</span> <span class="n">app_name</span> <span class="o">==</span> <span class="s1">&#39;post&#39;</span><span class="p">:</span>
+            <span class="n">index_in_pages</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index_in_pages</span> <span class="o">+</span> <span class="n">NUM_SURVEY_PAGES</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">index_in_pages</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index_in_pages</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">context</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s1">&#39;post&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;app_sequence&#39;</span><span class="p">):</span>
+            <span class="n">max_pages</span> <span class="o">=</span> <span class="n">NUM_SURVEY_PAGES</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">participant</span><span class="o">.</span><span class="n">_max_page_index</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">max_pages</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">participant</span><span class="o">.</span><span class="n">_max_page_index</span>
+
+        <span class="n">r</span><span class="p">[</span><span class="s1">&#39;maxpages&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_pages</span>
+        <span class="n">r</span><span class="p">[</span><span class="s1">&#39;page_index&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index_in_pages</span>
+        <span class="n">r</span><span class="p">[</span><span class="s1">&#39;progress&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">index_in_pages</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">max_pages</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="si">:</span><span class="s1">d</span><span class="si">}</span><span class="s1">&#39;</span>
+
+        <span class="n">r</span><span class="p">[</span><span class="s1">&#39;instructions&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">instructions</span>
+        <span class="k">return</span> <span class="n">r</span>
+</pre></div>
+</div>
+</div>
+</details><section id="animating-the-status-bar">
+<h3>Animating the status bar<a class="headerlink" href="#animating-the-status-bar" title="Link to this heading"></a></h3>
+<p>XXXXXXXXXXXXXXXXXXXXXXXX</p>
+</section>
+</section>
+<section id="the-dynamic-instructions-button">
+<h2>The dynamic instructions button<a class="headerlink" href="#the-dynamic-instructions-button" title="Link to this heading"></a></h2>
+<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, POLITSOLID Project Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

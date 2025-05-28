@@ -18,10 +18,10 @@ The goal of this documentation is to provide a comprehensive overview of the tec
 
 This documentation is structured as follows:
 
-* :doc:`The first section <Novaland2Layout>` provides an overview of the layout of the Novaland experiment, including the flowchart of the Novaland stay and the randomization of the treatments
-* :doc:`The second section <ProjectStructure>` provides an overview of the structure and functionality of the oTree project's folders and files
-* :doc:`The third section <CodeStructure>` goes into detail about which parts of the code produce certain parts of the online questionnaire and experimental treatments
-* :doc:`The fourth section <Deployment>` steps away from the oTree project's code and explains how the project can be executed, deployed on a server and used for collecting data online.
+* :doc:`The first page <Novaland2Layout>` provides an overview of the layout of the Novaland experiment, including the flowchart of the Novaland stay and the randomization of the treatments
+* :doc:`The second page <ProjectStructure>` provides an overview of the structure and functionality of the oTree project's folders and files
+* The following pages, titled 'PartX ...' go into detail about which parts of the code produce certain parts of the online questionnaire and experimental treatments.
+* The last pages of this documentation step away from the oTree project's code and explains its underlying functionality. First, by explaining the :doc:`HTML pages <HtmlPages>` that are used to display the questionnaire to the participants, and then by explaining how the project was :doc:`hosted <Deployment>` on a server.
 
 
 Contents
@@ -32,6 +32,11 @@ Contents
 
    Novaland2Layout
    ProjectStructure
-   CodeStructure
+   CodeStructureGlobalFiles
+   CodeStructureIntro
+   CodeStructureMain
+   CodeStructureElection
+   CodeStructurePost
+   HtmlPages
    Deployment
 

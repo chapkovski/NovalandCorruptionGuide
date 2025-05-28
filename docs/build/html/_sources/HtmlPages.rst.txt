@@ -1,9 +1,7 @@
 ============================
-Basic structure of the page
+HTML Pages - WIP
 ============================
 The basic scheme of the already existing pages in Novaland looks like this:
-
-`For more informations <https://otree.readthedocs.io/en/latest/pages.html>`_.
 
 Django
 =====================

@@ -1,4 +1,4 @@
-Project-wide files
+Part 0: Project-wide files
 ===================================================
 
 Global settings
@@ -59,4 +59,4 @@ There are more options defined in the :file:`settings.py`, but those are not rel
 
 Aesthetics of the web questionnaire
 ---------------------------------------------
-The aesthetics of the web questionnaire are defined in the :file:`_templates/global/Page.html` file. This file contains the HTML code that defines the overall layout and design of the questionnaire pages. It includes style elements such fonts, colors, and outlays used on each project. To ensure a consistent appearance of the questionnaire's web pages, nearly all pages build on this template and only specify their content and functionality in their designated HTML files, of which one exist for each page of the questionnaire.
+The aesthetics of the web questionnaire are defined in the :file:`_templates/global/Page.html` file. This file contains the HTML code that defines the overall layout and design of the questionnaire pages. It includes style elements such fonts, colors, and outlays used on each project. To ensure a consistent appearance of the questionnaire's web pages, nearly all pages build on this template and only specify their content and functionality in their designated HTML files, of which one exist for each page of the questionnaire. For more detail, please refer to the :doc:`HTML Pages <HtmlPages>` section of this documentation.

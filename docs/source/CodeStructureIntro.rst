@@ -1,5 +1,5 @@
-The Introduction App
-======================
+Part 1: The Introduction App
+=============================
 This section explains the intro app, which contains the introductory questionnaire. Here, participants were welcomed, asked for their consent to participate, informed about the procedure of the study, and asked basic socio-demographic questions.
 
 Basic functionality

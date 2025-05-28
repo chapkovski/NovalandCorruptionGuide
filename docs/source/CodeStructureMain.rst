@@ -1,4 +1,4 @@
-The Stay in Novaland
+Part 2: The Stay in Novaland
 =====================================
 The central part of this oTree project is the :code:`main` app. This app contains the part of the project which revolve around participants' stay in Novaland. It begins with some pages that provide information about Novaland and then the virtual stay in this fictional country. Thus, the main app contains the vignettes and experimental treatments that are presented in the paper. Please note that we also simulated the national election of Novaland, in which participants could vote for one of two parties. This election is not included in this app, but is instead implemented in the :code:`election` app.
 
@@ -15,6 +15,7 @@ The global settings of the project are defined in the :code:`C` class, which con
    :icon: terminal
 
    .. code-block:: python
+
 
     class C(BaseConstants):
         # read the file containing the vignette questionnaire
@@ -67,13 +68,12 @@ The global settings of the project are defined in the :code:`C` class, which con
 
         ENDOWMENT = cu(1000) # not used in this study
 
+
 Random assignment to treatments and order of vignettes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 The logic that the main app follows is a bit more complex than the other apps. Most importantly, the main app consists of numerous rounds. The issue here is that in oTree, the variables stored in the :code:`Player` object are reset at the beginning of each round.
 
-This means that if we want to define how the app behaves across the entirety of this app, we need to store them in the :code:`Participant` object. This is done in the :code:`creating_session` function, which is called once for each participant when they first enter the app (after completing the intro questionnaire). In this function, we create a random order of vignettes, outcomes of the vignettes, and smokescreens for each participant. This is done by creating a list for each possible orders of those, and then randomly assigning one entry from that list to each participant.
-
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+This means that if we want to define how the app behaves across the entirety of this app, we need to store them in the :code:`Participant` object. This is done in the :code:`creating_session` function, a part of which is called once for each participant when they first enter the app (after completing the intro questionnaire). In this function, we create a random order of vignettes, outcomes of the vignettes, and smokescreens for each participant. This is done by creating a list for each possible orders of those, and then randomly assigning one entry from that list to each participant.
 
 
 .. dropdown:: Randomization in the main app
@@ -164,198 +164,17 @@ The pages of the main app
 -------------------------------------
 Here, the pages of the main questionnaire are described in the order in which they appear in the questionnaire. Participants lived through nine days in Novaland. The main app contains eight of those, while the last day is the voting day, which is implemented in the :code:`election` app.
 
-The main app is structured in **two distinct parts**: First participants received information about Novaland and are asked some questions about this. The then began their actual stay in the country, where they were presented with various situations and are asked to answer questions about them.
-
-1. The introduction to Novaland
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The introductory part of the main app consists of four **NovalandIntro** pages, on which participants are informed about their stay in Novaland as citizens of the fictional country and about some characteristics of the country itself. The text that was included on these pages can be found in the :code:`main/instructions/` folder. There is one file for each of these four information pages.
-
-On the fourth NovalandIntro page, the first experimental treatment takes place. Participants were randomly assigned to two groups: the first group is informed about the social norm of bribing in Novaland (6 out of 10 citizens of Novaland are willing to pay a bribe for a service). Participants in the second group do not receive any information. The variable that determines if participants received this information is called :code:`corruption_info` and is stored in the :code:`Participant` object. The variable is set to 1 if participants received the information and 0 if they did not. This variable is used to determine which text is displayed on the page and is passed to the HTML template (:code:`main/instructions/instructions_4.html`). There, the conditional statement of showing the social norm information works with this variable: :code:`{{ if participant.vars.corruption_info == 1 }}`.
-
-The next page is the **Comprehension** page. On this page, participants had to answer three comprehension questions correctly in order to continue with the questionnaire. The questions are about the information that was provided on the previous pages. The questions are defined in the player models :code:`comprehension_citizen`, :code:`comprehension_income`, and :code:`comprehension_financing`. These three questions are defined as :code:`form_fields` in the :code:`Comprehension` page class and called by the page's HTML template using :code:`{{formfields}}`.
-
-We gave participants the possibility to receive the respective pieces of information again using an "instructions" button that was embedded on the page. For this, we used the :code:`live_method` in the init file and the following code in the HTML template to dynamically animate the window with the text from the :code:`main/instructions/` HTML files that were also used to display the information on the previous pages. The code runs as soon as participants click on the instructions button:
-
-.. code-block:: html
-    :linenos:
-
-    <script>
-        $(document).ready(function () {
-            $('#instruction_button').click(function () {
-                console.debug('button clicked');
-                liveSend('button_clicked');
-            });
-        });
-    </script>
-
-Participants had two attempts to answer all comprehension questions correctly. If they tried to submit the page with incorrect answers, the :code:`error_counter` increases and an error message appears. The page is then reloaded. They are then informed that they have one attempt left. If they submit the page again with incorrect answers for the second time, they will be filtered out. We also set a timeout counter on this page to prevent participants from spending too much time on it. If they exceed the time limit, they were also filtered out. The timeout counter is set to five minutes, which is more than enough time to answer the questions.
-
-If participants failed to answer the comprehension questions correctly two times, or if they exceeded the time limit, they were next redirected to the **TerminationPage**. This page is not shown to participants, but is only used for background functionality. Only participants who fulfill one of these two criteria are redirected to this page, the other ones skip it, as defined in
-
-.. code-block:: python
-    :linenos:
-
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.error_counter > 1 or player.comprehension_timeouted
-
-As soon as participants reached this page, they were directly redirected using a link provided by the panel provider, defined in :code:`TERMINATION_LINK`. Participants were then informed that they failed to comply with the requirements of the study and were thus filtered out.
-
-Those participants who answered all three comprehension questions correctly, reached the last page of the introduction to Novaland. On the **IntroVignette** page, participants were informed that they will encounter several situations on the next pages, that they are a citizen of Novaland in this context and that they should answer the questions as themselves.
-
-2. Structuring the stay in Novaland
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-After receiving all this information and passing the comprehension checks, participants began their stay in Novaland. For an overview of the fictional stay, please refer to the :ref:`flowchart of the Novaland stay <flowchart>`.
-
-Before we discuss how the experience on each page was created, we first have to take a step back and talk about the underlying logic of the main app. While participants experience their fictional stay as one continuous trip, the app does not run only once. Instead, oTree runs the :code:`main` app seven rounds. The flow of the Novaland stay is created by defining for each page in which round it is displayed.
-The different rounds of the main app contain the following pages:
-
-#. Round: NovalandIntro Pages, Comprehension Page, IntroVignette Page, First Smokescreen Page
-#. Round: Quiz Page, Quiz Results Page
-#. Round: First Vignette Page, First Vignette Results Page
-#. Round: Second Vignette Page, Second Vignette Results Page
-#. Round: Second Smokescreen Page
-#. Round: Third Vignette Page, Third Vignette Results Page
-#. Round: Fourth Vignette Page, Fourth Vignette Results Page, Pollster Pages, Pollster Results Page
-
-
-**Order of the smokescreens and vignettes**
-
-This order is defined in the :code:`timeline` variable in :code:`creating_session` function. By using the list objects for the order of the smokescreens and vignettes, we can define the order in which they are displayed to the participants. Each entry of the list contains a string that identifies the corresponding vignette or smokescreen scenario. We will discuss the functionality of these pages in more detail below.
-
-.. code-block:: python
-    :linenos:
-
-    p.vars['timeline'] = (
-            [p.vars['smokescreen_order'][0]] +  # note that the quiz page comes after the first smokescreen
-            [p.vars['quiz_page'][0]] +  # quiz page
-            p.vars['vignette_order'][0:2] +  # the first two vignettes
-            [p.vars['smokescreen_order'][1]] +  # the second smokescreen
-            p.vars['vignette_order'][2:4]  # the last two vignettes
-    )
-
-
-3. The smokescreen pages
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The smokescreen pages are designed to immerse participants more into the virtual country and to reduce demand effects by distracting participants from the main purpose of the questionnaire,. They are presented as everyday situations that participants might encounter in Novaland. The smokescreens are displayed in the first and fifth rounds of the main app. The first smokescreen is displayed after the introduction to Novaland, while the second smokescreen is displayed after the second vignette.
-
-The scenarios of the smokescreens contain arbitrary situations that are not directly related to the main purpose of the questionnaire. One smokescreen is about adopting a pet, while the other smokescreen is about visiting a restaurant. The order of these two scenarios was randomized for each participant.
-
-Let's have a detailed look into the code of the smokescreen pages - how they are created, how they are randomized and how they are displayed to the participants.
-
-In the :code:`C` section, the rounds in which the smokescreens are displayed are defined in :code:`SMOKESCREEN_ROUNDS = [1, 5]`.
-The smokescreens are then defined in the :code:`smokescreens` variable as a list of strings: :code:`smokescreens = ['pets', 'restaurant']`. The first smokescreen is called "pets" and the second smokescreen is called "restaurant".
-In the :code:`creating_session` function, the order of the smokescreens is randomized for each participant. This is done by using the :code:`smokescreens` object and then shuffling it using the :code:`random.shuffle()` function. The randomized order is then stored in the :code:`Participant` object as :code:`p.vars['smokescreen_order']`.
-
-The code for the smokescreen pages is implemented in the :code:`Smokescreen` page class:
-
-.. code-block:: python
-    :linenos:
-
-    class Smokescreen(Page):
-        form_model = 'player'
-
-        @staticmethod
-        def is_displayed(player):
-            return player.round_number in C.SMOKESCREEN_ROUNDS
-
-        def get_form_fields(player):
-            return [player.current_scenario]
-
-        @staticmethod
-        def vars_for_template(player: Player):
-            return {
-                'smokescreen': f'main/smokescreens/{player.current_scenario}.html',
-                'smokescreen_header': C.scenario_headers[player.round_number - 1]
-
-The :code:`is_displayed` method is used to determine whether the page should be displayed to the participant. This is done by checking whether the current round number is in the list of smokescreen rounds defined in the :code:`C` class.
-
-The :code:`get_form_fields` method is used to define the form fields that are displayed on the page. In this case, it returns the current scenario of the participant, which is stored in the :code:`current_scenario` variable. This variable is set in the :code:`creating_session` function and contains the name of the current smokescreen scenario for the participant. This dynamic variable function is used to ensure that the correct smokescreen scenario is displayed to the participant. It is required because there is only one HTML template for both smokescreens, which is dynamically filled with the content of the current smokescreen scenario.
-
-The :code:`vars_for_template` method is used to pass variables to the HTML template. In this case, it passes the path to the HTML template of the current smokescreen scenario and the header for the smokescreen page. This is used because the HTML template for the smokescreen pages is the same for both smokescreens and the content is dynamically filled with the current smokescreen scenario.
-
-The path to the HTML template is constructed using the :code:`main/smokescreens/` folder and the name of the current scenario, as this folder contains the two HTML files (:code:`pets.html` and :code:`restaurant.html`) that define the text of the smokescreen pages.
-The header of the page is defined in the :code:`scenario_headers` variable in the :code:`C` class and contains the name of the day on which the smokescreen is displayed. This dynamic variable function is used to ensure that the correct header is displayed on the page, depending on the round number in which the smokescreen is displayed. It contains the number of the day in Novaland and the current day of the week.
-
-The participants were asked to answer a question about the smokescreen scenario - either to adopt a pet or to choose the restaurant they want to visit. Again, we used a dynamic variable function to ensure that the correct question is displayed to the participant. The question object were defined in the :code:`Player` model as :code:`pets` and :code:`restaurant`, respectively. The question is then displayed in the HTML template using the :code:`{{ formfields }}` variable, which is defined in the :code:`get_form_fields` method of the :code:`Smokescreen` page class.
-
-With this setup, we ensure that the smokescreen pages are displayed correctly to the participants - at the correct time, and with the correct content according to the randomized order of the smokescreens.
-
-4. The news quiz pages
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The **Quiz** was used to both test participants' attention, to check if they understood the information provided on the previous pages, and to distract them from the main purpose of the questionnaire by making this check an in-experience situation. The quiz was presented as a news quiz about Novaland, which participants had to answer correctly in order to continue with the questionnaire. The quiz was displayed in the second round of the main app, after the first smokescreen and before the first vignette.
-
-This page is implemented in the :code:`Quiz` page class.. The quiz consists of two questions, which are defined as :code:`form_fields` in the page class. The questions are: First, :code:`quiz_event`, asking which public event is scheduled in the next days in Novaland.The correct answer was the national election. And second, :code:`quiz_income`, asking about the average income in Novaland. The correct answer being 3000 Nova Dollars.
-
-Those participants who received the information about the social norm of bribing in Novaland on the previous pages were also asked a third question, :code:`quiz_corr`, asking how many citizens of Novaland were willing to pay a bribe for a service. The correct answer was 6 out of 10 citizens. This is done by using two pieces of code. In the :code:`get_form_fields` method, we check whether the participant received the information about the social norm of bribing in Novaland. If they did, we add the third question to the list of form fields that are displayed on the page. This is done by checking the :code:`corruption_info` variable in the :code:`Participant` object, which is set to 1 if participants received the information and 0 if they did not.
-In the page's HTML template, we then check whether the :code:`corruption_info` variable is set to 1. If it is, we display the third question. This is done using the conditional statement :code:`{{ if corruption_info == 1 }} {{ formfield player.quiz_corr }}`.
-
-After participants submitted their answers, some calculations were automatically conducted by oTree to analyse the quiz results. Within the page class, the :code:`before_next_page` function is used to calculate the number of correct answers and whether the participant answered all questions correctly. This is done by comparing the participants' answers with the correct answers defined in the :code:`quiz_correspondence` dictionary, which contains the correct answers for each question.
-
-.. code-block:: python
-    :linenos:
-
-    def before_next_page(player, timeout_happened):
-        fields = Quiz.get_form_fields(player) # get questions
-        correct_answers = {k: quiz_correspondence[k] for k in fields} # compare answers with correct answers defined in the quiz_correspondence dictionary
-        answers = {k: getattr(player, k) for k in fields} # get participants' answers
-        are_answers_correct = [answers[k] == correct_answers[k] for k in fields] # check if answers are correct
-        player.quiz_correct_answers = sum(are_answers_correct) # calculate number of correct answers
-        player.quiz_num_questions = len(fields) # calculate number of questions
-        player.quiz_fully_correct = all(are_answers_correct) # check if all answers are correct
-
-After the quiz page, participants saw the **QuizResults** page. On this page, they were informed about the correct answers to the quiz questions. Again, we used the :code:`corruption_info` variable to determine whether the third question was displayed. If it was, the correct answer to this question was also displayed on the page. After the participants submitted the page, they were redirected to the first vignette page.
-
-
-5. The vignette pages
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-
-6. The pollster pages
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-
-
-Additional code for extended background functionality
---------------------------------------------------------
-In addition to the code described above, there are some additional code snippets that are used to implement the extended background functionality of the questionnaire. These snippets are not directly related to the main functionality of the questionnaire, but they are used to enhance the user experience and provide additional features.
-
-**Progress bar**
-
-At the top of the main app's __init__.py file, the :code:`Page` class is defined. This is the parent class for all pages in the app. This means that the code that is defined within it is executed by all survey pages across the app.
-This class is used to automatically retrieve the current page number and maximum page number of the questionnaire using the :code:`get_context_data` function. This function then calculates the progress percentage. The progress percentage is then passed to the HTML template, where it is displayed as a progress bar.
-
-
-.. dropdown:: Progress bar calculations
-   :icon: terminal
-
-   .. code-block:: python
-
-
-    class Page(oTreePage):
-        instructions = False
-
-        def get_context_data(self, **context):
-            NUM_SURVEY_PAGES = 36
-            app_name = self.__module__.split('.')[0]
-            page_name = self.__class__.__name__
-            if page_name != 'PostSurvey' and app_name == 'post':
-                index_in_pages = self._index_in_pages + NUM_SURVEY_PAGES
-            else:
-                index_in_pages = self._index_in_pages
-            r = super().get_context_data(**context)
-
-            if 'post' in self.session.config.get('app_sequence'):
-                max_pages = NUM_SURVEY_PAGES + self.participant._max_page_index
-            else:
-                max_pages = self.participant._max_page_index
-
-            r['maxpages'] = max_pages
-            r['page_index'] = self._index_in_pages
-            r['progress'] = f'{int(index_in_pages / max_pages * 100):d}'
-
-            r['instructions'] = self.instructions
-            return r
-
-
-**Animating the status bar** XXXXXXXXXXXXXXXXXXXXXXXX
+The main app is structured in **two distinct parts**: First participants received information about Novaland and are asked some questions about this. The then began their actual stay in the country, where they were presented with various situations and are asked to answer questions about them. The following sections describe these two parts in detail.
+
+
+.. toctree::
+    :maxdepth: 1
+    :caption: Main App Pages
+
+    CodeStructureMain1_Intro
+    CodeStructureMain1.5_Background
+    CodeStructureMain2_Smokescreens
+    CodeStructureMain3_Quiz
+    CodeStructureMain4_Vignettes
+    CodeStructureMain5_Pollster
+    CodeStructureMain6_AdditionalCode

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project-wide files &mdash; NovalandCorruptionGuide 2025 documentation</title>
+  <title>Part 0: Project-wide files &mdash; NovalandCorruptionGuide 2025 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
@@ -21,8 +21,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="The Introduction App" href="CodeStructureIntro.html" />
-    <link rel="prev" title="Functionality of the project code" href="CodeStructure.html" /> 
+    <link rel="next" title="Part 1: The Introduction App" href="CodeStructureIntro.html" />
+    <link rel="prev" title="Structure of the oTree project" href="ProjectStructure.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,23 +47,20 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="Novaland2Layout.html">The fictional country of Novaland</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ProjectStructure.html">Structure of the oTree project</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="CodeStructure.html">Functionality of the project code</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Project-wide files</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#global-settings">Global settings</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#room">Room</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#session">Session</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#participant-redirection-to-sample-provider">Participant redirection to sample provider</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Part 0: Project-wide files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#global-settings">Global settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#room">Room</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#session">Session</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#participant-redirection-to-sample-provider">Participant redirection to sample provider</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#aesthetics-of-the-web-questionnaire">Aesthetics of the web questionnaire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#aesthetics-of-the-web-questionnaire">Aesthetics of the web questionnaire</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="CodeStructureIntro.html">The Introduction App</a></li>
-<li class="toctree-l2"><a class="reference internal" href="CodeStructureMain.html">The Stay in Novaland</a></li>
-<li class="toctree-l2"><a class="reference internal" href="CodeStructureElection.html">The Election in Novaland</a></li>
-<li class="toctree-l2"><a class="reference internal" href="CodeStructurePost.html">The Post-Experimental Questionnaire</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureIntro.html">Part 1: The Introduction App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureMain.html">Part 2: The Stay in Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureElection.html">Part 3: The Election in Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructurePost.html">Part 4: The Post-Experimental Questionnaire</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deploying the oTree project</a></li>
 </ul>
 
@@ -81,8 +78,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="CodeStructure.html">Functionality of the project code</a></li>
-      <li class="breadcrumb-item active">Project-wide files</li>
+      <li class="breadcrumb-item active">Part 0: Project-wide files</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/CodeStructureGlobalFiles.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -92,8 +88,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="project-wide-files">
-<h1>Project-wide files<a class="headerlink" href="#project-wide-files" title="Link to this heading"></a></h1>
+  <section id="part-0-project-wide-files">
+<h1>Part 0: Project-wide files<a class="headerlink" href="#part-0-project-wide-files" title="Link to this heading"></a></h1>
 <section id="global-settings">
 <h2>Global settings<a class="headerlink" href="#global-settings" title="Link to this heading"></a></h2>
 <p>The global settings of the project are defined in the <code class="file docutils literal notranslate"><span class="pre">settings.py</span></code> file. This file contains the configuration settings for the entire project, including database settings, static files, and other global settings that apply to all apps within the project. It is important to ensure that this file is correctly configured to ensure the proper functioning of the project.</p>
@@ -139,7 +135,7 @@
 </section>
 <section id="aesthetics-of-the-web-questionnaire">
 <h2>Aesthetics of the web questionnaire<a class="headerlink" href="#aesthetics-of-the-web-questionnaire" title="Link to this heading"></a></h2>
-<p>The aesthetics of the web questionnaire are defined in the <code class="file docutils literal notranslate"><span class="pre">_templates/global/Page.html</span></code> file. This file contains the HTML code that defines the overall layout and design of the questionnaire pages. It includes style elements such fonts, colors, and outlays used on each project. To ensure a consistent appearance of the questionnaire’s web pages, nearly all pages build on this template and only specify their content and functionality in their designated HTML files, of which one exist for each page of the questionnaire.</p>
+<p>The aesthetics of the web questionnaire are defined in the <code class="file docutils literal notranslate"><span class="pre">_templates/global/Page.html</span></code> file. This file contains the HTML code that defines the overall layout and design of the questionnaire pages. It includes style elements such fonts, colors, and outlays used on each project. To ensure a consistent appearance of the questionnaire’s web pages, nearly all pages build on this template and only specify their content and functionality in their designated HTML files, of which one exist for each page of the questionnaire. For more detail, please refer to the <a class="reference internal" href="HtmlPages.html"><span class="doc">HTML Pages</span></a> section of this documentation.</p>
 </section>
 </section>
 
@@ -147,8 +143,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="CodeStructure.html" class="btn btn-neutral float-left" title="Functionality of the project code" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="CodeStructureIntro.html" class="btn btn-neutral float-right" title="The Introduction App" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="ProjectStructure.html" class="btn btn-neutral float-left" title="Structure of the oTree project" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="CodeStructureIntro.html" class="btn btn-neutral float-right" title="Part 1: The Introduction App" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
