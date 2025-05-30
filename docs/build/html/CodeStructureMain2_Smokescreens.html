@@ -133,8 +133,44 @@ The header of the page is defined in the <code class="code docutils literal notr
 <section id="the-outcome-page">
 <span id="outcome-pages"></span><h2>The Outcome Page<a class="headerlink" href="#the-outcome-page" title="Link to this heading"></a></h2>
 <p>After the participants submitted the smokescreen page, they were redirected to the <code class="code docutils literal notranslate"><span class="pre">EndOfDay</span></code> page. This page is used to inform participants about the outcome of the smokescreen scenario they just experienced. They are dynamically filled with the content of the current scenario and adjusted to the decision that participants made in that scenario. They were not only used after the smokescreen pages, but also after the vignette pages. They were implemented to increase participants’ immersion and feeling of self-efficacy.</p>
-<p>The code for the <code class="code docutils literal notranslate"><span class="pre">EndOfDay</span></code> page is implemented in the <code class="code docutils literal notranslate"><span class="pre">EndOfDay</span></code> page class:</p>
-<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+<p>The code for the <code class="code docutils literal notranslate"><span class="pre">EndOfDay</span></code> HTML template looks like this:</p>
+<div class="highlight-HTML notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;content-box&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 2</span>    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>{{ vignette_header }}. Tag {{ player.round_number }} von {{ C.NUM_DAYS }}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="linenos"> 3</span>    {{ if img_desc}}
+<span class="linenos"> 4</span>        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;text-center lead m-3 border-1&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 5</span>            <span class="p">&lt;</span><span class="nt">img</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;img-fluid img-thumbnail&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;{{static path_to_image}}&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot; {{img_desc}}&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;300&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 6</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 7</span>    {{ endif }}
+<span class="linenos"> 8</span>    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;text-image-container&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span>        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;text-content&quot;</span><span class="p">&gt;</span>
+<span class="linenos">12</span>            {{ include end_of_day_text }}
+<span class="linenos">13</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">14</span>    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">15</span>    <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Weiter<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="linenos">16</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Here, the <code class="code docutils literal notranslate"><span class="pre">vignette_header</span></code> variable is used to display the header of the page, which is defined in the <code class="code docutils literal notranslate"><span class="pre">C</span></code> class. The <code class="code docutils literal notranslate"><span class="pre">img_desc</span></code> variable contains the file name of the <code class="code docutils literal notranslate"><span class="pre">.jpg</span></code> file corresponding to the current scenario. The file path to the image is constructed using the <code class="code docutils literal notranslate"><span class="pre">path_to_image</span></code> variable. These variables are defined using the following code in the <code class="code docutils literal notranslate"><span class="pre">vars_for_template</span></code> method of the <code class="code docutils literal notranslate"><span class="pre">EndOfDay</span></code> page class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">img_desc</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">player</span><span class="o">.</span><span class="n">current_scenario</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="linenos">2</span><span class="n">path_to_image</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;images/smokescreens/</span><span class="si">{</span><span class="n">img_desc</span><span class="si">}</span><span class="s1">.jpg&#39;</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="c1"># and then:</span>
+<span class="linenos">5</span><span class="k">return</span> <span class="p">{</span>
+<span class="linenos">6</span>    <span class="s1">&#39;img_desc&#39;</span><span class="p">:</span> <span class="n">img_desc</span><span class="p">,</span>
+<span class="linenos">7</span>    <span class="s1">&#39;path_to_image&#39;</span><span class="p">:</span> <span class="n">path_to_image</span>
+<span class="linenos">8</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The text of the page is dynamically added using the <code class="code docutils literal notranslate"><span class="pre">include</span></code> statement, which includes the content of the corresponding HTML file for the current scenario. The content of the HTML file is defined in the <code class="code docutils literal notranslate"><span class="pre">end_of_day_text</span></code> variable, which is also defined in the <code class="code docutils literal notranslate"><span class="pre">vars_for_template</span></code> method of the <code class="code docutils literal notranslate"><span class="pre">EndOfDay</span></code> page class and contains the path to the HTML file for the current scenario:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">return</span> <span class="p">{</span>
+<span class="linenos">2</span>    <span class="s1">&#39;end_of_day_text&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;main/outcomes/</span><span class="si">{</span><span class="n">player</span><span class="o">.</span><span class="n">current_scenario</span><span class="si">}</span><span class="s1">.html&#39;</span>
+<span class="linenos">3</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The HTML files for the <code class="code docutils literal notranslate"><span class="pre">EndOfDay</span></code> page are located in the <code class="code docutils literal notranslate"><span class="pre">main/outcomes/</span></code> folder and are named according to the current scenario (e.g., <code class="code docutils literal notranslate"><span class="pre">pets.html</span></code> and <code class="code docutils literal notranslate"><span class="pre">restaurant.html</span></code>). In these HTML files, conditional statements are used to display the correct content depending on the decision that participants made in the smokescreen scenario. For example, if participants decided to adopt a pet, they would see a text that describes the outcome of their decision and how it affects their life in Novaland.</p>
+<p>These pages are also used to display the outcome of the vignette scenarios. The functionality is the same as for the smokescreen pages, but the content of the HTML files is slightly more complex: The conditional statements that are used to display the content of this page depend not only on the decision that participants made in the vignette scenario, but also on the outcome of the vignette itself. For example, if participants encountered the corruption vignette and decided to report the corruption, they would see a text that describes the service quality received and the consequences of their decision.</p>
 </section>
 </section>
 
