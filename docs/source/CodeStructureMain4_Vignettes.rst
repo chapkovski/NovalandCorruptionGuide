@@ -226,7 +226,7 @@ The survey is displayed on the vignette page using the **SurveyJS library**, whi
 Finally, the :code:`before_next_page` method is used to check if a bribe was given by the participant. This is done by checking if the :code:`corruption_bin` field is set, which indicates that the participant has given a bribe. The result is stored in the :code:`bribe_is_given` attribute of the player object.
 
 
-
+XXXXXXXXXXXXXXXXXXXXXXXXXX:Mention colors in the text
 
 Here is what the vignette page looks like for the participants:
 

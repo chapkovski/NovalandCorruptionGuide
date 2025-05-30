@@ -11,7 +11,7 @@ The election app is structured as follows:
     #.  The fifth page contains a referendum, where participants can vote to change the income tax in Novaland.
     #.   On the sixth page, participants were informed that their stay in Novaland ends and were debriefed.
 
-Randomization of the election app
+Randomization in the election app
 -------------------------------------------------
 The information that was provided to participants in the context of the election was randomized in two instances. The first randomization was the order of the party pages. Participants were randomly assigned to one of two groups: one group saw the **Soziale Partei Novaland** page first, while the other group saw the **Konservative Partei Novaland** page first. This was done by using the :code:`random.choice()` function in the :code:`creating_session` function to randomly assign participants to one of the two groups and then storing the information of which party page they saw first in the :code:`Player` object as :code:`first_party`.
 
@@ -215,9 +215,11 @@ These functions are used to display the next button when participants click on t
 
 5. The referendum
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+The referendum page is much simpler than the ballot page. I only contains the header of the page, some text explaining the referendum, and a question asking participants if they want to change the income tax in Novaland.
+The header is defined as usual containing the day of the week and the day count in Novaland. The question text is defined in the HTML template of the :code:`Referendum` page class. Participants were asked whether they want to change the income tax in Novaland and were given the option to raise them by one percentage point, to lower them by one percentage point, or to keep them the same. The question was implemented as a radio button group, where participants could select one of the three options. The selected option was stored in the :code:`referendum` variable of the :code:`Player` object.
 
 6. The debrief from Novaland
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+This is the last page of the election app and the last page of the Novaland stay. On this page, participants were informed that their stay in Novaland is over and they will be redirected to the end of the questionnaire. The page es defined in the :code:`election_outro` page class.
+The page only contains the header of the page, which is defined as usual and some text body. The text informs participants that their stay in Novaland is over and they will be redirected to the end of the questionnaire. They were specifically told that Novaland is a fictional place and does not exist in reality. They were also informed that the upcoming questionnaire would be about their real life.
 

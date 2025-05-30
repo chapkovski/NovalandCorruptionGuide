@@ -11,7 +11,7 @@ The election app is structured as follows:
     #.  The fifth page contains a referendum, where participants can vote to change the income tax in Novaland.
     #.   On the sixth page, participants were informed that their stay in Novaland ends and were debriefed.
 
-Randomization of the election app
+Randomization in the election app
 -------------------------------------------------
 The information that was provided to participants in the context of the election was randomized in two instances. The first randomization was the order of the party pages. Participants were randomly assigned to one of two groups: one group saw the **Soziale Partei Novaland** page first, while the other group saw the **Konservative Partei Novaland** page first. This was done by using the :code:`random.choice()` function in the :code:`creating_session` function to randomly assign participants to one of the two groups and then storing the information of which party page they saw first in the :code:`Player` object as :code:`first_party`.
 
@@ -163,117 +163,63 @@ In page class of the init file, the :code:`vars_for_template` method is used to 
 
 In the HTML template, there is a style block at the top that define the appearance of the buttons and the table layout in which the parties' images and names are displayed. After that, the title of the page is defined in the :code:`h1` element, which contains the current day and the day count in Novaland. The main text below explains that participants can now vote for one of the two parties. The information about which of the two parties is the incumbent party is also displayed here, using :code:`{{ incumbent_party }}` again.
 
+Below this paragraph, a table with multiple columns is created that contains the party images and the party namen. Participants could click on either parties' image or name below the image to vote for that party. The images of the parties are displayed using the :code:`img` element, which uses the :code:`{% static %}` tag to access the images stored in the :code:`static` folder of the oTree project, as it was done on the previous pages. The names of the parties are displayed in a paragraph element below the images. The order of the parties (which party is displayed in the left and which in the right column) is determined by the value of the :code:`first_party` variable. If the value is **Konservative Partei Novaland**, the **Konservative Partei Novaland** is displayed in the left column and the **Soziale Partei Novaland** in the right column, and vice versa.
+
+The following code snippet shows how the parties are displayed in the HTML template. This code is repeated for both parties, with the only difference being the party name and image:
+
 .. code-block:: HTML
    :linenos:
 
-   {% block content %}
-   <div class="content-box">
-       <h1 class="h1">Wahlen in Novaland. Tag 9 von 9</h1>
-       <div class="text-image-container">
-           <div class="text-content">
+   <!-- Display the image of the Konservative Partei Novaland -->
+   <img src="{% static 'CPN.png' %}" width="30%" class="center" onclick="SHOWCPN()">
+    <!-- Display the name of the Konservative Partei Novaland -->
+   <p class="p" style="text-align: center"><input type="radio" id="wahlen1" name="Partei"
+                                                  required
+                                                  onclick="SHOWCPN()"
+                                                  value="Konservative Partei Novaland"> Konservative Partei Novaland </p>
 
+Here, the :code:`onclick` attribute is used to call the :code:`SHOWCPN()` function when participants click on the image or the party name. This function is defined at the bottom of the HTML page and is used to make the images of the party logos clickable and to store participants' data as soon as they submit the page. The code for the **Soziale Partei Novaland** looks the same, only the file name of the image and the party name are changed to **SPN.png** and **Soziale Partei Novaland**, respectively and the :code:`onclick` attribute calls the :code:`SHOWSPN()` function instead of the :code:`SHOWCPN()` function.
 
-               <p class="p">
-
-                   Es ist Wahltag in Novaland. Sie dürfen nun entscheiden, welcher der beiden Parteien Sie bei der
-                   Parlamentswahl in Novaland Ihre Stimme geben. Mit ihrer Stimme können Sie die Regierungsbildung in
-                   Novaland beeinflussen und gemeinsam mit den anderen Menschen in Novaland die nächste Regierung in
-                   Novaland mitbestimmen. <br><br>
-
-                   Die derzeit regierende Partei ist {{ incumbent_party }}.
-               </p>
-               <p class="p" style="text-align: center">
-                   Sie haben eine Stimme. Welche Partei wählen Sie?
-               </p>
-               <br>
-
-
-               {% if first_party == "Konservative Partei Novaland" %}
-               <div class="row">
-                   <div class="column3">
-                       <label>
-                           <img src="{% static 'CPN.png' %}" width="30%" class="center" onclick="SHOWCPN()">
-                           <p class="p" style="text-align: center"><input type="radio" id="wahlen1" name="Partei"
-                                                                          required
-                                                                          onclick="SHOWCPN()"
-                                                                          value="Konservative Partei Novaland"> Konservative Partei Novaland </p>
-                       </label>
-                   </div>
-
-                   <div class="column3">
-                       <label>
-                           <img src="{% static 'SPN.png' %}" width="30%" class="center" onclick="SHOWSPN()">
-                           <p class="p" style="text-align: center"><input type="radio" id="wahlen3" name="Partei"
-                                                                          required
-                                                                          value="Soziale Partei Novaland"
-                                                                          onclick="SHOWSPN()"> Soziale Partei Novaland </p>
-                       </label>
-                   </div>
-                   <br>
-               </div>
-               {% endif %}
-
-               {% if first_party == "Soziale Partei Novaland" %}
-               <div class="row">
-                   <div class="column3">
-                       <label>
-                           <img src="{% static 'SPN.png' %}" width="30%" class="center" onclick="SHOWSPN()">
-                           <p class="p" style="text-align: center"><input type="radio" id="wahlen3" name="Partei"
-                                                                          required
-                                                                          value="Soziale Partei Novaland"
-                                                                          onclick="SHOWSPN()"> Soziale Partei Novaland </p>
-                       </label>
-                   </div>
-
-                   <div class="column3">
-                       <label>
-                           <img src="{% static 'CPN.png' %}" width="30%" class="center" onclick="SHOWCPN()">
-                           <p class="p" style="text-align: center"><input type="radio" id="wahlen1" name="Partei"
-                                                                          required
-                                                                          onclick="SHOWCPN()"
-                                                                          value="Konservative Partei Novaland"> Konservative Partei Novaland </p>
-                       </label>
-                   </div>
-                   <br>
-               </div>
-               {% endif %}
-
-
-           </div>
-       </div>
-       <button>Weiter</button>
-   </div>
-   {% endblock %}
-
-At the bottom of the HTML page, the following functions are defined. They are called when the participants click on the buttons or on the images of the parties:
+The functions that are called as soon as a party's image or name is clicked are defined at the bottom of the HTML template. These functions are used to make the images of the party logos clickable and to store participants' data as soon as they submit the page:
 
 .. code-block:: HTML
    :linenos:
 
    {% block script %}
    <script>
+      <!-- Function to show the next button and set the vote to "Konservative Partei Novaland" -->
        function SHOWCPN() {
+           <!-- Set the radio button for the Konservative Partei Novaland to checked -->
            document.getElementById("wahlen1").checked = true
+           <!-- Show the submit button -->
            document.getElementById("weiter-btn").style.display = "inline-block";
+           <!-- Set the value of the submit button to the name of the Konservative Partei Novaland -->
+           <!-- Meaning that their vote is cast for this party as soon as they click on the next button -->
            document.getElementById("weiter-btn").value = "Konservative Partei Novaland";
        }
-
+      <!-- Function to show the next button and set the vote to "Soziale Partei Novaland" -->
        function SHOWSPN() {
+           <!-- Set the radio button for the Soziale Partei Novaland to checked -->
            document.getElementById("wahlen3").checked = true
+           <!-- Show the submit button -->
            document.getElementById("weiter-btn").style.display = "inline-block";
+           <!-- Set the value of the submit button to the name of the Soziale Partei Novaland -->
+           <!-- Meaning that their vote is cast for this party as soon as they click on the next button -->
            document.getElementById("weiter-btn").value = "Soziale Partei Novaland";
        }
    </script>
    {% endblock %}
 
-These functions are used to display the buttons for the respective parties when participants click on the party images. The :code:`SHOWCPN()` function is called when participants click on the image of the **Konservative Partei Novaland**, while the :code:`SHOWSPN()` function is called when they click on the image of the **Soziale Partei Novaland**. The functions set the value of the :code:`weiter-btn` button to the name of the respective party and make it visible.
+These functions are used to display the next button when participants click on the party images or names. The :code:`SHOWCPN()` function is called when participants click on the image or name of the **Konservative Partei Novaland**, while the :code:`SHOWSPN()` function is called when they click on the image or name of the **Soziale Partei Novaland**. The functions set the value of the :code:`weiter-btn` button to the name of the respective party and make it visible. This ensures a consistent user experience, as participants can click on either the party image or the party name to cast their vote.
 
 
 5. The referendum
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+The referendum page is much simpler than the ballot page. I only contains the header of the page, some text explaining the referendum, and a question asking participants if they want to change the income tax in Novaland.
+The header is defined as usual containing the day of the week and the day count in Novaland. The question text is defined in the HTML template of the :code:`Referendum` page class. Participants were asked whether they want to change the income tax in Novaland and were given the option to raise them by one percentage point, to lower them by one percentage point, or to keep them the same. The question was implemented as a radio button group, where participants could select one of the three options. The selected option was stored in the :code:`referendum` variable of the :code:`Player` object.
 
 6. The debrief from Novaland
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+This is the last page of the election app and the last page of the Novaland stay. On this page, participants were informed that their stay in Novaland is over and they will be redirected to the end of the questionnaire. The page es defined in the :code:`election_outro` page class.
+The page only contains the header of the page, which is defined as usual and some text body. The text informs participants that their stay in Novaland is over and they will be redirected to the end of the questionnaire. They were specifically told that Novaland is a fictional place and does not exist in reality. They were also informed that the upcoming questionnaire would be about their real life.
 
