@@ -7,6 +7,16 @@ This page is implemented in the :code:`Quiz` page class.. The quiz consists of t
 Those participants who received the information about the social norm of bribing in Novaland on the previous pages were also asked a third question, :code:`quiz_corr`, asking how many citizens of Novaland were willing to pay a bribe for a service. The correct answer was 6 out of 10 citizens. This is done by using two pieces of code. In the :code:`get_form_fields` method, we check whether the participant received the information about the social norm of bribing in Novaland. If they did, we add the third question to the list of form fields that are displayed on the page. This is done by checking the :code:`corruption_info` variable in the :code:`Participant` object, which is set to 1 if participants received the information and 0 if they did not.
 In the page's HTML template, we then check whether the :code:`corruption_info` variable is set to 1. If it is, we display the third question. This is done using the conditional statement :code:`{{ if corruption_info == 1 }} {{ formfield player.quiz_corr }}`.
 
+This is what the layout of the quiz page looks like:
+
+.. image:: /_static/QuizScreenshot.jpeg
+   :width: 75%
+   :align: center
+   :alt: Vignette Screenshot with repeated ending
+
+
+Note that the second question is displayed only if the participant received the information about the social norm of bribing in Novaland. If they did not, only the first and the third question are displayed.
+
 After participants submitted their answers, some calculations were automatically conducted by oTree to analyse the quiz results. Within the page class, the :code:`before_next_page` function is used to calculate the number of correct answers and whether the participant answered all questions correctly. This is done by comparing the participants' answers with the correct answers defined in the :code:`quiz_correspondence` dictionary, which contains the correct answers for each question.
 
 .. code-block:: python

@@ -28,7 +28,8 @@ Contents
 -----------------------------------------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
+
 
    Novaland2Layout
    ProjectStructure

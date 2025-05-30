@@ -22,7 +22,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Part 4: The Post-Experimental Questionnaire" href="CodeStructurePost.html" />
-    <link rel="prev" title="Part 2: The Stay in Novaland" href="CodeStructureMain.html" /> 
+    <link rel="prev" title="Additional code for extended background functionality" href="CodeStructureMain6_AdditionalCode.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,13 +45,25 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="Novaland2Layout.html">The fictional country of Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Novaland2Layout.html">The fictional country of Novaland - WIP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ProjectStructure.html">Structure of the oTree project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CodeStructureGlobalFiles.html">Part 0: Project-wide files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CodeStructureIntro.html">Part 1: The Introduction App</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CodeStructureMain.html">Part 2: The Stay in Novaland</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Part 3: The Election in Novaland</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Part 3: The Election in Novaland</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#randomization-of-the-election-app">Randomization of the election app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-pages-of-the-election-app">The pages of the election app</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-introduction-of-the-election">1. The introduction of the election</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-introduction-of-the-parties">2. &amp; 3. The introduction of the parties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-election-ballot">4. The election ballot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-referendum">5. The referendum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-debrief-from-novaland">6. The debrief from Novaland</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="CodeStructurePost.html">Part 4: The Post-Experimental Questionnaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HtmlPages.html">HTML Pages - WIP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deploying the oTree project</a></li>
 </ul>
 
@@ -81,21 +93,76 @@
              
   <section id="part-3-the-election-in-novaland">
 <h1>Part 3: The Election in Novaland<a class="headerlink" href="#part-3-the-election-in-novaland" title="Link to this heading"></a></h1>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">Show example code</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">greet</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+<p>After participants completed the fourth vignette, the part of the Novaland stay that revolves around the national election started. The respective pages are part of the <cite>election</cite> app in the oTree project. In this election, participants could vote for onw of two parties, the <strong>Soziale Partei Novaland</strong> or the <strong>Konservative Partei Novaland</strong>. The election was designed to test the effects of public service quality and corruption on electoral behavior and incumbent punishment.</p>
+<dl class="simple">
+<dt>The election app is structured as follows:</dt><dd><ol class="arabic simple">
+<li><p>The first page introduces the election and the political system of Novaland.</p></li>
+<li><p>The second pages presents one of the two parties.</p></li>
+<li><p>The third page presents the other party.</p></li>
+<li><p>The fourth page is the ballot page, where participants can cast their vote.</p></li>
+<li><p>The fifth page contains a referendum, where participants can vote to change the income tax in Novaland.</p></li>
+<li><p>On the sixth page, participants were informed that their stay in Novaland ends and were debriefed.</p></li>
+</ol>
+</dd>
+</dl>
+<section id="randomization-of-the-election-app">
+<h2>Randomization of the election app<a class="headerlink" href="#randomization-of-the-election-app" title="Link to this heading"></a></h2>
+<p>The information that was provided to participants in the context of the election was randomized in two instances. The first randomization was the order of the party pages. Participants were randomly assigned to one of two groups: one group saw the <strong>Soziale Partei Novaland</strong> page first, while the other group saw the <strong>Konservative Partei Novaland</strong> page first. This was done by using the <code class="code docutils literal notranslate"><span class="pre">random.choice()</span></code> function in the <code class="code docutils literal notranslate"><span class="pre">creating_session</span></code> function to randomly assign participants to one of the two groups and then storing the information of which party page they saw first in the <code class="code docutils literal notranslate"><span class="pre">Player</span></code> object as <code class="code docutils literal notranslate"><span class="pre">first_party</span></code>.</p>
+<p>The second randomization was the incumbency of the parties. Participants were randomly assigned to one of two groups: one group saw the <strong>Soziale Partei Novaland</strong> as the incumbent party, while the other group saw the <strong>Konservative Partei Novaland</strong> as the incumbent party. This was also done by using the <code class="code docutils literal notranslate"><span class="pre">random.choice()</span></code> function in the <code class="code docutils literal notranslate"><span class="pre">creating_session</span></code> function to randomly assign participants to one of the two groups and then storing the information of which party was the incumbent in the <code class="code docutils literal notranslate"><span class="pre">Player</span></code> object as <code class="code docutils literal notranslate"><span class="pre">incumbent_party</span></code>.</p>
+</section>
+<section id="the-pages-of-the-election-app">
+<h2>The pages of the election app<a class="headerlink" href="#the-pages-of-the-election-app" title="Link to this heading"></a></h2>
+<section id="the-introduction-of-the-election">
+<h3>1. The introduction of the election<a class="headerlink" href="#the-introduction-of-the-election" title="Link to this heading"></a></h3>
+<p>The first page of the election app is the <strong>election_intro</strong> page. Here, participants were told that they will now take part in the national election of Novaland. They were informed that the head of government will be elected from the parliament and needs the majority of the votes in the parliament to be elected. The page also mentions which of the two parties is the incumbent party, depending on the randomization of the incumbency by calling the <code class="code docutils literal notranslate"><span class="pre">incumbent_party</span></code> variable on the HTML page using <code class="code docutils literal notranslate"><span class="pre">{{</span> <span class="pre">incumbent_party</span> <span class="pre">}}</span></code>.</p>
+</section>
+<section id="the-introduction-of-the-parties">
+<h3>2. &amp; 3. The introduction of the parties<a class="headerlink" href="#the-introduction-of-the-parties" title="Link to this heading"></a></h3>
+<p>The second and third pages are the <strong>party_1</strong> and <strong>party_2</strong> pages, respectively. On these pages, participants were presented with the information about the two parties. The order of the pages was randomized, so that participants either saw the <strong>Soziale Partei Novaland</strong> first or the <strong>Konservative Partei Novaland</strong>. This is done by setting conditional statements in the HTML templates which call the values of the <code class="code docutils literal notranslate"><span class="pre">first_party</span></code> variable.</p>
+</section>
+<section id="the-election-ballot">
+<h3>4. The election ballot<a class="headerlink" href="#the-election-ballot" title="Link to this heading"></a></h3>
+<p>The layout of the page is structured like so: As always, the header of the page is defined in the <code class="code docutils literal notranslate"><span class="pre">h1</span></code> element, which contains the current day and the day count in Novaland. The main text below explains that participants can now vote for one of the two parties. The information about which of the two parties is the incumbent party is also displayed here, using <code class="code docutils literal notranslate"><span class="pre">{{</span> <span class="pre">incumbent_party</span> <span class="pre">}}</span></code> again.
+Below this explanatory text, a column is created that contains the party image and the party name. Participants could click on either parties’ image or name below the image to vote for that party. On the bottom of the page there is a button that participants can click to continue to the next page.</p>
+<p>This is what the ballot page looks like:</p>
+<a class="reference internal image-reference" href="_images/ElectionScreenshot.jpeg"><img alt="Vignette Screenshot with repeated ending" class="align-center" src="_images/ElectionScreenshot.jpeg" style="width: 75%;" />
+</a>
+<p>This is how the <strong>party_1</strong> page is created:
+At the top of the HTML template, some styling is applied to the buttons. Also, the style settings of the table formatting of the page are defined.</p>
+<p>At the bottom of the HTML page, the following functions are defined. They are called when the participants click on the buttons or on the images of the parties:</p>
+<div class="highlight-HTML notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>{% block script %}
+<span class="linenos"> 2</span><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="linenos"> 3</span><span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">SHOWCPN</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 4</span><span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;wahlen1&quot;</span><span class="p">).</span><span class="nx">checked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="linenos"> 5</span><span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;weiter-btn&quot;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;inline-block&quot;</span><span class="p">;</span>
+<span class="linenos"> 6</span><span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;weiter-btn&quot;</span><span class="p">).</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Konservative Partei Novaland&quot;</span><span class="p">;</span>
+<span class="linenos"> 7</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">SHOWSPN</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">10</span><span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;wahlen3&quot;</span><span class="p">).</span><span class="nx">checked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="linenos">11</span><span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;weiter-btn&quot;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;inline-block&quot;</span><span class="p">;</span>
+<span class="linenos">12</span><span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;weiter-btn&quot;</span><span class="p">).</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Soziale Partei Novaland&quot;</span><span class="p">;</span>
+<span class="linenos">13</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">14</span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="linenos">15</span>{% endblock %}
 </pre></div>
 </div>
-</div>
-</details></section>
+<p>These functions are used to display the buttons for the respective parties when participants click on the party images. The <code class="code docutils literal notranslate"><span class="pre">SHOWCPN()</span></code> function is called when participants click on the image of the <strong>Konservative Partei Novaland</strong>, while the <code class="code docutils literal notranslate"><span class="pre">SHOWSPN()</span></code> function is called when they click on the image of the <strong>Soziale Partei Novaland</strong>. The functions set the value of the <code class="code docutils literal notranslate"><span class="pre">weiter-btn</span></code> button to the name of the respective party and make it visible.</p>
+</section>
+<section id="the-referendum">
+<h3>5. The referendum<a class="headerlink" href="#the-referendum" title="Link to this heading"></a></h3>
+</section>
+<section id="the-debrief-from-novaland">
+<h3>6. The debrief from Novaland<a class="headerlink" href="#the-debrief-from-novaland" title="Link to this heading"></a></h3>
+</section>
+</section>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="CodeStructureMain.html" class="btn btn-neutral float-left" title="Part 2: The Stay in Novaland" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="CodeStructureMain6_AdditionalCode.html" class="btn btn-neutral float-left" title="Additional code for extended background functionality" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="CodeStructurePost.html" class="btn btn-neutral float-right" title="Part 4: The Post-Experimental Questionnaire" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
