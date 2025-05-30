@@ -146,7 +146,7 @@ The images of the parties are stored in the :code:`static` folder of the oTree p
 After participants were introduced to the two parties, they were directed to the **voting_page** page. On this page, they could cast their vote for one of the two parties. This page follows a similar logic as the party pages, also embedding randomized orders and conditional statements to display the correct party name and image. It is more complex, however, including clickable images and buttons that participants could use to cast their vote. And a table-like layout to display the ballot.
 
 The layout of the page is structured like so: As always, the header of the page is defined in the :code:`h1` element, which contains the current day and the day count in Novaland. The main text below explains that participants can now vote for one of the two parties. The information about which of the two parties is the incumbent party is also displayed here, using :code:`{{ incumbent_party }}` again.
-Below this explanatory text, a column is created that contains the party image and the party name. Participants could click on either parties' image or name below the image to vote for that party. On the bottom of the page there is a button that participants can click to continue to the next page.
+Below this explanatory text, a table with multiple columns is created that contains the party image and the party name. Participants could click on either parties' image or name below the image to vote for that party. On the bottom of the page there is a button that participants can click to continue to the next page.
 
 This is what the ballot page looks like:
 
@@ -157,33 +157,60 @@ This is what the ballot page looks like:
 
 
 
-This is how the **party_1** page is created:
-At the top of the HTML template, some styling is applied to the buttons. Also, the style settings of the table formatting of the page are defined.
+This is how the **election_page** page is created:
 
+In page class of the init file, the :code:`vars_for_template` method is used to pass the information about the incumbent party (:code:`incumbent_party`) and the identifier of the first party (:code:`first_party`) to the HTML template. The :code:`Partei` variable from the :code:`Player` object is used to store the party that the participant voted for.
 
+In the HTML template, there is a style block at the top that define the appearance of the buttons and the table layout in which the parties' images and names are displayed. After that, the title of the page is defined in the :code:`h1` element, which contains the current day and the day count in Novaland. The main text below explains that participants can now vote for one of the two parties. The information about which of the two parties is the incumbent party is also displayed here, using :code:`{{ incumbent_party }}` again.
 
-At the bottom of the HTML page, the following functions are defined. They are called when the participants click on the buttons or on the images of the parties:
+Below this paragraph, a table with multiple columns is created that contains the party images and the party namen. Participants could click on either parties' image or name below the image to vote for that party. The images of the parties are displayed using the :code:`img` element, which uses the :code:`{% static %}` tag to access the images stored in the :code:`static` folder of the oTree project, as it was done on the previous pages. The names of the parties are displayed in a paragraph element below the images. The order of the parties (which party is displayed in the left and which in the right column) is determined by the value of the :code:`first_party` variable. If the value is **Konservative Partei Novaland**, the **Konservative Partei Novaland** is displayed in the left column and the **Soziale Partei Novaland** in the right column, and vice versa.
+
+The following code snippet shows how the parties are displayed in the HTML template. This code is repeated for both parties, with the only difference being the party name and image:
+
+.. code-block:: HTML
+   :linenos:
+
+   <!-- Display the image of the Konservative Partei Novaland -->
+   <img src="{% static 'CPN.png' %}" width="30%" class="center" onclick="SHOWCPN()">
+    <!-- Display the name of the Konservative Partei Novaland -->
+   <p class="p" style="text-align: center"><input type="radio" id="wahlen1" name="Partei"
+                                                  required
+                                                  onclick="SHOWCPN()"
+                                                  value="Konservative Partei Novaland"> Konservative Partei Novaland </p>
+
+Here, the :code:`onclick` attribute is used to call the :code:`SHOWCPN()` function when participants click on the image or the party name. This function is defined at the bottom of the HTML page and is used to make the images of the party logos clickable and to store participants' data as soon as they submit the page. The code for the **Soziale Partei Novaland** looks the same, only the file name of the image and the party name are changed to **SPN.png** and **Soziale Partei Novaland**, respectively and the :code:`onclick` attribute calls the :code:`SHOWSPN()` function instead of the :code:`SHOWCPN()` function.
+
+The functions that are called as soon as a party's image or name is clicked are defined at the bottom of the HTML template. These functions are used to make the images of the party logos clickable and to store participants' data as soon as they submit the page:
 
 .. code-block:: HTML
    :linenos:
 
    {% block script %}
    <script>
+      <!-- Function to show the next button and set the vote to "Konservative Partei Novaland" -->
        function SHOWCPN() {
+           <!-- Set the radio button for the Konservative Partei Novaland to checked -->
            document.getElementById("wahlen1").checked = true
+           <!-- Show the submit button -->
            document.getElementById("weiter-btn").style.display = "inline-block";
+           <!-- Set the value of the submit button to the name of the Konservative Partei Novaland -->
+           <!-- Meaning that their vote is cast for this party as soon as they click on the next button -->
            document.getElementById("weiter-btn").value = "Konservative Partei Novaland";
        }
-
+      <!-- Function to show the next button and set the vote to "Soziale Partei Novaland" -->
        function SHOWSPN() {
+           <!-- Set the radio button for the Soziale Partei Novaland to checked -->
            document.getElementById("wahlen3").checked = true
+           <!-- Show the submit button -->
            document.getElementById("weiter-btn").style.display = "inline-block";
+           <!-- Set the value of the submit button to the name of the Soziale Partei Novaland -->
+           <!-- Meaning that their vote is cast for this party as soon as they click on the next button -->
            document.getElementById("weiter-btn").value = "Soziale Partei Novaland";
        }
    </script>
    {% endblock %}
 
-These functions are used to display the buttons for the respective parties when participants click on the party images. The :code:`SHOWCPN()` function is called when participants click on the image of the **Konservative Partei Novaland**, while the :code:`SHOWSPN()` function is called when they click on the image of the **Soziale Partei Novaland**. The functions set the value of the :code:`weiter-btn` button to the name of the respective party and make it visible.
+These functions are used to display the next button when participants click on the party images or names. The :code:`SHOWCPN()` function is called when participants click on the image or name of the **Konservative Partei Novaland**, while the :code:`SHOWSPN()` function is called when they click on the image or name of the **Soziale Partei Novaland**. The functions set the value of the :code:`weiter-btn` button to the name of the respective party and make it visible. This ensures a consistent user experience, as participants can click on either the party image or the party name to cast their vote.
 
 
 5. The referendum

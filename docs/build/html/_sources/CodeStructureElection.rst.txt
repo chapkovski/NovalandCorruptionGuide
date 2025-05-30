@@ -146,7 +146,7 @@ The images of the parties are stored in the :code:`static` folder of the oTree p
 After participants were introduced to the two parties, they were directed to the **voting_page** page. On this page, they could cast their vote for one of the two parties. This page follows a similar logic as the party pages, also embedding randomized orders and conditional statements to display the correct party name and image. It is more complex, however, including clickable images and buttons that participants could use to cast their vote. And a table-like layout to display the ballot.
 
 The layout of the page is structured like so: As always, the header of the page is defined in the :code:`h1` element, which contains the current day and the day count in Novaland. The main text below explains that participants can now vote for one of the two parties. The information about which of the two parties is the incumbent party is also displayed here, using :code:`{{ incumbent_party }}` again.
-Below this explanatory text, a column is created that contains the party image and the party name. Participants could click on either parties' image or name below the image to vote for that party. On the bottom of the page there is a button that participants can click to continue to the next page.
+Below this explanatory text, a table with multiple columns is created that contains the party image and the party name. Participants could click on either parties' image or name below the image to vote for that party. On the bottom of the page there is a button that participants can click to continue to the next page.
 
 This is what the ballot page looks like:
 
@@ -157,10 +157,93 @@ This is what the ballot page looks like:
 
 
 
-This is how the **party_1** page is created:
-At the top of the HTML template, some styling is applied to the buttons. Also, the style settings of the table formatting of the page are defined.
+This is how the **election_page** page is created:
+
+In page class of the init file, the :code:`vars_for_template` method is used to pass the information about the incumbent party (:code:`incumbent_party`) and the identifier of the first party (:code:`first_party`) to the HTML template. The :code:`Partei` variable from the :code:`Player` object is used to store the party that the participant voted for.
+
+In the HTML template, there is a style block at the top that define the appearance of the buttons and the table layout in which the parties' images and names are displayed. After that, the title of the page is defined in the :code:`h1` element, which contains the current day and the day count in Novaland. The main text below explains that participants can now vote for one of the two parties. The information about which of the two parties is the incumbent party is also displayed here, using :code:`{{ incumbent_party }}` again.
+
+.. code-block:: HTML
+   :linenos:
+
+   {% block content %}
+   <div class="content-box">
+       <h1 class="h1">Wahlen in Novaland. Tag 9 von 9</h1>
+       <div class="text-image-container">
+           <div class="text-content">
 
 
+               <p class="p">
+
+                   Es ist Wahltag in Novaland. Sie dürfen nun entscheiden, welcher der beiden Parteien Sie bei der
+                   Parlamentswahl in Novaland Ihre Stimme geben. Mit ihrer Stimme können Sie die Regierungsbildung in
+                   Novaland beeinflussen und gemeinsam mit den anderen Menschen in Novaland die nächste Regierung in
+                   Novaland mitbestimmen. <br><br>
+
+                   Die derzeit regierende Partei ist {{ incumbent_party }}.
+               </p>
+               <p class="p" style="text-align: center">
+                   Sie haben eine Stimme. Welche Partei wählen Sie?
+               </p>
+               <br>
+
+
+               {% if first_party == "Konservative Partei Novaland" %}
+               <div class="row">
+                   <div class="column3">
+                       <label>
+                           <img src="{% static 'CPN.png' %}" width="30%" class="center" onclick="SHOWCPN()">
+                           <p class="p" style="text-align: center"><input type="radio" id="wahlen1" name="Partei"
+                                                                          required
+                                                                          onclick="SHOWCPN()"
+                                                                          value="Konservative Partei Novaland"> Konservative Partei Novaland </p>
+                       </label>
+                   </div>
+
+                   <div class="column3">
+                       <label>
+                           <img src="{% static 'SPN.png' %}" width="30%" class="center" onclick="SHOWSPN()">
+                           <p class="p" style="text-align: center"><input type="radio" id="wahlen3" name="Partei"
+                                                                          required
+                                                                          value="Soziale Partei Novaland"
+                                                                          onclick="SHOWSPN()"> Soziale Partei Novaland </p>
+                       </label>
+                   </div>
+                   <br>
+               </div>
+               {% endif %}
+
+               {% if first_party == "Soziale Partei Novaland" %}
+               <div class="row">
+                   <div class="column3">
+                       <label>
+                           <img src="{% static 'SPN.png' %}" width="30%" class="center" onclick="SHOWSPN()">
+                           <p class="p" style="text-align: center"><input type="radio" id="wahlen3" name="Partei"
+                                                                          required
+                                                                          value="Soziale Partei Novaland"
+                                                                          onclick="SHOWSPN()"> Soziale Partei Novaland </p>
+                       </label>
+                   </div>
+
+                   <div class="column3">
+                       <label>
+                           <img src="{% static 'CPN.png' %}" width="30%" class="center" onclick="SHOWCPN()">
+                           <p class="p" style="text-align: center"><input type="radio" id="wahlen1" name="Partei"
+                                                                          required
+                                                                          onclick="SHOWCPN()"
+                                                                          value="Konservative Partei Novaland"> Konservative Partei Novaland </p>
+                       </label>
+                   </div>
+                   <br>
+               </div>
+               {% endif %}
+
+
+           </div>
+       </div>
+       <button>Weiter</button>
+   </div>
+   {% endblock %}
 
 At the bottom of the HTML page, the following functions are defined. They are called when the participants click on the buttons or on the images of the parties:
 
