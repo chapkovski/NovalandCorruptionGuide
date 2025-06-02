@@ -79,7 +79,7 @@ The variables used to store participants' data are defined in the class called :
 
 HTML files
 ^^^^^^^^^^^^
-In the HTML files, the layout and design of each page is defined. For a more detailed documentation on the structure of the HTML files, please refer to the :doc:`HTML Pages <HtmlPages>` section. Here, only the specific content of the HTML files is described. Each page of the questionnaire has its own HTML file, which is used to define the layout and design of that specific page. The HTML files are named according to the pages they represent, and they are included in the app's code using the :code:`page_sequence` variable at the very bottom of the intro app's init file.
+In the HTML files, the layout and design of each page is defined. For a more detailed documentation on the structure of the HTML files, please refer to the :ref:`html` section. Here, only the specific content of the HTML files is described. Each page of the questionnaire has its own HTML file, which is used to define the layout and design of that specific page. The HTML files are named according to the pages they represent, and they are included in the app's code using the :code:`page_sequence` variable at the very bottom of the intro app's init file.
 
 The pages of the intro questionnaire
 -------------------------------------

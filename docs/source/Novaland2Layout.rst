@@ -1,10 +1,10 @@
 The fictional country of Novaland - WIP
 ========================================
-
+XXXXXXXXXXXXXXXXXXXXXXXXX
 
 Participants' time in Novaland
 -------------------------------------------
-
+XXXXXXXXXXXXXXXXXXXXXXXXXXX
 .. _flowchart:
 Flowchart of the Novaland stay
 -------------------------------------------
@@ -20,4 +20,4 @@ Participants lived through nine virtual days in Novaland. Their stay began on a 
 
 Experimental treatments in Novaland
 ------------------------------------------------
-
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

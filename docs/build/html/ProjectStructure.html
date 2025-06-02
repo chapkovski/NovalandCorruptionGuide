@@ -21,8 +21,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Functionality of the project code" href="CodeStructure.html" />
-    <link rel="prev" title="The fictional country of Novaland" href="Novaland2Layout.html" /> 
+    <link rel="next" title="Part 0: Project-wide files" href="CodeStructureGlobalFiles.html" />
+    <link rel="prev" title="The fictional country of Novaland - WIP" href="Novaland2Layout.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,19 +45,26 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="Novaland2Layout.html">The fictional country of Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Novaland2Layout.html">The fictional country of Novaland - WIP</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Structure of the oTree project</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#visualisation-of-the-project-file-structure">Visualisation of the project file structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#the-file-types-used-in-the-project">The file types used in the project</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#explanation-of-the-project-file-structure">Explanation of the project file structure</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#files-to-define-project-wide-settings">Files to define project-wide settings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#folders-for-creating-the-questionnaire-and-experiment-apps-intro-main-election-post">Folders for creating the questionnaire and experiment (apps): intro, main, election, post</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#folders-for-storing-data-and-templates">Folders for storing data and templates</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#the-file-types-used-in-the-project">The file types used in the project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-init-py-files">The __init__.py files</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="CodeStructure.html">Functionality of the project code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureGlobalFiles.html">Part 0: Project-wide files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureIntro.html">Part 1: The Introduction App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureMain.html">Part 2: The Stay in Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureElection.html">Part 3: The Election in Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructurePost.html">Part 4: The Post-Experimental Questionnaire</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deploying the oTree project</a></li>
 </ul>
 
@@ -141,20 +148,6 @@
 </pre></div>
 </div>
 <p><strong>Note:</strong> ‘XXXXX’ is a placeholder for the name of one or more files with the corresponding extension in the respective folder. The actual file names are not relevant for understanding the project’s structure and functionality, so they are not listed here. The functionality of these files is explained below.</p>
-</section>
-<section id="the-file-types-used-in-the-project">
-<h2>The file types used in the project<a class="headerlink" href="#the-file-types-used-in-the-project" title="Link to this heading"></a></h2>
-<p>Before going into detail about the project structure, it is important to understand the different file types used in the project.</p>
-<ol class="arabic simple">
-<li><p><strong>.py</strong> files: These are Python files that contain the code for the oTree project. They define the underlying functionality of the project. For more information about the code structure and functionality of the init.py files, please refer to the <a class="reference internal" href="InitPages.html"><span class="doc">Init Pages</span></a> section.</p></li>
-<li><p><strong>.html</strong> files: These are HTML files that define the structure and layout of the web pages used in the project. They can include both static and dynamic content. Each html file is a template that can be rendered by oTree to display the corresponding page to the participants. For more information about how the HTML files are structured, please refer to the <a class="reference internal" href="HtmlPages.html"><span class="doc">HTML Pages</span></a> section.</p></li>
-<li><p><strong>.yaml</strong> files: These are YAML files that contain configuration data for the project. They are used to define settings and parameters that can be easily modified without changing the code.</p></li>
-<li><p><strong>.css</strong> files: These are CSS files that define the styles and layout of the web pages used in the project. They are used to customize the appearance of the project.</p></li>
-<li><p><strong>.js</strong> files: These are JavaScript files that contain code for client-side functionality. They are used to add interactivity and dynamic behavior to the web pages.</p></li>
-<li><p><strong>.png</strong>, <strong>.jpg</strong> files: These are image files used in the project. They are used for displaying images or icons on the web pages.</p></li>
-<li><p><strong>.txt</strong> files: These are text files that contain plain text data. They are used for various purposes, such as storing configuration settings or documentation.</p></li>
-<li><p><strong>.pdf</strong> files: These PDF files are used to create participation certificates.</p></li>
-</ol>
 </section>
 <section id="explanation-of-the-project-file-structure">
 <h2>Explanation of the project file structure<a class="headerlink" href="#explanation-of-the-project-file-structure" title="Link to this heading"></a></h2>
@@ -254,14 +247,43 @@
 <p><strong>Note:</strong> There are additional folders and files in the project to those listed in the filetree above. Some of those were used purely for the development and testing of the project. Others contribute to the functionality of oTree itself. As none of these are necessary to understand, modify or run the project, they will not be discussed here.</p>
 </section>
 </section>
+<section id="the-file-types-used-in-the-project">
+<h2>The file types used in the project<a class="headerlink" href="#the-file-types-used-in-the-project" title="Link to this heading"></a></h2>
+<p>Before going into detail about the project structure, it is important to understand the different file types used in the project.</p>
+<ol class="arabic simple">
+<li><p><strong>.py</strong> files: These are Python files that contain the code for the oTree project. They define the underlying functionality of the project. A short summary of these init files is given in the section below.</p></li>
+<li><p><strong>.html</strong> files: These are HTML files that define the structure and layout of the web pages used in the project. They can include both static and dynamic content. Each html file is a template that can be rendered by oTree to display the corresponding page to the participants. For more information about how the HTML files are structured, please refer to the <a class="reference external" href="https://otree.readthedocs.io/en/latest/templates.html">official oTree documentation on HTML templates</a>.</p></li>
+<li><p><strong>.yaml</strong> files: These are YAML files that contain configuration data for the project. They are used to define settings and parameters that can be easily modified without changing the code.</p></li>
+<li><p><strong>.css</strong> files: These are CSS files that define the styles and layout of the web pages used in the project. They are used to customize the appearance of the project.</p></li>
+<li><p><strong>.js</strong> files: These are JavaScript files that contain code for client-side functionality. They are used to add interactivity and dynamic behavior to the web pages.</p></li>
+<li><p><strong>.png</strong>, <strong>.jpg</strong> files: These are image files used in the project. They are used for displaying images or icons on the web pages.</p></li>
+<li><p><strong>.txt</strong> files: These are text files that contain plain text data. They are used for various purposes, such as storing configuration settings or documentation.</p></li>
+<li><p><strong>.pdf</strong> files: These PDF files are used to create participation certificates.</p></li>
+</ol>
+<section id="the-init-py-files">
+<h3>The __init__.py files<a class="headerlink" href="#the-init-py-files" title="Link to this heading"></a></h3>
+<p>The __init__.py files are the main files of the apps. They contain the code that defines the structure and functionality of the app. The __init__.py files are used to define the pages, models, and other components of the app. The __init__.py files are divided into several sections, each of which is used to define a specific aspect of the app.</p>
+<p>The <strong>sections of the __init__.py files</strong> are as follows:</p>
+<ol class="arabic simple">
+<li><p><strong>Imports</strong>: At the beginning of the file, all necessary libraries and modules are imported. This includes the oTree libraries, as well as any other libraries that are used in the app.</p></li>
+<li><p><strong>Models</strong>: The models section defines the data structure of the app. This includes the variables that are used to store data. oTree defines a set of classes and functions for defining these data storage models.</p></li>
+<li><p><strong>Pages</strong>: In this section, the content and behavior of the pages are defined. Each page is defined as a class, which inherits from the oTree Page parent class. The page classes define the content and behavior of the pages, including the variables that are used to store data, the functions that are used to process data. Each page class corresponds to one HTML file that defines the layout and design of the page.</p></li>
+<li><p><strong>Page sequence</strong>: At the end of the file, the page sequence is defined. This is a list of the pages that will be displayed in the app, in the order in which they will be displayed.</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>Additional constants and functions</strong>: In addition to these sections, the __init__.py files may also include additional constants and functions that are used in the app. An example for this is the <code class="code docutils literal notranslate"><span class="pre">create_session</span></code> function, which was used in this study to conduct the treatment randomization at the beginning of the main app.</p></li>
+</ul>
+<p>For a more detailed documentation on the structure of the __init__.py files, please refer to the <a class="reference external" href="https://otree.readthedocs.io/en/latest/index.html">official oTree documentation</a>.</p>
+</section>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="Novaland2Layout.html" class="btn btn-neutral float-left" title="The fictional country of Novaland" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="CodeStructure.html" class="btn btn-neutral float-right" title="Functionality of the project code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Novaland2Layout.html" class="btn btn-neutral float-left" title="The fictional country of Novaland - WIP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="CodeStructureGlobalFiles.html" class="btn btn-neutral float-right" title="Part 0: Project-wide files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

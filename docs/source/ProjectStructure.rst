@@ -60,20 +60,6 @@ The following filetree provides an overview of the project's file structure. Eac
 
 **Note:** 'XXXXX' is a placeholder for the name of one or more files with the corresponding extension in the respective folder. The actual file names are not relevant for understanding the project's structure and functionality, so they are not listed here. The functionality of these files is explained below.
 
-The file types used in the project
-----------------------------------
-Before going into detail about the project structure, it is important to understand the different file types used in the project.
-
-#. **.py** files: These are Python files that contain the code for the oTree project. They define the underlying functionality of the project. For more information about the code structure and functionality of the init.py files, please refer to the :doc:`Init Pages <InitPages>` section.
-#. **.html** files: These are HTML files that define the structure and layout of the web pages used in the project. They can include both static and dynamic content. Each html file is a template that can be rendered by oTree to display the corresponding page to the participants. For more information about how the HTML files are structured, please refer to the :doc:`HTML Pages <HtmlPages>` section.
-#. **.yaml** files: These are YAML files that contain configuration data for the project. They are used to define settings and parameters that can be easily modified without changing the code.
-#. **.css** files: These are CSS files that define the styles and layout of the web pages used in the project. They are used to customize the appearance of the project.
-#. **.js** files: These are JavaScript files that contain code for client-side functionality. They are used to add interactivity and dynamic behavior to the web pages.
-#. **.png**, **.jpg** files: These are image files used in the project. They are used for displaying images or icons on the web pages.
-#. **.txt** files: These are text files that contain plain text data. They are used for various purposes, such as storing configuration settings or documentation.
-#. **.pdf** files: These PDF files are used to create participation certificates.
-
-
 
 Explanation of the project file structure
 -----------------------------------------
@@ -138,3 +124,35 @@ Folders for storing data and templates
 
 
 **Note:** There are additional folders and files in the project to those listed in the filetree above. Some of those were used purely for the development and testing of the project. Others contribute to the functionality of oTree itself. As none of these are necessary to understand, modify or run the project, they will not be discussed here.
+
+The file types used in the project
+----------------------------------
+Before going into detail about the project structure, it is important to understand the different file types used in the project.
+
+#. **.py** files: These are Python files that contain the code for the oTree project. They define the underlying functionality of the project. A short summary of these init files is given in the section below.
+#. **.html** files: These are HTML files that define the structure and layout of the web pages used in the project. They can include both static and dynamic content. Each html file is a template that can be rendered by oTree to display the corresponding page to the participants. For more information about how the HTML files are structured, please refer to the `official oTree documentation on HTML templates <https://otree.readthedocs.io/en/latest/templates.html>`_.
+#. **.yaml** files: These are YAML files that contain configuration data for the project. They are used to define settings and parameters that can be easily modified without changing the code.
+#. **.css** files: These are CSS files that define the styles and layout of the web pages used in the project. They are used to customize the appearance of the project.
+#. **.js** files: These are JavaScript files that contain code for client-side functionality. They are used to add interactivity and dynamic behavior to the web pages.
+#. **.png**, **.jpg** files: These are image files used in the project. They are used for displaying images or icons on the web pages.
+#. **.txt** files: These are text files that contain plain text data. They are used for various purposes, such as storing configuration settings or documentation.
+#. **.pdf** files: These PDF files are used to create participation certificates.
+
+
+The __init__.py files
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The __init__.py files are the main files of the apps. They contain the code that defines the structure and functionality of the app. The __init__.py files are used to define the pages, models, and other components of the app. The __init__.py files are divided into several sections, each of which is used to define a specific aspect of the app.
+
+The **sections of the __init__.py files** are as follows:
+
+#. **Imports**: At the beginning of the file, all necessary libraries and modules are imported. This includes the oTree libraries, as well as any other libraries that are used in the app.
+
+#. **Models**: The models section defines the data structure of the app. This includes the variables that are used to store data. oTree defines a set of classes and functions for defining these data storage models.
+
+#. **Pages**: In this section, the content and behavior of the pages are defined. Each page is defined as a class, which inherits from the oTree Page parent class. The page classes define the content and behavior of the pages, including the variables that are used to store data, the functions that are used to process data. Each page class corresponds to one HTML file that defines the layout and design of the page.
+
+#. **Page sequence**: At the end of the file, the page sequence is defined. This is a list of the pages that will be displayed in the app, in the order in which they will be displayed.
+
+* **Additional constants and functions**: In addition to these sections, the __init__.py files may also include additional constants and functions that are used in the app. An example for this is the :code:`create_session` function, which was used in this study to conduct the treatment randomization at the beginning of the main app.
+
+For a more detailed documentation on the structure of the __init__.py files, please refer to the `official oTree documentation <https://otree.readthedocs.io/en/latest/index.html>`_.

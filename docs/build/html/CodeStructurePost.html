@@ -45,13 +45,21 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="Novaland2Layout.html">The fictional country of Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Novaland2Layout.html">The fictional country of Novaland - WIP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ProjectStructure.html">Structure of the oTree project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CodeStructureGlobalFiles.html">Part 0: Project-wide files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CodeStructureIntro.html">Part 1: The Introduction App</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CodeStructureMain.html">Part 2: The Stay in Novaland</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CodeStructureElection.html">Part 3: The Election in Novaland</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Part 4: The Post-Experimental Questionnaire</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Part 4: The Post-Experimental Questionnaire</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pages-of-the-post-experimental-questionnaire">Pages of the Post-Experimental Questionnaire</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-postsurvey-page">The PostSurvey Page</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-receivecert-page">The ReceiveCert page</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-lastpage-page">The LastPage page</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deploying the oTree project</a></li>
 </ul>
 
@@ -81,15 +89,534 @@
              
   <section id="part-4-the-post-experimental-questionnaire">
 <h1>Part 4: The Post-Experimental Questionnaire<a class="headerlink" href="#part-4-the-post-experimental-questionnaire" title="Link to this heading"></a></h1>
+<p>After participants ended their stay in the fictional country of Novaland, they were asked to complete a post-experimental questionnaire. This questionnaire included a variety of questions on participants’ socio-demographic characteristics, their real-life attitudes, and their participation in the experiment. Additionally, participants were asked if they wanted to receive a digital certificate of their stay as a citizen of Novaland.</p>
+<section id="pages-of-the-post-experimental-questionnaire">
+<h2>Pages of the Post-Experimental Questionnaire<a class="headerlink" href="#pages-of-the-post-experimental-questionnaire" title="Link to this heading"></a></h2>
+<p>The post-experimental questionnaire consists of only three pages:
+1. <strong>PostSurvey</strong>: This page contains the entire questionnaire. Here, the questions were dynamically rendered using a SurveyJS survey model.
+2. <strong>ReceiveCert</strong>: On this page, participants could download a digital certificate of their stay in Novaland. The certificate was generated as a PDF file.
+3. <strong>LastPage</strong>: On this last page, we thanked the participants for their participation and provided them with a link to be redirected to the sample provider website.</p>
+<section id="the-postsurvey-page">
+<h3>The PostSurvey Page<a class="headerlink" href="#the-postsurvey-page" title="Link to this heading"></a></h3>
+<p>The PostSurvey page is the main page of the post-experimental questionnaire. It contains a dynamically rendered survey model that includes various questions about the participants’ socio-demographic characteristics, their attitudes, and their experience in the experiment. The content of the survey is defined in a separate JavaScript file, which is loaded into the page.</p>
+<p>In the __init__.py file of the <code class="code docutils literal notranslate"><span class="pre">post</span></code> app, we define the <strong>PostSurvey</strong> class, which mainly consists of four methods:</p>
+<ol class="arabic simple">
+<li><p>The <code class="code docutils literal notranslate"><span class="pre">live_method</span></code> method is used to handle the real-time data submission from the survey. This method is required as the survey is rendered dynamically and the data is sent to the server in real-time. If we used the standard procedure of submitting the survey data only after participants answered all questions on this page, the survey would not be able to handle the real-time data submission but rather save the data only after participants answered all questions on this page. Thus, using the <code class="code docutils literal notranslate"><span class="pre">live_method</span></code> method is a more efficient and safer way to handle the survey data submission.</p></li>
+</ol>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
-<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">Show example code</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">greet</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">PostSurvey live_method</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@staticmethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">live_method</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="c1"># let&#39;s do this: store the data also in participant vars as a dict.</span>
+    <span class="c1"># before assying (process_survey_data) let&#39;s check if all keys are there. if not all, let&#39;s set missing keys in</span>
+    <span class="c1"># players&#39; level to &#39;&#39; (empty string) silently (via try/except)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;data received: </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">old_data</span> <span class="o">=</span> <span class="n">player</span><span class="o">.</span><span class="n">participant</span><span class="o">.</span><span class="n">vars</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;post_survey&#39;</span><span class="p">,</span> <span class="p">{})</span>
+    <span class="n">existing_keys</span> <span class="o">=</span> <span class="n">old_data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+    <span class="n">new_keys</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+    <span class="n">copy_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">old_data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;***&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">old_data</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">new_keys</span><span class="p">:</span>
+            <span class="n">copy_data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="n">old_data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">copy_data</span><span class="p">)</span>
+    <span class="n">player</span><span class="o">.</span><span class="n">participant</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;post_survey&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy_data</span>
+
+    <span class="n">PostSurvey</span><span class="o">.</span><span class="n">process_survey_data</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">copy_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details><ol class="arabic simple" start="2">
+<li><p>The <code class="code docutils literal notranslate"><span class="pre">process_survey_data</span></code> method processes the survey data collected by the <code class="code docutils literal notranslate"><span class="pre">live_method</span></code>. It is called at the end of the <code class="code docutils literal notranslate"><span class="pre">live_method</span></code> method to convert the data into the appropriate format and assign it to the corresponding fields in the Player model. It ensures that the data is correctly stored in the database. For this, it checks the type of each field in the Player model and converts the data accordingly. The values are then assigned to the Player model instance, e.g., with <code class="code docutils literal notranslate"><span class="pre">converted_value</span> <span class="pre">=</span> <span class="pre">int(value)</span></code> for integer fields, <code class="code docutils literal notranslate"><span class="pre">converted_value</span> <span class="pre">=</span> <span class="pre">str(value)</span></code> for string fields, and so on. This method is crucial for ensuring that the data is correctly stored. Additionally, there is a logging mechanism in place to log any errors that occur during the data processing. This helps in debugging and ensuring data integrity.</p></li>
+</ol>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">PostSurvey process_survey_data</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@staticmethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">process_survey_data</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">survey_results</span><span class="p">):</span>
+
+    <span class="c1"># Get the SQLAlchemy mapper for the Player model</span>
+    <span class="n">mapper</span> <span class="o">=</span> <span class="n">inspect</span><span class="p">(</span><span class="n">player</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
+
+    <span class="c1"># Iterate over each key-value pair in the survey results</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">survey_results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Processing </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Check if the column exists in the model</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mapper</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;No such field: </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># Get the column object</span>
+            <span class="n">column</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="n">column_type</span> <span class="o">=</span> <span class="n">column</span><span class="o">.</span><span class="n">type</span>
+
+            <span class="c1"># Determine the column type and convert the value accordingly</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">column_type</span><span class="p">,</span> <span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">BigInteger</span><span class="p">,</span> <span class="n">SmallInteger</span><span class="p">)):</span>
+                <span class="c1"># Handle integer fields</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+                    <span class="n">converted_value</span> <span class="o">=</span> <span class="n">value</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">value</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
+                    <span class="n">converted_value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># Attempt to convert to integer</span>
+                    <span class="n">converted_value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">column_type</span><span class="p">,</span> <span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">Text</span><span class="p">)):</span>
+                <span class="c1"># For string/text fields, ensure the value is a string</span>
+                <span class="n">converted_value</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">column_type</span><span class="p">,</span> <span class="n">Boolean</span><span class="p">):</span>
+                <span class="c1"># Convert to boolean</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+                    <span class="n">converted_value</span> <span class="o">=</span> <span class="n">value</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                    <span class="n">converted_value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;true&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;yes&#39;</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">converted_value</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">column_type</span><span class="p">,</span> <span class="p">(</span><span class="n">Float</span><span class="p">,</span> <span class="n">Numeric</span><span class="p">)):</span>
+                <span class="c1"># Handle float and numeric fields</span>
+                <span class="n">converted_value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># For other types, assign as-is or handle accordingly</span>
+                <span class="n">converted_value</span> <span class="o">=</span> <span class="n">value</span>
+
+            <span class="c1"># Assign the converted value to the model instance</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">converted_value</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Successfully set </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1"> to </span><span class="si">{</span><span class="n">converted_value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">ve</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Value error for field &quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">&quot;: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1"> - </span><span class="si">{</span><span class="n">ve</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Error setting field &quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">&quot;: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details><ol class="arabic simple" start="3">
+<li><p>The <code class="code docutils literal notranslate"><span class="pre">get_form_fields</span></code> method returns a list of form fields that are required for the survey. This method is used to dynamically generate the form fields based on the survey definition. It is only used if the participant is not a browser bot (i.e., if the participant is a real user and not a bot). The method returns a list of field names that are required for the survey. This allows for flexibility in the survey design, as the fields can be dynamically generated based on the survey definition.</p></li>
+</ol>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">PostSurvey get_form_fields</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_form_fields</span><span class="p">(</span><span class="n">player</span><span class="p">):</span>
+<span class="k">if</span> <span class="n">player</span><span class="o">.</span><span class="n">participant</span><span class="o">.</span><span class="n">is_browser_bot</span><span class="p">:</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;nova_certificate_bin&#39;</span><span class="p">,</span> <span class="s1">&#39;nova_certificate_open&#39;</span><span class="p">,</span> <span class="s1">&#39;nova_dec&#39;</span><span class="p">,</span> <span class="s1">&#39;bribery_exp_pers&#39;</span><span class="p">,</span> <span class="s1">&#39;bribery_exp&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;bribery_exp_smone&#39;</span><span class="p">,</span> <span class="s1">&#39;att_state_inequality&#39;</span><span class="p">,</span> <span class="s1">&#39;soc_trust&#39;</span><span class="p">,</span> <span class="s1">&#39;helpful&#39;</span><span class="p">,</span> <span class="s1">&#39;att_taxes_welfare&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;att_incr_welfare&#39;</span><span class="p">,</span> <span class="s1">&#39;att_immigration&#39;</span><span class="p">,</span> <span class="s1">&#39;att_voting_intention&#39;</span><span class="p">,</span> <span class="s1">&#39;att_voting_intention_open&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;soc_gender&#39;</span><span class="p">,</span> <span class="s1">&#39;soc_birthyear&#39;</span><span class="p">,</span> <span class="s1">&#39;soc_marital_status&#39;</span><span class="p">,</span> <span class="s1">&#39;soc_hhsize&#39;</span><span class="p">,</span> <span class="s1">&#39;soc_children&#39;</span><span class="p">,</span> <span class="s1">&#39;soc_employment&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;soc_employment_open&#39;</span><span class="p">,</span> <span class="s1">&#39;soc_pers_income&#39;</span><span class="p">,</span> <span class="s1">&#39;soc_education&#39;</span><span class="p">,</span> <span class="s1">&#39;soc_job_education&#39;</span><span class="p">,</span> <span class="s1">&#39;att_leftright&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;soc_postalcode&#39;</span><span class="p">,</span> <span class="s1">&#39;soc_citizenship&#39;</span><span class="p">,</span> <span class="s1">&#39;soc_born_germany&#39;</span><span class="p">,</span> <span class="s1">&#39;soc_parents_born_germany&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;svx_participation_location&#39;</span><span class="p">,</span> <span class="s1">&#39;svx_participation_device&#39;</span><span class="p">,</span> <span class="s1">&#39;svx_interest&#39;</span><span class="p">,</span> <span class="s1">&#39;svx_difficulty&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;svx_privacy&#39;</span><span class="p">,</span> <span class="s1">&#39;svx_technical_problems_bin&#39;</span><span class="p">,</span> <span class="s1">&#39;svx_technical_problems_open&#39;</span><span class="p">,</span> <span class="s1">&#39;svx_gaming&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;svx_purpose&#39;</span><span class="p">,</span> <span class="s1">&#39;svx_final_comments&#39;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">r</span>
+</pre></div>
+</div>
+</div>
+</details><ol class="arabic simple" start="4">
+<li><p>The <code class="code docutils literal notranslate"><span class="pre">post</span></code> method is called when the survey is submitted. It processes the survey data and calls the <code class="code docutils literal notranslate"><span class="pre">process_survey_data</span></code> method to handle the data submission. This method is responsible for handling the survey submission and ensuring that the data is correctly processed and stored in the database. It also handles any errors that may occur during the submission process, such as invalid JSON data or unexpected errors.</p></li>
+</ol>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">PostSurvey post</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">participant</span><span class="o">.</span><span class="n">is_browser_bot</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">post</span><span class="p">()</span>
+
+    <span class="c1"># Assuming self._form_data contains &#39;surveyResults&#39;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Parse the JSON data from the survey</span>
+        <span class="n">survey_results</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_form_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;surveyResults&#39;</span><span class="p">))</span>
+        <span class="n">pprint</span><span class="p">(</span><span class="n">survey_results</span><span class="p">)</span>  <span class="c1"># For debugging purposes</span>
+        <span class="n">PostSurvey</span><span class="o">.</span><span class="n">process_survey_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="p">,</span> <span class="n">survey_results</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Invalid JSON data: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Unexpected error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Proceed with the superclass&#39;s post method</span>
+    <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">post</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details><ol class="arabic simple" start="5">
+<li><p>As always in this oTree project, the <code class="code docutils literal notranslate"><span class="pre">form_model</span></code> attribute is set to <code class="code docutils literal notranslate"><span class="pre">player</span></code>, indicating that the form fields are associated with the Player model.</p></li>
+</ol>
+<p>Now that the PostSurvey page is defined, we will have a look at the <strong>HTML template</strong> that is used to render the survey. The template includes the necessary JavaScript and CSS files to render the survey dynamically. It also includes a hidden input field to store the survey results, which will be submitted when the survey is completed.</p>
+<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">PostSurvey HTML Template</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdnjs.cloudflare.com/ajax/libs/showdown/1.6.4/showdown.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{static &#39;surveyjs/defaultV2.min.css&#39;}}&quot;</span><span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{static &#39;Vignette.css&#39;}}&quot;</span><span class="p">/&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;{{static &#39;surveyjs/survey.jquery.min.js&#39;}}&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;{{static &#39;surveyjs/index.min.js&#39;}}&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;{% static &#39;surveyjs/survey_definition.js&#39; %}&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;hidden&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;surveyResults&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;surveyResults&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;content-box&quot;</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;surveyElement&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;surveyData&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="c1">// Define a unique key for the survey, incorporating the participant&#39;s code</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">SURVEY_STORAGE_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`surveyData{{participant.code}}`</span><span class="p">;</span><span class="w"> </span><span class="c1">// Ensure {{participant.code}} is correctly rendered server-side</span>
+
+<span class="w">        </span><span class="c1">// Flag to ensure restoration happens only once</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">isRestored</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Function to check if localStorage is available</span>
+<span class="w">        </span><span class="kd">function</span><span class="w"> </span><span class="nx">isLocalStorageAvailable</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">testKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;__test__&#39;</span><span class="p">;</span>
+<span class="w">                </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="nx">testKey</span><span class="p">,</span><span class="w"> </span><span class="nx">testKey</span><span class="p">);</span>
+<span class="w">                </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">removeItem</span><span class="p">(</span><span class="nx">testKey</span><span class="p">);</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Function to save survey data and current page to localStorage</span>
+<span class="w">        </span><span class="kd">function</span><span class="w"> </span><span class="nx">saveSurveyData</span><span class="p">(</span><span class="nx">surveyData</span><span class="p">,</span><span class="w"> </span><span class="nx">currentPageName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">isLocalStorageAvailable</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="s2">&quot;LocalStorage is not available. Data will not be saved.&quot;</span><span class="p">);</span>
+<span class="w">                </span><span class="k">return</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">combinedData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="nx">surveyData</span><span class="p">,</span>
+<span class="w">                    </span><span class="nx">currentPage</span><span class="o">:</span><span class="w"> </span><span class="nx">currentPageName</span>
+<span class="w">                </span><span class="p">};</span>
+<span class="w">                </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="nx">SURVEY_STORAGE_KEY</span><span class="p">,</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">combinedData</span><span class="p">));</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Survey data and current page saved to localStorage.&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Error saving survey data to localStorage:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Function to load survey data and current page from localStorage</span>
+<span class="w">        </span><span class="kd">function</span><span class="w"> </span><span class="nx">loadSurveyData</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">isLocalStorageAvailable</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="s2">&quot;LocalStorage is not available. Cannot load saved data.&quot;</span><span class="p">);</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">                    </span><span class="nx">currentPage</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">                </span><span class="p">};</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">savedData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="nx">SURVEY_STORAGE_KEY</span><span class="p">);</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">savedData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="nx">parsedData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">savedData</span><span class="p">);</span>
+<span class="w">                    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="nx">parsedData</span><span class="p">.</span><span class="nx">data</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">                        </span><span class="nx">currentPage</span><span class="o">:</span><span class="w"> </span><span class="nx">parsedData</span><span class="p">.</span><span class="nx">currentPage</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">                    </span><span class="p">};</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Error parsing survey data from localStorage:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">                    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">                        </span><span class="nx">currentPage</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">                    </span><span class="p">};</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">                </span><span class="nx">currentPage</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">            </span><span class="p">};</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Function to restore the survey to the saved page</span>
+<span class="w">        </span><span class="kd">function</span><span class="w"> </span><span class="nx">restoreCurrentPage</span><span class="p">(</span><span class="nx">savedPageName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">savedPageName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">page</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">survey</span><span class="p">.</span><span class="nx">getPageByName</span><span class="p">(</span><span class="nx">savedPageName</span><span class="p">);</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">page</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">survey</span><span class="p">.</span><span class="nx">currentPage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">page</span><span class="p">;</span>
+<span class="w">                    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Survey restored to page: </span><span class="si">${</span><span class="nx">savedPageName</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">console</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="sb">`Saved page name &quot;</span><span class="si">${</span><span class="nx">savedPageName</span><span class="si">}</span><span class="sb">&quot; does not exist. Starting from the first page.`</span><span class="p">);</span>
+<span class="w">                    </span><span class="nx">survey</span><span class="p">.</span><span class="nx">currentPageNo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// Reset to the first page if the saved page doesn&#39;t exist</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Instantiate Showdown for Markdown processing</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">converter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">showdown</span><span class="p">.</span><span class="nx">Converter</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Initialize SurveyJS with loaded data</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">survey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Survey</span><span class="p">.</span><span class="nx">Model</span><span class="p">(</span><span class="nx">surveyJSON</span><span class="p">);</span><span class="w"> </span><span class="c1">// Ensure surveyJSON is correctly defined</span>
+<span class="w">        </span><span class="nx">survey</span><span class="p">.</span><span class="nx">locale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;de&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">survey</span><span class="p">.</span><span class="nx">applyTheme</span><span class="p">(</span><span class="nx">SurveyTheme</span><span class="p">.</span><span class="nx">BorderlessLight</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Load existing survey data and current page</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">savedSurvey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">loadSurveyData</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">survey</span><span class="p">.</span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">savedSurvey</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Make all questions required when they are added</span>
+<span class="w">        </span><span class="nx">survey</span><span class="p">.</span><span class="nx">onQuestionAdded</span><span class="p">.</span><span class="nx">add</span><span class="p">((</span><span class="nx">sender</span><span class="p">,</span><span class="w"> </span><span class="nx">options</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">options</span><span class="p">.</span><span class="nx">question</span><span class="p">.</span><span class="nx">isRequired</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="c1">// Listen to value changes and save data</span>
+<span class="w">        </span><span class="nx">survey</span><span class="p">.</span><span class="nx">onValueChanged</span><span class="p">.</span><span class="nx">add</span><span class="p">((</span><span class="nx">sender</span><span class="p">,</span><span class="w"> </span><span class="nx">options</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">liveSend</span><span class="p">(</span><span class="nx">sender</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">saveSurveyData</span><span class="p">(</span><span class="nx">sender</span><span class="p">.</span><span class="nx">data</span><span class="p">,</span><span class="w"> </span><span class="nx">survey</span><span class="p">.</span><span class="nx">currentPage</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">        </span><span class="c1">// Initialize variables to store initial progress and increment</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">initialPercentage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">perPageIncrement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// Listen to page changes and save the current page name</span>
+<span class="w">        </span><span class="nx">survey</span><span class="p">.</span><span class="nx">onCurrentPageChanged</span><span class="p">.</span><span class="nx">add</span><span class="p">((</span><span class="nx">sender</span><span class="p">,</span><span class="w"> </span><span class="nx">options</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">newCurrentPage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">sender</span><span class="p">.</span><span class="nx">currentPage</span><span class="p">;</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">newIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">sender</span><span class="p">.</span><span class="nx">pages</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">newCurrentPage</span><span class="p">);</span>
+
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s2">&quot;PAGE CHANGED to index&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">newIndex</span><span class="p">);</span>
+
+<span class="w">            </span><span class="c1">// Save the survey data along with the new page name</span>
+<span class="w">            </span><span class="nx">saveSurveyData</span><span class="p">(</span><span class="nx">sender</span><span class="p">.</span><span class="nx">data</span><span class="p">,</span><span class="w"> </span><span class="nx">newCurrentPage</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+
+<span class="w">            </span><span class="c1">// Initialize initialPercentage and perPageIncrement on the first page change</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">initialPercentage</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// Capture the initial progress bar percentage</span>
+<span class="w">                </span><span class="nx">initialPercentage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.progress-bar&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;aria-valuenow&#39;</span><span class="p">),</span><span class="w"> </span><span class="mf">10</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+
+<span class="w">                </span><span class="c1">// Total number of pages in the survey</span>
+<span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">totalPages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">sender</span><span class="p">.</span><span class="nx">pages</span><span class="p">.</span><span class="nx">length</span><span class="o">+</span><span class="nb">window</span><span class="p">.</span><span class="nx">maxpages</span><span class="p">;</span>
+
+<span class="w">                </span><span class="c1">// Calculate per-page increment</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">totalPages</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">perPageIncrement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">100</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">initialPercentage</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="nx">totalPages</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">perPageIncrement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// If there&#39;s only one page, no increment needed</span>
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="sb">`Initial Percentage: </span><span class="si">${</span><span class="nx">initialPercentage</span><span class="si">}</span><span class="sb">%`</span><span class="p">);</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="sb">`Per Page Increment: </span><span class="si">${</span><span class="nx">perPageIncrement</span><span class="si">}</span><span class="sb">%`</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="c1">// Calculate the new percentage based on the current page index</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">newPercentage</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">sender</span><span class="p">.</span><span class="nx">pages</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">newPercentage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">newPercentage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">initialPercentage</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">perPageIncrement</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">newIndex</span><span class="p">);</span>
+<span class="w">                </span><span class="c1">// Ensure the percentage does not exceed 100%</span>
+<span class="w">                </span><span class="nx">newPercentage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="nx">newPercentage</span><span class="p">,</span><span class="w"> </span><span class="mf">100</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="c1">// Update the progress bar&#39;s width, aria-valuenow, and text</span>
+<span class="w">            </span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.progress-bar&#39;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">newPercentage</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;%&#39;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;aria-valuenow&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">newPercentage</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">newPercentage</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;%&#39;</span><span class="p">);</span>
+
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="sb">`Progress updated to </span><span class="si">${</span><span class="nx">newPercentage</span><span class="si">}</span><span class="sb">%`</span><span class="p">);</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">        </span><span class="c1">// Handle survey completion</span>
+<span class="w">        </span><span class="nx">survey</span><span class="p">.</span><span class="nx">onComplete</span><span class="p">.</span><span class="nx">add</span><span class="p">((</span><span class="nx">sender</span><span class="p">,</span><span class="w"> </span><span class="nx">options</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">surveyResultsString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">sender</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+
+<span class="w">            </span><span class="c1">// Find the hidden input field by its ID</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">hiddenInput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;surveyResults&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">hiddenInput</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">surveyResultsString</span><span class="p">;</span>
+
+<span class="w">            </span><span class="c1">// Optionally, send the data to your server here</span>
+
+<span class="w">            </span><span class="c1">// Clear the stored data</span>
+<span class="w">            </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">removeItem</span><span class="p">(</span><span class="nx">SURVEY_STORAGE_KEY</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Survey data cleared from localStorage.&quot;</span><span class="p">);</span>
+
+<span class="w">            </span><span class="c1">// Submit the form</span>
+<span class="w">            </span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#form&#39;</span><span class="p">).</span><span class="nx">submit</span><span class="p">();</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="c1">// Handle Markdown conversion</span>
+<span class="w">        </span><span class="nx">survey</span><span class="p">.</span><span class="nx">onTextMarkdown</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">survey</span><span class="p">,</span><span class="w"> </span><span class="nx">options</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Convert Markdown to HTML</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">converter</span><span class="p">.</span><span class="nx">makeHtml</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">text</span><span class="p">);</span>
+<span class="w">            </span><span class="c1">// Remove root paragraphs &lt;p&gt;&lt;/p&gt;</span>
+<span class="w">            </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">str</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mf">3</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">str</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">str</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">4</span><span class="p">);</span>
+<span class="w">            </span><span class="c1">// Set HTML markup to render</span>
+<span class="w">            </span><span class="nx">options</span><span class="p">.</span><span class="nx">html</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">str</span><span class="p">;</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">        </span><span class="nx">survey</span><span class="p">.</span><span class="nx">currentPage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">survey</span><span class="p">.</span><span class="nx">getPageByName</span><span class="p">(</span><span class="nx">savedSurvey</span><span class="p">.</span><span class="nx">currentPage</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// Render the survey and restore the current page if available</span>
+<span class="w">        </span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#surveyElement&quot;</span><span class="p">).</span><span class="nx">Survey</span><span class="p">({</span>
+<span class="w">            </span><span class="nx">model</span><span class="o">:</span><span class="w"> </span><span class="nx">survey</span><span class="p">,</span>
+
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+
+{{ endblock }}
 </pre></div>
 </div>
 </div>
 </details></section>
+<section id="the-receivecert-page">
+<h3>The ReceiveCert page<a class="headerlink" href="#the-receivecert-page" title="Link to this heading"></a></h3>
+<p>Those participants who have chosen to receive a certificate will be redirected to the <code class="code docutils literal notranslate"><span class="pre">ReceiveCert</span></code> page, where they can download their certificate. The certificate is generated as a PDF file, which is created using the ReportLab library. The name of the participant is merged into a pre-defined PDF template which contains the layout of the certificate, and the final PDF is saved in the static files directory. The participant can then download the certificate by clicking on a link that is connected to the generated PDF file. The certificate is only generated if the participant has chosen to receive it, and the file is deleted after the participant has downloaded it to ensure that no unnecessary files are left on the server and that the participant’s data is not stored longer than necessary.</p>
+<p>To understand how the <code class="code docutils literal notranslate"><span class="pre">ReceiveCert</span></code> page works, we will first look at the app init file, which contains the logic for displaying the page, generating the PDF certificate, and cleaning up after the participant has downloaded the certificate. The logic is implemented in several methods, including <code class="code docutils literal notranslate"><span class="pre">is_displayed</span></code>, <code class="code docutils literal notranslate"><span class="pre">vars_for_template</span></code>, and <code class="code docutils literal notranslate"><span class="pre">before_next_page</span></code>. These methods are used to determine whether the page should be displayed, to prepare the data for the template, and to clean up after the participant has downloaded the certificate.
+The :is_displayed method checks whether the participant has chosen to receive a certificate by checking the <code class="code docutils literal notranslate"><span class="pre">nova_certificate_bin</span></code> field. If the participant has chosen to receive a certificate, the page is displayed - if not, the page is not displayed and participants are redirected to the <code class="code docutils literal notranslate"><span class="pre">LastPage</span></code> page. The <code class="code docutils literal notranslate"><span class="pre">vars_for_template</span></code> method prepares the data for the template, including function used to generate the PDF certificate and the path to the generated PDF file for download. The <code class="code docutils literal notranslate"><span class="pre">before_next_page</span></code> method is called before the participant is redirected to the next page, and it is used to clean up after the participant has downloaded the certificate. It deletes the generated PDF file and clears the <code class="code docutils literal notranslate"><span class="pre">nova_certificate_open</span></code> variable, which contains the name of the participant that was used to generate the certificate.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">ReceiveCert app init code</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@staticmethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">is_displayed</span><span class="p">(</span><span class="n">player</span><span class="p">:</span> <span class="n">Player</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">player</span><span class="o">.</span><span class="n">field_maybe_none</span><span class="p">(</span><span class="s1">&#39;nova_certificate_bin&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="n">player</span><span class="o">.</span><span class="n">nova_certificate_bin</span> <span class="o">==</span> <span class="mi">1</span>
+
+<span class="nd">@staticmethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">vars_for_template</span><span class="p">(</span><span class="n">player</span><span class="p">:</span> <span class="n">Player</span><span class="p">):</span>
+    <span class="n">generate_pdf</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">player</span><span class="o">.</span><span class="n">nova_certificate_open</span><span class="p">)</span>
+
+    <span class="n">file_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;/static/certificates/</span><span class="si">{</span><span class="n">player</span><span class="o">.</span><span class="n">participant</span><span class="o">.</span><span class="n">code</span><span class="si">}</span><span class="s1">_final_certificate.pdf&#39;</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;file_url&#39;</span><span class="p">:</span> <span class="n">file_url</span><span class="p">}</span>
+
+<span class="nd">@staticmethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">before_next_page</span><span class="p">(</span><span class="n">player</span><span class="p">:</span> <span class="n">Player</span><span class="p">,</span> <span class="n">timeout_happened</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">player</span><span class="o">.</span><span class="n">participant</span><span class="o">.</span><span class="n">is_browser_bot</span><span class="p">:</span>
+        <span class="c1"># delete the final PDF file</span>
+        <span class="n">final_pdf_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;_static/certificates/</span><span class="si">{</span><span class="n">player</span><span class="o">.</span><span class="n">participant</span><span class="o">.</span><span class="n">code</span><span class="si">}</span><span class="s1">_final_certificate.pdf&#39;</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">final_pdf_path</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">final_pdf_path</span><span class="p">)</span>
+        <span class="c1"># clear name variable</span>
+        <span class="n">player</span><span class="o">.</span><span class="n">nova_certificate_open</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</details><p>Let’s have a look at the code that generates the PDF certificate. The <code class="code docutils literal notranslate"><span class="pre">generate_pdf</span></code> function is responsible for creating the PDF file with the participant’s name. It uses the ReportLab library to create a new PDF file, sets the font and size, calculates the center position for the name, and draws the name on the PDF. After that, it merges the empty certificate PDF (that does not contain the name) with the newly created PDF that only contains the name, and saves the final PDF file. The function also deletes the temporary PDF file that was created with only the name after the final PDF has been created. As before, this ensures that no unnecessary files are left on the server and that the participant’s data is not stored longer than necessary.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">ReceiveCert PDF generation</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">generate_pdf</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="c1"># path to the certificate template PDF (without name)</span>
+    <span class="n">existing_pdf_path</span> <span class="o">=</span> <span class="s1">&#39;./_static/Urkunde.pdf&#39;</span>
+    <span class="c1"># path to the new PDF with only the name</span>
+    <span class="n">new_pdf_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;./_static/certificates/</span><span class="si">{</span><span class="n">player</span><span class="o">.</span><span class="n">participant</span><span class="o">.</span><span class="n">code</span><span class="si">}</span><span class="s1">_certificate.pdf&#39;</span>
+    <span class="c1"># path to the final PDF with the name merged into the template</span>
+    <span class="n">final_pdf_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;./_static/certificates/</span><span class="si">{</span><span class="n">player</span><span class="o">.</span><span class="n">participant</span><span class="o">.</span><span class="n">code</span><span class="si">}</span><span class="s1">_final_certificate.pdf&#39;</span>
+
+    <span class="c1"># Create a new PDF with the name</span>
+    <span class="n">page_width</span><span class="p">,</span> <span class="n">page_height</span> <span class="o">=</span> <span class="n">landscape</span><span class="p">((</span><span class="mf">29.70</span> <span class="o">*</span> <span class="n">cm</span><span class="p">,</span> <span class="mf">21.01</span> <span class="o">*</span> <span class="n">cm</span><span class="p">))</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">canvas</span><span class="o">.</span><span class="n">Canvas</span><span class="p">(</span><span class="n">new_pdf_path</span><span class="p">,</span> <span class="n">pagesize</span><span class="o">=</span><span class="p">(</span><span class="n">page_width</span><span class="p">,</span> <span class="n">page_height</span><span class="p">))</span>
+
+    <span class="c1"># Set the font and size</span>
+    <span class="n">font_size</span> <span class="o">=</span> <span class="mi">36</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s2">&quot;Times-Roman&quot;</span><span class="p">,</span> <span class="n">font_size</span><span class="p">)</span>
+
+    <span class="c1"># Calculate the center position</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">text_width</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">stringWidth</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="s2">&quot;Times-Roman&quot;</span><span class="p">,</span> <span class="n">font_size</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">page_width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">text_width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">page_height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">10</span>
+
+    <span class="c1"># Draw the text on the new PDF</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="c1"># Save the new PDF</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="c1"># Read the existing PDF</span>
+    <span class="n">existing_pdf</span> <span class="o">=</span> <span class="n">PdfReader</span><span class="p">(</span><span class="n">existing_pdf_path</span><span class="p">)</span>
+    <span class="n">new_pdf</span> <span class="o">=</span> <span class="n">PdfReader</span><span class="p">(</span><span class="n">new_pdf_path</span><span class="p">)</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">PdfWriter</span><span class="p">()</span>
+
+    <span class="c1"># Merge the new PDF with the existing one</span>
+    <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">existing_pdf</span><span class="o">.</span><span class="n">pages</span><span class="p">)):</span>
+        <span class="n">existing_page</span> <span class="o">=</span> <span class="n">existing_pdf</span><span class="o">.</span><span class="n">pages</span><span class="p">[</span><span class="n">page</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">page</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">new_page</span> <span class="o">=</span> <span class="n">new_pdf</span><span class="o">.</span><span class="n">pages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">existing_page</span><span class="o">.</span><span class="n">merge_page</span><span class="p">(</span><span class="n">new_page</span><span class="p">)</span>
+        <span class="n">output</span><span class="o">.</span><span class="n">add_page</span><span class="p">(</span><span class="n">existing_page</span><span class="p">)</span>
+
+    <span class="c1"># Write the final PDF to a file</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">final_pdf_path</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outputStream</span><span class="p">:</span>
+        <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">outputStream</span><span class="p">)</span>
+
+    <span class="c1"># Delete the new PDF after the final PDF has been created</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">new_pdf_path</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">new_pdf_path</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">final_pdf_path</span>
+</pre></div>
+</div>
+</div>
+</details><p>The HTML template of the <code class="code docutils literal notranslate"><span class="pre">ReceiveCert</span></code> page is quite simple. It includes a link to download the generated PDF certificate, which is displayed as a clickable link. The template also includes a stylesheet for styling the page and a header that informs the participant about the purpose of the page. The link to download the certificate is dynamically generated based on the file URL that was passed from the app init file.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">ReceiveCert HTML Template</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Laden Sie Ihre Urkunde herunter<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+Hier können Sie Ihre Urkunde herunterladen. <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;</span>--&gt; <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span> <span class="s">{{</span> <span class="na">file_url</span> <span class="err">}}</span> <span class="na">download</span><span class="p">&gt;&lt;</span><span class="nt">u</span><span class="p">&gt;</span>Klicken Sie hier, um Ihre Urkunde herunterzuladen<span class="p">&lt;/</span><span class="nt">u</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nt">--</span><span class="err">&lt;/</span><span class="na">b</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+Klicken Sie auf &quot;<span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;</span>Weiter<span class="p">&lt;/</span><span class="nt">b</span><span class="p">&gt;</span>&quot;, um fortzufahren.
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="the-lastpage-page">
+<h3>The LastPage page<a class="headerlink" href="#the-lastpage-page" title="Link to this heading"></a></h3>
+<p>The last page of the survey is the <code class="code docutils literal notranslate"><span class="pre">LastPage</span></code> page, which is displayed to all participants after they have completed the survey. The purpose of this page is to redirect participants to the Prime Panels website, where they can receive their payment for participating in the survey. The page includes a button that participants can click to be redirected to Prime Panels. The link for redirecting is defined in the <code class="code docutils literal notranslate"><span class="pre">FINAL_PP_URL</span></code> variable, which is used to construct the URL for redirecting participants to Prime Panels. Behind this link, the participant’s unique ID (label) is appended as a query parameter to ensure that the payment can be tracked and processed correctly. If the participant’s label is not available, the page will simply redirect to the default end page of the survey. The page also includes a thank-you message from the research team for participating in the study.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">LastPage app init code</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">LastPage</span><span class="p">(</span><span class="n">Page</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">FINAL_PP_URL</span> <span class="o">=</span> <span class="s1">&#39;https://app.cloudresearch.com/Router/End?aid=&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">is_redirected</span><span class="o">=</span><span class="kc">True</span>
+        <span class="c1"># if there is a participant.label then inject it to aid url query param and redirect to PrimePanels</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">participant</span><span class="o">.</span><span class="n">label</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">RedirectResponse</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">FINAL_PP_URL</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">participant</span><span class="o">.</span><span class="n">label</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">post</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">LastPage HTML Template</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{static &#39;Vignette.css&#39;}}&quot;</span><span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="w">    </span><span class="p">.</span><span class="nc">btn</span><span class="w"> </span><span class="p">{</span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">block</span><span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Ende der Umfrage<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-lg btn-success&quot;</span><span class="p">&gt;</span>
+     Klicken Sie hier, um Ihre Auszahlung zu erhalten
+ <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+    Wir bedanken uns ganz herzlich für die Teilnahme an dieser Studie!<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+    Klicken Sie bitte auf &quot;<span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;</span>Klicken Sie hier, um Ihre Auszahlung zu erhalten<span class="p">&lt;/</span><span class="nt">b</span><span class="p">&gt;</span>&quot;, um zurück zu Prime Panels zu gelangen.
+    <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;</span>Ihr Forschungsteam<span class="p">&lt;/</span><span class="nt">b</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+    Prof. Dr. Achim Goerres<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+    Dr. Philipp Chapkovski<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+    Jakob Eicheler<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+    Philipp Kemper
+</pre></div>
+</div>
+</div>
+</details><p>This is the end of the part of the documentation that describes the code of the oTree project. The last page of this documentation explains how this project can be deployed and hosted with Heroku, a platform that allows developers to build, run, and operate applications entirely in the cloud. That page provides a step-by-step guide on how to deploy this oTree project on Heroku, including the necessary configurations and commands to get the application up and running.</p>
+</section>
+</section>
+</section>
 
 
            </div>
