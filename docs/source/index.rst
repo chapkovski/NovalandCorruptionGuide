@@ -2,8 +2,8 @@
    sphinx-quickstart on Thu May 15 10:55:42 2025.
 
 
-Novaland Corruption Paper Documentation
-=======================================
+Documentation of the oTree project for the Novaland corruption experiment
+===========================================================================
 
 This is the documentation of the technical setup that was used to conduct the data collection for the paper **How the Experience of Public-Service Quality and Corruption Shapes Political Solidarity and Trust: Experimental Evidence from a Novel Virtual-State Approach**.
 The paper and this documentation was written by the team of Achim Goerres at the University of Duisburg-Essen as part of the ERC-funded project **POLITSOLID**. The project team members were: Prof. Dr. Achim Goerres, Dr. Philipp Chapkovski, Jakob Eicheler, and Philipp Kemper.
