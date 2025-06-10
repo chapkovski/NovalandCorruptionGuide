@@ -129,11 +129,11 @@ Heroku supports a variety of programming languages and provides an easy, fast, a
 without having to worry about infrastructure.</p>
 <p>To deploy the oTree project on Heroku, follow these steps:</p>
 <ol class="arabic">
-<li><p><strong>Create a Heroku account</strong>: If you don’t have a Heroku account, sign up for one at <code class="code docutils literal notranslate"><span class="pre">https://www.heroku.com/</span></code>.</p></li>
-<li><p><strong>Install the Heroku CLI</strong>: Download and install the Heroku Command Line Interface (CLI) from <code class="code docutils literal notranslate"><span class="pre">https://devcenter.heroku.com/articles/heroku-cli</span></code>.</p></li>
+<li><p><strong>Create a Heroku account</strong>: Visit the <a href="#id1"><span class="problematic" id="id2">`Heroku website&lt;https://www.heroku.com/&gt;`_</span></a> and sign in to your Heroku account. Create one if you don’t have an account yet.</p></li>
+<li><p><strong>Install the Heroku CLI</strong>: Download and <a class="reference external" href="https://devcenter.heroku.com/articles/heroku-cli">install the Heroku Command Line Interface (CLI)</a>.</p></li>
 <li><p><strong>Login to Heroku</strong>: Open your terminal and run the command <code class="code docutils literal notranslate"><span class="pre">heroku</span> <span class="pre">login</span></code> to log in to your Heroku account.</p></li>
 <li><p><strong>Create a new Heroku app</strong>: Run the command <code class="code docutils literal notranslate"><span class="pre">heroku</span> <span class="pre">create</span> <span class="pre">&lt;your-app-name&gt;</span></code> to create a new Heroku app. Replace <code class="code docutils literal notranslate"><span class="pre">&lt;your-app-name&gt;</span></code> with a unique name for your app.</p></li>
-<li><p><strong>Add the Heroku Postgres add-on</strong>: Run the command <code class="code docutils literal notranslate"><span class="pre">heroku</span> <span class="pre">addons:create</span> <span class="pre">heroku-postgresql:hobby-dev</span></code> to add a free Postgres database to your app.</p></li>
+<li><p><strong>Add the Heroku Postgres add-on</strong>: Go to the <cite>Resources</cite> tab in your app on Heroku and add a Postgres database to your app via the add-on.</p></li>
 <li><dl>
 <dt><strong>Configure environment variables</strong>: Set the necessary environment variables for your app by running the following commands:</dt><dd><div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>heroku config:set ADMIN_USERNAME=&lt;your-admin-username&gt;
 <span class="linenos">2</span>heroku config:set ADMIN_PASSWORD=&lt;your-admin-password&gt;

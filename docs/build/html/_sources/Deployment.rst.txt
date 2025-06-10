@@ -32,15 +32,15 @@ without having to worry about infrastructure.
 
 To deploy the oTree project on Heroku, follow these steps:
 
-1. **Create a Heroku account**: If you don't have a Heroku account, sign up for one at :code:`https://www.heroku.com/`.
+1. **Create a Heroku account**: Visit the `Heroku website<https://www.heroku.com/>`_ and sign in to your Heroku account. Create one if you don't have an account yet.
 
-2. **Install the Heroku CLI**: Download and install the Heroku Command Line Interface (CLI) from :code:`https://devcenter.heroku.com/articles/heroku-cli`.
+2. **Install the Heroku CLI**: Download and `install the Heroku Command Line Interface (CLI) <https://devcenter.heroku.com/articles/heroku-cli>`_.
 
 3. **Login to Heroku**: Open your terminal and run the command :code:`heroku login` to log in to your Heroku account.
 
 4. **Create a new Heroku app**: Run the command :code:`heroku create <your-app-name>` to create a new Heroku app. Replace :code:`<your-app-name>` with a unique name for your app.
 
-5. **Add the Heroku Postgres add-on**: Run the command :code:`heroku addons:create heroku-postgresql:hobby-dev` to add a free Postgres database to your app.
+5. **Add the Heroku Postgres add-on**: Go to the `Resources` tab in your app on Heroku and add a Postgres database to your app via the add-on.
 
 6. **Configure environment variables**: Set the necessary environment variables for your app by running the following commands:
     .. code-block:: text
