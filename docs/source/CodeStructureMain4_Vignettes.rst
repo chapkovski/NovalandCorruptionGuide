@@ -1,5 +1,8 @@
+.. _vignettes:
+
 The vignette pages
 ======================
+
 The vignette page is where the main experimental treatments take place: On this page, participants are presented with a vignette that describes a situation in which they try to access a service in Novaland.
 
 To have an overview on the code of the :code:`Vignette` page class, see the dropdown below. The code consists of several methods: First, the :code:`is_displayed` method is used to determine whether the page should be displayed to the participant. This is done by checking whether the current round number is in the list of :code:`VIGNETTE_ROUNDS` object defined in the :code:`C` class. The :code:`render_survey` method is used to render the survey content dynamically based on the current scenario and service level. The :code:`js_vars` method is used to convert the survey content to a JSON string for use in the template. The :code:`vars_for_template` method is used to define the variables that are passed to the template, such as the path to the vignette image and the vignette text. The :code:`get_form_fields` method is used to define the form fields (questions) that are displayed on the vignette page. The :code:`post` method is used to process the form data submitted by the participant, and finally, the :code:`before_next_page` method is used to check if a bribe was given by the participant.

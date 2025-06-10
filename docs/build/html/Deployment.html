@@ -21,7 +21,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="The Post-Experimental Questionnaire" href="CodeStructurePost.html" /> 
+    <link rel="prev" title="Part 4: The Post-Experimental Questionnaire" href="CodeStructurePost.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -46,9 +46,13 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="Novaland2Layout.html">The fictional country of Novaland</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ProjectStructure.html">Structure of the oTree project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CodeStructure.html">Functionality of the project code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureGlobalFiles.html">Part 0: Project-wide files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureIntro.html">Part 1: The Introduction App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureMain.html">Part 2: The Stay in Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureElection.html">Part 3: The Election in Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructurePost.html">Part 4: The Post-Experimental Questionnaire</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Deploying the oTree project</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#deploying-locally">Deploying locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deploying-locally-for-testing">Deploying locally for testing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#deploying-on-heroku">Deploying on Heroku</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#your-project-on-heroku">Your Project on Heroku</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#overview-of-your-app">Overview of your App:</a></li>
@@ -68,7 +72,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#papertrail">Papertrail</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sentry">Sentry</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#metrics">Metrics:</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#metrics">Metrics</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#how-to-read-and-interpret-the-metrics-of-your-heroku-app-to-optimize-and-improve-your-application">How to read and interpret the metrics of your Heroku app to optimize and improve your application.</a></li>
 </ul>
 </li>
@@ -102,9 +106,20 @@
              
   <section id="deploying-the-otree-project">
 <h1>Deploying the oTree project<a class="headerlink" href="#deploying-the-otree-project" title="Link to this heading"></a></h1>
-<section id="deploying-locally">
-<h2>Deploying locally<a class="headerlink" href="#deploying-locally" title="Link to this heading"></a></h2>
-<p>ö</p>
+<section id="deploying-locally-for-testing">
+<h2>Deploying locally for testing<a class="headerlink" href="#deploying-locally-for-testing" title="Link to this heading"></a></h2>
+<p>For testing purposes, you can deploy the oTree project locally on your computer. This allows you to run the project in a controlled environment and test its functionality before deploying it to a production server.
+To deploy the oTree project locally, follow these steps:</p>
+<ol class="arabic simple">
+<li><p>Install oTree on your local machine by following the instructions in the <a class="reference external" href="https://otree.readthedocs.io/en/latest/install.html">oTree documentation</a>.</p></li>
+<li><p>Clone the Novaland project repository from GitHub to your local machine.</p></li>
+<li><p>Navigate to the project directory in your terminal.</p></li>
+<li><p>Run the command <code class="code docutils literal notranslate"><span class="pre">otree</span> <span class="pre">devserver</span></code> to start the local server.</p></li>
+<li><p>Open your web browser and go to <code class="code docutils literal notranslate"><span class="pre">http://localhost:8000</span></code> to access the oTree project.</p></li>
+<li><p>You can now test the functionality of the project and make any necessary changes before deploying it to a production server.</p></li>
+</ol>
+<p>Deploying the oTree project to a production server is essential for making it accessible to participants and collecting data.
+To deploy the oTree project to a production server, you can use various hosting platforms such as Heroku, AWS, or DigitalOcean. In this documentation, we will focus on deploying the project on Heroku, which is a popular Platform-as-a-Service (PaaS) solution that simplifies the deployment process.</p>
 </section>
 <section id="deploying-on-heroku">
 <h2>Deploying on Heroku<a class="headerlink" href="#deploying-on-heroku" title="Link to this heading"></a></h2>
@@ -112,15 +127,38 @@
 in the cloud.
 Heroku supports a variety of programming languages and provides an easy, fast, and reliable way to deploy applications
 without having to worry about infrastructure.</p>
-<p>Open Heroku:</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li><p>Open your browser and go to <a class="reference external" href="https://www.heroku.com">Heroku</a></p></li>
-<li><p>Create an account or login to your account.</p></li>
-<li><p>Follow the steps to zip your Novaland project -&gt; data-collection-page</p></li>
-<li><p>Select your Novaland Project zip.</p></li>
+<p>To deploy the oTree project on Heroku, follow these steps:</p>
+<ol class="arabic">
+<li><p><strong>Create a Heroku account</strong>: If you don’t have a Heroku account, sign up for one at <code class="code docutils literal notranslate"><span class="pre">https://www.heroku.com/</span></code>.</p></li>
+<li><p><strong>Install the Heroku CLI</strong>: Download and install the Heroku Command Line Interface (CLI) from <code class="code docutils literal notranslate"><span class="pre">https://devcenter.heroku.com/articles/heroku-cli</span></code>.</p></li>
+<li><p><strong>Login to Heroku</strong>: Open your terminal and run the command <code class="code docutils literal notranslate"><span class="pre">heroku</span> <span class="pre">login</span></code> to log in to your Heroku account.</p></li>
+<li><p><strong>Create a new Heroku app</strong>: Run the command <code class="code docutils literal notranslate"><span class="pre">heroku</span> <span class="pre">create</span> <span class="pre">&lt;your-app-name&gt;</span></code> to create a new Heroku app. Replace <code class="code docutils literal notranslate"><span class="pre">&lt;your-app-name&gt;</span></code> with a unique name for your app.</p></li>
+<li><p><strong>Add the Heroku Postgres add-on</strong>: Run the command <code class="code docutils literal notranslate"><span class="pre">heroku</span> <span class="pre">addons:create</span> <span class="pre">heroku-postgresql:hobby-dev</span></code> to add a free Postgres database to your app.</p></li>
+<li><dl>
+<dt><strong>Configure environment variables</strong>: Set the necessary environment variables for your app by running the following commands:</dt><dd><div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>heroku config:set ADMIN_USERNAME=&lt;your-admin-username&gt;
+<span class="linenos">2</span>heroku config:set ADMIN_PASSWORD=&lt;your-admin-password&gt;
+<span class="linenos">3</span>heroku config:set SECRET_KEY=&lt;your-secret-key&gt;
+<span class="linenos">4</span>heroku config:set OTREE_PRODUCTION=True
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>Replace <code class="code docutils literal notranslate"><span class="pre">&lt;your-admin-username&gt;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&lt;your-admin-password&gt;</span></code>, and <code class="code docutils literal notranslate"><span class="pre">&lt;your-secret-key&gt;</span></code> with your desired values.</p>
+</li>
+<li><dl>
+<dt><strong>Push your code to Heroku</strong>: Make sure you have a Git repository set up for your oTree project. Then, run the following commands to push your code to Heroku:</dt><dd><div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>git add .
+<span class="linenos">2</span>git commit -m &quot;Deploy oTree project to Heroku&quot;
+<span class="linenos">3</span>git push heroku main
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><p><strong>Migrate the database</strong>: Run the command <code class="code docutils literal notranslate"><span class="pre">heroku</span> <span class="pre">run</span> <span class="pre">otree</span> <span class="pre">migrate</span></code> to apply any database migrations required by your oTree project.</p></li>
+<li><p><strong>Open your app</strong>: After the deployment is complete, you can open your app by running the command <code class="code docutils literal notranslate"><span class="pre">heroku</span> <span class="pre">open</span></code> or by visiting <code class="code docutils literal notranslate"><span class="pre">https://&lt;your-app-name&gt;.herokuapp.com</span></code> in your web browser.</p></li>
+<li><p><strong>Access the oTree admin interface</strong>: You can access the oTree admin interface by visiting <code class="code docutils literal notranslate"><span class="pre">https://&lt;your-app-name&gt;.herokuapp.com/admin</span></code> in your web browser. Use the admin username and password you set earlier to log in.</p></li>
 </ol>
-</div></blockquote>
+<p>After completing these steps, your oTree project will be deployed on Heroku and accessible to participants.</p>
 </section>
 <section id="your-project-on-heroku">
 <h2>Your Project on Heroku<a class="headerlink" href="#your-project-on-heroku" title="Link to this heading"></a></h2>
@@ -225,13 +263,14 @@ Using Papertrail, you can quickly and conveniently view all of your Heroku logs 
 This way, you can resolve any issues before they affect your users, ensuring that your applications run smoothly and efficiently.</p>
 </section>
 <section id="metrics">
-<h2>Metrics:<a class="headerlink" href="#metrics" title="Link to this heading"></a></h2>
+<h2>Metrics<a class="headerlink" href="#metrics" title="Link to this heading"></a></h2>
 <p>Metrics of an app on Heroku can provide valuable insights into the performance and state of your application.
 With this information, you can identify and resolve issues before they become serious problems for your users.</p>
 <section id="how-to-read-and-interpret-the-metrics-of-your-heroku-app-to-optimize-and-improve-your-application">
 <h3>How to read and interpret the metrics of your Heroku app to optimize and improve your application.<a class="headerlink" href="#how-to-read-and-interpret-the-metrics-of-your-heroku-app-to-optimize-and-improve-your-application" title="Link to this heading"></a></h3>
 <p>Overview of Metrics:
-Heroku offers a variety of metrics that you can access through the dashboard or the Command Line Interface (CLI). Some of the key metrics include:</p>
+Heroku offers a variety of metrics that you can access through the dashboard or the Command Line Interface (CLI).
+Some of the key metrics include:</p>
 <blockquote>
 <div><ol class="arabic simple">
 <li><p>Web and Worker Dyno Metrics: This metric indicates how many dynos are active for your web and worker tests.</p></li>
@@ -250,7 +289,7 @@ By regularly reviewing these metrics, you can identify and address any issues be
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="CodeStructurePost.html" class="btn btn-neutral float-left" title="The Post-Experimental Questionnaire" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="CodeStructurePost.html" class="btn btn-neutral float-left" title="Part 4: The Post-Experimental Questionnaire" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

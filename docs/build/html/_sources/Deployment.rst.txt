@@ -1,10 +1,26 @@
 Deploying the oTree project
 =====================================
 
-Deploying locally
+Deploying locally for testing
 ----------------------------------
 
-ö
+For testing purposes, you can deploy the oTree project locally on your computer. This allows you to run the project in a controlled environment and test its functionality before deploying it to a production server.
+To deploy the oTree project locally, follow these steps:
+
+1. Install oTree on your local machine by following the instructions in the `oTree documentation <https://otree.readthedocs.io/en/latest/install.html>`_.
+
+2. Clone the Novaland project repository from GitHub to your local machine.
+
+3. Navigate to the project directory in your terminal.
+
+4. Run the command :code:`otree devserver` to start the local server.
+
+5. Open your web browser and go to :code:`http://localhost:8000` to access the oTree project.
+
+6. You can now test the functionality of the project and make any necessary changes before deploying it to a production server.
+
+Deploying the oTree project to a production server is essential for making it accessible to participants and collecting data.
+To deploy the oTree project to a production server, you can use various hosting platforms such as Heroku, AWS, or DigitalOcean. In this documentation, we will focus on deploying the project on Heroku, which is a popular Platform-as-a-Service (PaaS) solution that simplifies the deployment process.
 
 Deploying on Heroku
 ----------------------------------
@@ -14,12 +30,44 @@ in the cloud.
 Heroku supports a variety of programming languages and provides an easy, fast, and reliable way to deploy applications
 without having to worry about infrastructure.
 
-Open Heroku:
+To deploy the oTree project on Heroku, follow these steps:
 
-    1. Open your browser and go to `Heroku <https://www.heroku.com>`_
-    2. Create an account or login to your account.
-    3. Follow the steps to zip your Novaland project -> data-collection-page
-    4. Select your Novaland Project zip.
+1. **Create a Heroku account**: If you don't have a Heroku account, sign up for one at :code:`https://www.heroku.com/`.
+
+2. **Install the Heroku CLI**: Download and install the Heroku Command Line Interface (CLI) from :code:`https://devcenter.heroku.com/articles/heroku-cli`.
+
+3. **Login to Heroku**: Open your terminal and run the command :code:`heroku login` to log in to your Heroku account.
+
+4. **Create a new Heroku app**: Run the command :code:`heroku create <your-app-name>` to create a new Heroku app. Replace :code:`<your-app-name>` with a unique name for your app.
+
+5. **Add the Heroku Postgres add-on**: Run the command :code:`heroku addons:create heroku-postgresql:hobby-dev` to add a free Postgres database to your app.
+
+6. **Configure environment variables**: Set the necessary environment variables for your app by running the following commands:
+    .. code-block:: text
+        :linenos:
+
+        heroku config:set ADMIN_USERNAME=<your-admin-username>
+        heroku config:set ADMIN_PASSWORD=<your-admin-password>
+        heroku config:set SECRET_KEY=<your-secret-key>
+        heroku config:set OTREE_PRODUCTION=True
+
+   Replace :code:`<your-admin-username>`, :code:`<your-admin-password>`, and :code:`<your-secret-key>` with your desired values.
+
+7. **Push your code to Heroku**: Make sure you have a Git repository set up for your oTree project. Then, run the following commands to push your code to Heroku:
+    .. code-block:: text
+        :linenos:
+
+        git add .
+        git commit -m "Deploy oTree project to Heroku"
+        git push heroku main
+
+8. **Migrate the database**: Run the command :code:`heroku run otree migrate` to apply any database migrations required by your oTree project.
+
+9. **Open your app**: After the deployment is complete, you can open your app by running the command :code:`heroku open` or by visiting :code:`https://<your-app-name>.herokuapp.com` in your web browser.
+
+10. **Access the oTree admin interface**: You can access the oTree admin interface by visiting :code:`https://<your-app-name>.herokuapp.com/admin` in your web browser. Use the admin username and password you set earlier to log in.
+
+After completing these steps, your oTree project will be deployed on Heroku and accessible to participants.
 
 Your Project on Heroku
 ----------------------
@@ -116,7 +164,7 @@ Sentry
 By integrating Sentry with Heroku, you can receive notifications about any errors or performance issues that occur within your Heroku-hosted applications.
 This way, you can resolve any issues before they affect your users, ensuring that your applications run smoothly and efficiently.
 
-Metrics:
+Metrics
 ----------------------
 Metrics of an app on Heroku can provide valuable insights into the performance and state of your application.
 With this information, you can identify and resolve issues before they become serious problems for your users.
@@ -125,7 +173,8 @@ How to read and interpret the metrics of your Heroku app to optimize and improve
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Overview of Metrics:
-Heroku offers a variety of metrics that you can access through the dashboard or the Command Line Interface (CLI). Some of the key metrics include:
+Heroku offers a variety of metrics that you can access through the dashboard or the Command Line Interface (CLI).
+Some of the key metrics include:
 
     1. Web and Worker Dyno Metrics: This metric indicates how many dynos are active for your web and worker tests.
     2. HTTP Requests: This metric indicates how many HTTP requests your application has processed.

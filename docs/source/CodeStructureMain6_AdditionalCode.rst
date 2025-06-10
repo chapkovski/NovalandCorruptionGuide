@@ -165,5 +165,3 @@ The content of the instructions window is saved in the :file:`main/instructions/
         });
     </script>
 
-On
-

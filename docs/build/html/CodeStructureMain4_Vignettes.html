@@ -45,7 +45,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="Novaland2Layout.html">The fictional country of Novaland - WIP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Novaland2Layout.html">The fictional country of Novaland</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ProjectStructure.html">Structure of the oTree project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CodeStructureGlobalFiles.html">Part 0: Project-wide files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CodeStructureIntro.html">Part 1: The Introduction App</a></li>
@@ -98,7 +98,7 @@
            <div itemprop="articleBody">
              
   <section id="the-vignette-pages">
-<h1>The vignette pages<a class="headerlink" href="#the-vignette-pages" title="Link to this heading"></a></h1>
+<span id="vignettes"></span><h1>The vignette pages<a class="headerlink" href="#the-vignette-pages" title="Link to this heading"></a></h1>
 <p>The vignette page is where the main experimental treatments take place: On this page, participants are presented with a vignette that describes a situation in which they try to access a service in Novaland.</p>
 <p>To have an overview on the code of the <code class="code docutils literal notranslate"><span class="pre">Vignette</span></code> page class, see the dropdown below. The code consists of several methods: First, the <code class="code docutils literal notranslate"><span class="pre">is_displayed</span></code> method is used to determine whether the page should be displayed to the participant. This is done by checking whether the current round number is in the list of <code class="code docutils literal notranslate"><span class="pre">VIGNETTE_ROUNDS</span></code> object defined in the <code class="code docutils literal notranslate"><span class="pre">C</span></code> class. The <code class="code docutils literal notranslate"><span class="pre">render_survey</span></code> method is used to render the survey content dynamically based on the current scenario and service level. The <code class="code docutils literal notranslate"><span class="pre">js_vars</span></code> method is used to convert the survey content to a JSON string for use in the template. The <code class="code docutils literal notranslate"><span class="pre">vars_for_template</span></code> method is used to define the variables that are passed to the template, such as the path to the vignette image and the vignette text. The <code class="code docutils literal notranslate"><span class="pre">get_form_fields</span></code> method is used to define the form fields (questions) that are displayed on the vignette page. The <code class="code docutils literal notranslate"><span class="pre">post</span></code> method is used to process the form data submitted by the participant, and finally, the <code class="code docutils literal notranslate"><span class="pre">before_next_page</span></code> method is used to check if a bribe was given by the participant.</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">

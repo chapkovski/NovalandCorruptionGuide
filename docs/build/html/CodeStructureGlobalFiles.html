@@ -52,6 +52,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#room">Room</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#session">Session</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#participant-redirection-to-sample-provider">Participant redirection to sample provider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#server-configuration">Server configuration</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#aesthetics-of-the-web-questionnaire">Aesthetics of the web questionnaire</a></li>
@@ -132,9 +133,21 @@
 </div>
 <p>There are more options defined in the <code class="file docutils literal notranslate"><span class="pre">settings.py</span></code>, but those are not relevant for conducting the data collection and are thus not explained here. For a complete overview of the settings, please refer to the <a class="reference external" href="https://otree.readthedocs.io/en/latest/index.html">official oTree documentation</a>.</p>
 </section>
+<section id="server-configuration">
+<h3>Server configuration<a class="headerlink" href="#server-configuration" title="Link to this heading"></a></h3>
+<p>There are several variables that are important to ensure that the oTree project can store the data on a server and runs securely.
+These variables are:</p>
+<ul class="simple">
+<li><p>ADMIN_USERNAME: The username of the admin user who can access the oTree admin interface.</p></li>
+<li><p>ADMIN_PASSWORD: The password of the admin user who can access the oTree admin interface.</p></li>
+<li><p>SECRET_KEY: A secret key used for cryptographic signing, which is important for the security of the project.</p></li>
+<li><p>DATABASE_URL: The URL of the database used to store the data collected from the questionnaire.</p></li>
+<li><p>OTREE_PRODUCTION: A boolean variable that indicates whether the project is running in production mode or not. This is important for ensuring that the project is secure and that sensitive data is not exposed. For conducting the data collection, this variable should be set to True.</p></li>
+</ul>
+</section>
 </section>
 <section id="aesthetics-of-the-web-questionnaire">
-<span id="html"></span><h2>Aesthetics of the web questionnaire<a class="headerlink" href="#aesthetics-of-the-web-questionnaire" title="Link to this heading"></a></h2>
+<h2>Aesthetics of the web questionnaire<a class="headerlink" href="#aesthetics-of-the-web-questionnaire" title="Link to this heading"></a></h2>
 <p>The aesthetics of the web questionnaire are defined in the <code class="file docutils literal notranslate"><span class="pre">_templates/global/Page.html</span></code> file. This file contains the HTML code that defines the overall layout and design of the questionnaire pages. It includes style elements such fonts, colors, and outlays used on each project. To ensure a consistent appearance of the questionnaire’s web pages, nearly all pages build on this template and only specify their content and functionality in their designated HTML files, of which one exist for each page of the questionnaire. The <code class="code docutils literal notranslate"><span class="pre">Page.html</span></code> file calls the <code class="file docutils literal notranslate"><span class="pre">_static/NovalandStyle.css</span></code> file, in which the appearance of certain visual parts of the questionnaire pages are defined. The CSS file includes styles for various elements such as buttons, text, and layout, ensuring a consistent look and feel across all pages of the questionnaire. We aimed to create a visually appealing and user-friendly minimalistic interface for the questionnaire.
 For more detail, please refer to the <a class="reference external" href="https://otree.readthedocs.io/en/latest/templates.html">official oTree documentation on HTML templates</a> section of this documentation.</p>
 </section>
