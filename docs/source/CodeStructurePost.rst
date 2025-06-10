@@ -161,7 +161,8 @@ In the __init__.py file of the :code:`post` app, we define the **PostSurvey** cl
 
 Now that the PostSurvey page is defined, we will have a look at the **HTML template** that is used to render the survey. The template includes the necessary JavaScript and CSS files to render the survey dynamically. It also includes a hidden input field to store the survey results, which will be submitted when the survey is completed.
 
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+On the HTML template, the PostSurvey page uses the SurveyJS library to render the survey dynamically. The survey definition is loaded from a separate JavaScript file, which contains the survey questions and their properties. The template also includes a progress bar that shows the progress of the survey as participants answer the questions. The progress bar is updated in real-time as participants navigate through the survey pages. The template is more complex than the previous pages, as it includes JavaScript code to handle the survey rendering, data submission, and progress bar updates. The JavaScript code is responsible for initializing the SurveyJS model, loading the survey data from the local storage of participants' browsers, and handling the survey completion event.
+Overall, the template handles the rendering of the data. The content of the survey is defined in the :code:`survey_definition.js` file, which is loaded into the template. The survey definition includes the questions, their types, and other properties. Thus, it is not necessary to understand the details of HTML and Javascript code in order to understand how the PostSurvey page works. Thus, the code following code from the :code:` PostSurvey` template will not be explained in detail. We annotated the functionality of the most important parts of the code below.
 
 .. dropdown:: PostSurvey HTML Template
    :icon: terminal
