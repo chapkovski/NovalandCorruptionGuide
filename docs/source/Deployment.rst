@@ -116,7 +116,7 @@ Sentry
 By integrating Sentry with Heroku, you can receive notifications about any errors or performance issues that occur within your Heroku-hosted applications.
 This way, you can resolve any issues before they affect your users, ensuring that your applications run smoothly and efficiently.
 
-Metrics:
+Metrics
 ----------------------
 Metrics of an app on Heroku can provide valuable insights into the performance and state of your application.
 With this information, you can identify and resolve issues before they become serious problems for your users.
@@ -125,7 +125,8 @@ How to read and interpret the metrics of your Heroku app to optimize and improve
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Overview of Metrics:
-Heroku offers a variety of metrics that you can access through the dashboard or the Command Line Interface (CLI). Some of the key metrics include:
+Heroku offers a variety of metrics that you can access through the dashboard or the Command Line Interface (CLI).
+Some of the key metrics include:
 
     1. Web and Worker Dyno Metrics: This metric indicates how many dynos are active for your web and worker tests.
     2. HTTP Requests: This metric indicates how many HTTP requests your application has processed.

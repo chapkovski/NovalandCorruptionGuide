@@ -56,7 +56,15 @@ The participants of our study were recruited from the sample provider Prolific. 
 
 There are more options defined in the :file:`settings.py`, but those are not relevant for conducting the data collection and are thus not explained here. For a complete overview of the settings, please refer to the `official oTree documentation <https://otree.readthedocs.io/en/latest/index.html>`_.
 
-.. _html:
+Server configuration
+^^^^^^^^^^^^^^^^^^^^^^
+There are several variables that are important to ensure that the oTree project can store the data on a server and runs securely.
+These variables are:
+    - ADMIN_USERNAME: The username of the admin user who can access the oTree admin interface.
+    - ADMIN_PASSWORD: The password of the admin user who can access the oTree admin interface.
+    - SECRET_KEY: A secret key used for cryptographic signing, which is important for the security of the project.
+    - DATABASE_URL: The URL of the database used to store the data collected from the questionnaire.
+    - OTREE_PRODUCTION: A boolean variable that indicates whether the project is running in production mode or not. This is important for ensuring that the project is secure and that sensitive data is not exposed. For conducting the data collection, this variable should be set to True.
 
 Aesthetics of the web questionnaire
 ---------------------------------------------
