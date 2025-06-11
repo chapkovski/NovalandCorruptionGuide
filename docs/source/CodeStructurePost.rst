@@ -169,6 +169,7 @@ Overall, the template handles the rendering of the data. The content of the surv
 
    .. code-block:: html
 
+        // The first section loads the necessary JavaScript libraries and stylesheets for SurveyJS
         <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.6.4/showdown.min.js"></script>
         <link rel="stylesheet" href="{{static 'surveyjs/defaultV2.min.css'}}"/>
         <link rel="stylesheet" href="{{static 'Vignette.css'}}"/>
@@ -178,6 +179,7 @@ Overall, the template handles the rendering of the data. The content of the surv
         <script src="{{static 'surveyjs/index.min.js'}}"></script>
         <script src="{% static 'surveyjs/survey_definition.js' %}"></script>
 
+        // The second section defines the SurveyJS model and handles the survey rendering and data submission
         <input type="hidden" id="surveyResults" name="surveyResults">
         <div class="content-box">
 
@@ -190,7 +192,7 @@ Overall, the template handles the rendering of the data. The content of the surv
                 // Flag to ensure restoration happens only once
                 let isRestored = false;
 
-                // Function to check if localStorage is available
+                // Function to check if localStorage is available (ensuring that the browser supports the dynamic questionnaire)
                 function isLocalStorageAvailable() {
                     try {
                         const testKey = '__test__';
@@ -202,7 +204,7 @@ Overall, the template handles the rendering of the data. The content of the surv
                     }
                 }
 
-                // Function to save survey data and current page to localStorage
+                // Function to save survey data and current page to localStorage (participants' browsers)
                 function saveSurveyData(surveyData, currentPageName) {
                     if (!isLocalStorageAvailable()) {
                         console.warn("LocalStorage is not available. Data will not be saved.");
@@ -253,7 +255,7 @@ Overall, the template handles the rendering of the data. The content of the surv
                     };
                 }
 
-                // Function to restore the survey to the saved page
+                // Function to restore the current page of the survey from localStorage
                 function restoreCurrentPage(savedPageName) {
                     if (savedPageName) {
                         const page = survey.getPageByName(savedPageName);
@@ -267,13 +269,13 @@ Overall, the template handles the rendering of the data. The content of the surv
                     }
                 }
 
-                // Instantiate Showdown for Markdown processing
+                // Instantiate Showdown for Markdown processing for SurveyJS
                 const converter = new showdown.Converter();
 
                 // Initialize SurveyJS with loaded data
                 const survey = new Survey.Model(surveyJSON); // Ensure surveyJSON is correctly defined
-                survey.locale = "de";
-                survey.applyTheme(SurveyTheme.BorderlessLight);
+                survey.locale = "de"; // Set the locale to German
+                survey.applyTheme(SurveyTheme.BorderlessLight); // Apply a theme to the survey
 
                 // Load existing survey data and current page
                 const savedSurvey = loadSurveyData();
@@ -289,9 +291,11 @@ Overall, the template handles the rendering of the data. The content of the surv
                     liveSend(sender.data);
                     saveSurveyData(sender.data, survey.currentPage.name);
                 });
+
                 // Initialize variables to store initial progress and increment
                 let initialPercentage = null;
                 let perPageIncrement = null;
+
                 // Listen to page changes and save the current page name
                 survey.onCurrentPageChanged.add((sender, options) => {
                     const newCurrentPage = sender.currentPage;
@@ -302,7 +306,8 @@ Overall, the template handles the rendering of the data. The content of the surv
                     // Save the survey data along with the new page name
                     saveSurveyData(sender.data, newCurrentPage.name);
 
-                    // Initialize initialPercentage and perPageIncrement on the first page change
+                    // Update the progress bar based on the current page index
+                    // If this is the first time we're updating the progress bar, capture the initial percentage and calculate the per-page increment
                     if (initialPercentage === null) {
                         // Capture the initial progress bar percentage
                         initialPercentage = parseInt($('.progress-bar').attr('aria-valuenow'), 10) || 0;
@@ -339,7 +344,9 @@ Overall, the template handles the rendering of the data. The content of the surv
 
                     console.debug(`Progress updated to ${newPercentage}%`);
                 });
+
                 // Handle survey completion
+                // Convert survey data to JSON and store it in a hidden input field
                 survey.onComplete.add((sender, options) => {
                     const surveyResultsString = JSON.stringify(sender.data);
 
@@ -347,17 +354,15 @@ Overall, the template handles the rendering of the data. The content of the surv
                     const hiddenInput = document.getElementById('surveyResults');
                     hiddenInput.value = surveyResultsString;
 
-                    // Optionally, send the data to your server here
-
-                    // Clear the stored data
+                    // Clear the stored data from localStorage
                     localStorage.removeItem(SURVEY_STORAGE_KEY);
                     console.log("Survey data cleared from localStorage.");
 
-                    // Submit the form
+                    // Submit the form. This will trigger the post method in the PostSurvey class
                     $('#form').submit();
                 });
 
-                // Handle Markdown conversion
+                // Handle Markdown conversion. Required for rendering Markdown in survey questions
                 survey.onTextMarkdown.add(function (survey, options) {
                     // Convert Markdown to HTML
                     let str = converter.makeHtml(options.text);
@@ -368,7 +373,8 @@ Overall, the template handles the rendering of the data. The content of the surv
                     options.html = str;
                 });
                 survey.currentPage = survey.getPageByName(savedSurvey.currentPage);
-                // Render the survey and restore the current page if available
+
+                // Render the survey and restore the current page if available. Required to ensure that the survey is displayed correctly.
                 $("#surveyElement").Survey({
                     model: survey,
 

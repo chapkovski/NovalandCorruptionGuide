@@ -14,7 +14,16 @@ The entire project was written and programmed using oTree.
 oTree  provides a framework for building and running online experiments, allowing researchers to easily create custom games and surveys, manage participants, and collect and analyze data.
 An oTree project consists of a set of components, such as Python scripts and HTML templates, which work together to define the structure and behavior of the experiment.
 
-The goal of this documentation is to provide a comprehensive overview of the technical setup and implementation of the Novaland experiment, including the file structure, code functionality, and data collection process.
+The goal of this documentation is to provide a comprehensive overview of the technical setup and implementation of the Novaland experiment, including the file structure, code functionality, and data collection process. Please note that long code snippets are hidden in dropdown boxes. Click on them to see the code:
+
+.. dropdown:: Example dropdown code box
+   :icon: terminal
+
+   .. code-block:: python
+
+      Hello there.
+
+For information about the functionality of oTree beyond this project documentation, please refer to the `official oTree documentation <https://otree.readthedocs.io/en/latest/index.html>`_.
 
 This documentation is structured as follows:
 
@@ -22,7 +31,6 @@ This documentation is structured as follows:
 * :doc:`The second page <ProjectStructure>` provides an overview of the structure and functionality of the oTree project's folders and files
 * The following pages, titled 'PartX ...' go into detail about which parts of the code produce certain parts of the online questionnaire and experimental treatments.
 * The last page of this documentation step away from the oTree project's code and explains how the project was :doc:`hosted <Deployment>` on a server.
-
 
 Contents
 -----------------------------------------
