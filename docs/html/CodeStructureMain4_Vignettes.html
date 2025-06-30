@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>The vignette pages &#8212; NovalandCorruptionGuide 2025 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <script src="_static/documentation_options.js?v=cb975c41"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The pollster pages" href="CodeStructureMain5_Pollster.html" />
+    <link rel="prev" title="The newspaper quiz pages" href="CodeStructureMain3_Quiz.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="the-vignette-pages">
+<span id="vignettes"></span><h1>The vignette pages<a class="headerlink" href="#the-vignette-pages" title="Link to this heading">¶</a></h1>
+<p>The vignette page is where the main experimental treatments take place: On this page, participants are presented with a vignette that describes a situation in which they try to access a service in Novaland.</p>
+<p>To have an overview on the code of the <code class="code docutils literal notranslate"><span class="pre">Vignette</span></code> page class, see the dropdown below. The code consists of several methods: First, the <code class="code docutils literal notranslate"><span class="pre">is_displayed</span></code> method is used to determine whether the page should be displayed to the participant. This is done by checking whether the current round number is in the list of <code class="code docutils literal notranslate"><span class="pre">VIGNETTE_ROUNDS</span></code> object defined in the <code class="code docutils literal notranslate"><span class="pre">C</span></code> class. The <code class="code docutils literal notranslate"><span class="pre">render_survey</span></code> method is used to render the survey content dynamically based on the current scenario and service level. The <code class="code docutils literal notranslate"><span class="pre">js_vars</span></code> method is used to convert the survey content to a JSON string for use in the template. The <code class="code docutils literal notranslate"><span class="pre">vars_for_template</span></code> method is used to define the variables that are passed to the template, such as the path to the vignette image and the vignette text. The <code class="code docutils literal notranslate"><span class="pre">get_form_fields</span></code> method is used to define the form fields (questions) that are displayed on the vignette page. The <code class="code docutils literal notranslate"><span class="pre">post</span></code> method is used to process the form data submitted by the participant, and finally, the <code class="code docutils literal notranslate"><span class="pre">before_next_page</span></code> method is used to check if a bribe was given by the participant.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">The Vignette Page Class</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Vignette</span><span class="p">(</span><span class="n">Page</span><span class="p">):</span>
+    <span class="c1"># Define that this page is displayed only in the vignette rounds</span>
+    <span class="k">def</span> <span class="nf">is_displayed</span><span class="p">(</span><span class="n">player</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">player</span><span class="o">.</span><span class="n">round_number</span> <span class="ow">in</span> <span class="n">C</span><span class="o">.</span><span class="n">VIGNETTE_ROUNDS</span>
+
+    <span class="c1"># This method is used to render the survey content dynamically based on the current scenario and service level</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">render_survey</span><span class="p">(</span><span class="n">player</span><span class="p">:</span> <span class="n">Player</span><span class="p">):</span>
+        <span class="n">corrupt_ending</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">CORRUPT_ENDINGS</span><span class="p">[</span><span class="n">player</span><span class="o">.</span><span class="n">current_scenario</span><span class="p">]</span> <span class="c1"># get the text for the corrupt ending for the current scenario from the yaml file defined in the C class</span>
+        <span class="n">is_non_state_scenario</span> <span class="o">=</span> <span class="n">player</span><span class="o">.</span><span class="n">current_scenario</span> <span class="o">==</span> <span class="s1">&#39;handyman&#39;</span> <span class="c1"># check if the current scenario is a non-state scenario (handyman)</span>
+        <span class="n">is_corrupt</span> <span class="o">=</span> <span class="n">player</span><span class="o">.</span><span class="n">service_level</span> <span class="o">==</span> <span class="s1">&#39;corr&#39;</span> <span class="c1"># check if the service level is corrupt</span>
+        <span class="n">profession_1</span><span class="p">,</span> <span class="n">profession_2</span> <span class="o">=</span> <span class="n">mitarbeiterin_correspondence</span><span class="p">[</span><span class="n">player</span><span class="o">.</span><span class="n">current_scenario</span><span class="p">]</span> <span class="c1"># contains the strings used when the officials are addressed in the vignette text</span>
+        <span class="c1"># Render the YAML template with the variables defined above to create the survey content</span>
+        <span class="n">variables</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">is_non_state_scenario</span><span class="o">=</span><span class="n">is_non_state_scenario</span><span class="p">,</span>
+                         <span class="n">corrupt_ending</span><span class="o">=</span><span class="n">corrupt_ending</span><span class="p">,</span>
+                         <span class="n">is_corrupt</span><span class="o">=</span><span class="n">is_corrupt</span><span class="p">,</span>
+                         <span class="n">income</span><span class="o">=</span><span class="n">C</span><span class="o">.</span><span class="n">AVERAGE_NOVA_INCOME</span><span class="p">,</span>
+                         <span class="n">profession_1</span><span class="o">=</span><span class="n">profession_1</span><span class="p">,</span>
+                         <span class="n">profession_2</span><span class="o">=</span><span class="n">profession_2</span><span class="p">)</span>
+        <span class="c1"># Use the yaml_template defined in the C class to store the vignette questions for rendering</span>
+        <span class="n">rendered_yaml</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">yaml_template</span><span class="p">)</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">variables</span><span class="p">)</span>
+        <span class="c1"># Convert the rendered YAML content to a Python object</span>
+        <span class="n">yaml_content</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">rendered_yaml</span><span class="p">)</span>
+        <span class="c1"># Convert the Python object to a JSON string for use in the template</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">yaml_content</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+    <span class="c1"># Converting the Python object to a JSON string</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">js_vars</span><span class="p">(</span><span class="n">player</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">survey</span><span class="o">=</span><span class="n">Vignette</span><span class="o">.</span><span class="n">render_survey</span><span class="p">(</span><span class="n">player</span><span class="p">)</span> <span class="c1"># call the render_survey on the Vignette page class to get the survey content as a JSON string</span>
+        <span class="p">)</span>
+    <span class="c1"># This method is used to dynamically render the the picture and the texts for the vignette page</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">vars_for_template</span><span class="p">(</span><span class="n">player</span><span class="p">:</span> <span class="n">Player</span><span class="p">):</span> <span class="c1"># this method is used to define the variables that are passed to the template</span>
+        <span class="n">path_to_image</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">player</span><span class="o">.</span><span class="n">round_number</span> <span class="ow">in</span> <span class="n">C</span><span class="o">.</span><span class="n">VIGNETTE_ROUNDS</span><span class="p">:</span>
+            <span class="n">img</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">player</span><span class="o">.</span><span class="n">current_scenario</span><span class="si">}</span><span class="s1">&#39;</span> <span class="c1"># e.g. &#39;doctor&#39;, &#39;handyman&#39;, &#39;kindergarten&#39;, &#39;passport&#39;</span>
+            <span class="n">path_to_image</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;images/vignettes/</span><span class="si">{</span><span class="n">img</span><span class="si">}</span><span class="s1">.jpg&#39;</span> <span class="c1"># e.g. &#39;images/vignettes/doctor.jpg&#39;</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;path_to_image&#39;</span><span class="p">:</span> <span class="n">path_to_image</span><span class="p">,</span> <span class="c1"># e.g. &#39;images/vignettes/doctor.jpg&#39;</span>
+            <span class="s1">&#39;img&#39;</span><span class="p">:</span> <span class="n">img</span><span class="p">,</span> <span class="c1"># e.g. &#39;doctor&#39;</span>
+            <span class="s1">&#39;vignette&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;main/vignettes/</span><span class="si">{</span><span class="n">player</span><span class="o">.</span><span class="n">current_scenario</span><span class="si">}</span><span class="s1">.html&#39;</span><span class="p">,</span> <span class="c1"># e.g. &#39;main/vignettes/doctor.html&#39;</span>
+            <span class="s1">&#39;outcome&#39;</span><span class="p">:</span> <span class="n">player</span><span class="o">.</span><span class="n">service_level</span><span class="p">,</span> <span class="c1"># &#39;pos&#39;, &#39;neg&#39; or &#39;corr&#39;</span>
+            <span class="s1">&#39;vignette_header&#39;</span><span class="p">:</span> <span class="n">C</span><span class="o">.</span><span class="n">scenario_headers</span><span class="p">[</span><span class="n">player</span><span class="o">.</span><span class="n">round_number</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="c1"># day of the week, e.g. &#39;Dienstag&#39;</span>
+        <span class="p">}</span>
+    <span class="c1"># This method is used to define the form fields (questions) that are displayed on the vignette page</span>
+    <span class="c1"># Only used for browser bots (testing purposes)</span>
+    <span class="k">def</span> <span class="nf">get_form_fields</span><span class="p">(</span><span class="n">player</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">player</span><span class="o">.</span><span class="n">participant</span><span class="o">.</span><span class="n">is_browser_bot</span><span class="p">:</span> <span class="c1"># if the participant is a browser bot</span>
+            <span class="k">if</span> <span class="n">player</span><span class="o">.</span><span class="n">current_scenario</span> <span class="o">==</span> <span class="s1">&#39;handyman&#39;</span><span class="p">:</span> <span class="c1"># if the scenario is &#39;handyman&#39; (non-state scenario)</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;satisfaction_service&quot;</span><span class="p">]</span> <span class="c1"># ask about satisfaction with the service, but not about government spending</span>
+            <span class="k">else</span><span class="p">:</span> <span class="c1"># if the scenario is a state scenario (doctor, kindergarten, passport)</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;satisfaction_service&quot;</span><span class="p">,</span> <span class="s2">&quot;gov_spending&quot;</span><span class="p">]</span> <span class="c1"># ask about satisfaction with the service and government spending</span>
+            <span class="k">if</span> <span class="n">player</span><span class="o">.</span><span class="n">service_level</span> <span class="o">==</span> <span class="s1">&#39;corr&#39;</span><span class="p">:</span> <span class="c1"># if the service level is corrupt</span>
+                <span class="k">return</span> <span class="p">[</span><span class="o">*</span><span class="n">r</span><span class="p">,</span> <span class="s2">&quot;corruption_bin&quot;</span><span class="p">,</span> <span class="s2">&quot;corruption_behavior_others&quot;</span><span class="p">]</span> <span class="c1"># also ask about corruption</span>
+            <span class="k">return</span> <span class="n">r</span>
+
+    <span class="n">form_model</span> <span class="o">=</span> <span class="s1">&#39;player&#39;</span> <span class="c1"># the model that is used to store the form data (where the models are defined in the Player class)</span>
+
+    <span class="c1"># The post method is used to dynamically process the form data submitted by the participant</span>
+    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># this method is called when the participant submits the form</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">participant</span><span class="o">.</span><span class="n">is_browser_bot</span><span class="p">:</span> <span class="c1"># if the participant is a browser bot (testing purposes)</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">post</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">survey_results</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_form_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;surveyResults&#39;</span><span class="p">))</span> <span class="c1">#</span>
+            <span class="c1"># loop over survey_results and save them to the player object if this attr exist</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">survey_results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">vignette_correspondence</span><span class="p">[</span><span class="n">key</span><span class="p">](</span><span class="n">value</span><span class="p">)</span>
+                    <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;no such field </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">; error: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ERROR: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">: post data: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_form_data</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="c1"># error handling for debugging purposes</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">post</span><span class="p">()</span>
+    <span class="c1"># this method is called when the participant submits the page</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">before_next_page</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">timeout_happened</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">player</span><span class="o">.</span><span class="n">bribe_is_given</span> <span class="o">=</span> <span class="n">player</span><span class="o">.</span><span class="n">field_maybe_none</span><span class="p">(</span><span class="s1">&#39;corruption_bin&#39;</span><span class="p">)</span> <span class="c1"># check if the player has given a bribe</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ERROR: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="c1"># error handling for debugging purposes</span>
+</pre></div>
+</div>
+</div>
+</details><p>Additionally, the code for the vignette page is implemented in the HTML file <code class="code docutils literal notranslate"><span class="pre">main/vignettes/vignette.html</span></code>. This file contains the HTML structure and design of the vignette page, including the links to the SurveyJS library for rendering the survey, the CSS for styling the survey, and the JavaScript for handling the survey functionality. The HTML file also includes the dynamic rendering of the vignette text and image based on the current scenario and service level. Below is a simplified version of the code in this HTML file:</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg></span><span class="sd-summary-text">Vignette HTML File</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>[...]
+
+<span class="cm">&lt;!-- Link to the SurveyJS CSS file for styling the survey --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{static &#39;surveyjs/defaultV2.min.css&#39;}}&quot;</span><span class="p">/&gt;</span>
+
+<span class="cm">&lt;!-- Link to the SurveyJS JavaScript file for survey functionality styling --&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;{{static &#39;surveyjs/survey.jquery.min.js&#39;}}&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+<span class="cm">&lt;!-- Link to the SurveyJS index file for additional functionality --&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;{{static &#39;surveyjs/index.min.js&#39;}}&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+<span class="cm">&lt;!-- Custom CSS for styling the vignette page (not important for the functionality, but only for the design) --&gt;</span>
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="w">    </span><span class="o">[...]</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+
+<span class="cm">&lt;!-- Hidden input field to store the survey results before submitting the form --&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;hidden&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;surveyResults&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;surveyResults&quot;</span><span class="p">&gt;</span>
+
+<span class="cm">&lt;!-- The main content of the vignette page --&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;content-box&quot;</span><span class="p">&gt;</span>
+    <span class="cm">&lt;!-- Display the header with the day of the week and the day count--&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>{{ vignette_header }}. Tag {{ player.round_number }} von {{ C.NUM_DAYS }}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+    <span class="cm">&lt;!-- Display the vignette image --&gt;</span>
+    {{ if img}}
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;text-center lead m-3 border-1&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">img</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;img-fluid img-thumbnail&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;{{static path_to_image}}&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot; {{img}}&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;300&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    {{ endif }}
+
+    <span class="cm">&lt;!-- Display the vignette text --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;text-image-container&quot;</span><span class="p">&gt;</span>
+        {{ include vignette }}
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+    <span class="cm">&lt;!-- Create an empty form to submit the survey results after the function below is executed --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;surveyElement&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;surveyData&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+    <span class="cm">&lt;!-- Use SurveyJS to create the survey dynamically --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="c">&lt;!--</span><span class="w"> </span><span class="nx">This</span><span class="w"> </span><span class="nx">script</span><span class="w"> </span><span class="nx">initializes</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">SurveyJS</span><span class="w"> </span><span class="nx">survey</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="nx">defined</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">js_vars</span><span class="p">.</span><span class="nx">survey</span><span class="w"> </span><span class="nx">variable</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">init</span><span class="w"> </span><span class="nx">file</span><span class="w"> </span><span class="o">--&gt;</span>
+<span class="w">        </span><span class="c">&lt;!--</span><span class="w"> </span><span class="nx">Ensure</span><span class="w"> </span><span class="nx">that</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">SurveyJS</span><span class="w"> </span><span class="nx">library</span><span class="w"> </span><span class="nx">is</span><span class="w"> </span><span class="nx">loaded</span><span class="w"> </span><span class="nx">before</span><span class="w"> </span><span class="nx">executing</span><span class="w"> </span><span class="k">this</span><span class="w"> </span><span class="nx">script</span><span class="w"> </span><span class="o">--&gt;</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">js_vars</span><span class="p">.</span><span class="nx">survey</span><span class="p">;</span>
+<span class="w">        </span><span class="c">&lt;!--</span><span class="w"> </span><span class="nx">Parse</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nb">JSON</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="nx">into</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">JavaScript</span><span class="w"> </span><span class="nx">object</span><span class="w"> </span><span class="o">--&gt;</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">survey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Survey</span><span class="p">.</span><span class="nx">Model</span><span class="p">(</span><span class="nx">json</span><span class="p">);</span>
+<span class="w">        </span><span class="c">&lt;!--</span><span class="w"> </span><span class="nb">Set</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">survey</span><span class="w"> </span><span class="nx">properties</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">SurveyJS</span><span class="o">--&gt;</span>
+<span class="w">        </span><span class="nx">survey</span><span class="p">.</span><span class="nx">locale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;de&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="c">&lt;!--</span><span class="w"> </span><span class="nb">Set</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">survey</span><span class="w"> </span><span class="nx">theme</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">BorderlessLight</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">clean</span><span class="w"> </span><span class="nx">design</span><span class="w"> </span><span class="p">(</span><span class="kr">from</span><span class="w"> </span><span class="nx">SurveyJS</span><span class="p">)</span><span class="w"> </span><span class="o">--&gt;</span>
+<span class="w">        </span><span class="nx">survey</span><span class="p">.</span><span class="nx">applyTheme</span><span class="p">(</span><span class="nx">SurveyTheme</span><span class="p">.</span><span class="nx">BorderlessLight</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c">&lt;!--</span><span class="w"> </span><span class="nx">Define</span><span class="w"> </span><span class="nx">all</span><span class="w"> </span><span class="nx">questions</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">mandatory</span><span class="w"> </span><span class="o">--&gt;</span>
+<span class="w">        </span><span class="nx">survey</span><span class="p">.</span><span class="nx">onQuestionAdded</span><span class="p">.</span><span class="nx">add</span><span class="p">((</span><span class="nx">sender</span><span class="p">,</span><span class="w"> </span><span class="nx">options</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">options</span><span class="p">.</span><span class="nx">question</span><span class="p">.</span><span class="nx">isRequired</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">        </span><span class="c">&lt;!--</span><span class="w"> </span><span class="nx">Convert</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">survey</span><span class="w"> </span><span class="nx">results</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nb">JSON</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="nx">when</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">survey</span><span class="w"> </span><span class="nx">is</span><span class="w"> </span><span class="nx">completed</span><span class="w"> </span><span class="o">--&gt;</span>
+<span class="w">        </span><span class="nx">survey</span><span class="p">.</span><span class="nx">onComplete</span><span class="p">.</span><span class="nx">add</span><span class="p">((</span><span class="nx">sender</span><span class="p">,</span><span class="w"> </span><span class="nx">options</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">surveyResultsString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">sender</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+
+<span class="w">            </span><span class="c">&lt;!--</span><span class="w"> </span><span class="nx">Find</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">hidden</span><span class="w"> </span><span class="nx">input</span><span class="w"> </span><span class="nx">field</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="nx">above</span><span class="w"> </span><span class="nx">by</span><span class="w"> </span><span class="nx">its</span><span class="w"> </span><span class="nx">ID</span><span class="w"> </span><span class="o">--&gt;</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">hiddenInput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;surveyResults&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="c">&lt;!--</span><span class="w"> </span><span class="nb">Set</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">hidden</span><span class="w"> </span><span class="nx">input</span><span class="w"> </span><span class="nx">field</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">survey</span><span class="w"> </span><span class="nx">results</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="o">--&gt;</span>
+<span class="w">            </span><span class="nx">hiddenInput</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">surveyResultsString</span><span class="p">;</span>
+<span class="w">            </span><span class="c">&lt;!--</span><span class="w"> </span><span class="nx">Submit</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">form</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">send</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">survey</span><span class="w"> </span><span class="nx">results</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">server</span><span class="w"> </span><span class="p">(</span><span class="nx">making</span><span class="w"> </span><span class="nx">it</span><span class="w"> </span><span class="nx">available</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">init</span><span class="w"> </span><span class="nx">file</span><span class="w"> </span><span class="o">--&gt;</span>
+<span class="w">            </span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#form&#39;</span><span class="p">).</span><span class="nx">submit</span><span class="p">();</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">        </span><span class="c">&lt;!--</span><span class="w"> </span><span class="nx">Initialize</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">SurveyJS</span><span class="w"> </span><span class="nx">survey</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">surveyElement</span><span class="w"> </span><span class="nx">div</span><span class="w"> </span><span class="o">--&gt;</span>
+<span class="w">        </span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#surveyElement&quot;</span><span class="p">).</span><span class="nx">Survey</span><span class="p">({</span><span class="nx">model</span><span class="o">:</span><span class="w"> </span><span class="nx">survey</span><span class="p">});</span>
+<span class="w">    </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="cm">&lt;!-- Prevent the mouse wheel and arrow keydown events on number inputs to avoid changing the value --&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;DOMContentLoaded&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Prevent the wheel event on number inputs</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;wheel&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;number&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">passive</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">});</span>
+
+<span class="w">    </span><span class="c1">// Prevent the arrow keydown events on number inputs</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;keydown&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;number&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">key</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;ArrowUp&#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">key</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;ArrowDown&#39;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">});</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</details><p>Now, let’s have a more detailed look into the code of the vignette pages - how they are created, how they are randomized and how they are displayed to the participants.</p>
+<section id="the-dynamic-behaviour-of-the-vignette-page">
+<h2>The dynamic behaviour of the vignette page<a class="headerlink" href="#the-dynamic-behaviour-of-the-vignette-page" title="Link to this heading">¶</a></h2>
+<p>The vignette page are <strong>displayed</strong> in the third, fourth, sixth, and seventh rounds of the main app and dynamically filled with the content of the current vignette scenario. The code for the vignette pages is implemented in the <code class="code docutils literal notranslate"><span class="pre">Vignette</span></code> page class. The <code class="code docutils literal notranslate"><span class="pre">is_displayed</span></code> method is used to determine whether the page should be displayed to the participant. This is done by checking whether the current round number is in the list of <code class="code docutils literal notranslate"><span class="pre">VIGNETTE_ROUNDS</span></code> object defined in the <code class="code docutils literal notranslate"><span class="pre">C</span></code> class.</p>
+<p>The <strong>order</strong> in which the vignettes are displayed is randomized for each participant. The order is defined in the <code class="code docutils literal notranslate"><span class="pre">timeline</span></code> variable in the <code class="code docutils literal notranslate"><span class="pre">creating_session</span></code> function, which we discussed above. The vignettes are defined in the <code class="code docutils literal notranslate"><span class="pre">vignettes</span></code> variable in the <code class="code docutils literal notranslate"><span class="pre">C</span></code> class as a list of strings: <code class="code docutils literal notranslate"><span class="pre">vignettes</span> <span class="pre">=</span> <span class="pre">['doctor',</span> <span class="pre">'handyman',</span> <span class="pre">'kindergarten',</span> <span class="pre">'passport']</span></code>. The randomization takes place in the <code class="code docutils literal notranslate"><span class="pre">creating_session</span></code> function, where the order of the vignettes is randomized for each participant using the <code class="code docutils literal notranslate"><span class="pre">random.shuffle(vignettes)</span></code> function. The randomized order is then stored in the <code class="code docutils literal notranslate"><span class="pre">Participant</span></code> object as <code class="code docutils literal notranslate"><span class="pre">p.vars['vignette_order']</span></code>.</p>
+<p>The <strong>content</strong> of the vignette pages is defined in the <code class="code docutils literal notranslate"><span class="pre">C</span></code> class as a YAML template. The YAML template is stored in the <code class="code docutils literal notranslate"><span class="pre">yaml_template</span></code> variable and contains the questions and answer options for each vignette scenario. The YAML template is rendered dynamically in the <code class="code docutils literal notranslate"><span class="pre">render_survey</span></code> method of the <code class="code docutils literal notranslate"><span class="pre">Vignette</span></code> page class, where the variables are replaced with the actual values for the current scenario and service level. The rendered YAML content is then converted to a JSON string for use in the template.</p>
+<p>The <strong>vignette headers</strong> and the <strong>vignette image</strong> are also defined in the <code class="code docutils literal notranslate"><span class="pre">C</span></code> class. The vignette text is stored in the <code class="code docutils literal notranslate"><span class="pre">scenario_headers</span></code> variable as a list of strings, which are displayed as the header of the vignette page. The vignette image is stored in the <code class="code docutils literal notranslate"><span class="pre">path_to_image</span></code> variable, which is constructed based on the current scenario. The image is displayed on the vignette page using an HTML <cite>img</cite> tag. To get an impression of what the vignette page looks like, see the screenshot below. On these screenshots, different parts are highlighted in different colors to indicate their functionality. The following paragraphs explain the functionality of these parts in more detail.</p>
+<p>The <strong>vignette text</strong> is included in the template using the <cite>include</cite> tag, which allows for the dynamic rendering of the vignette text based on the current scenario. The actual text for each vignette is stored in separate HTML files in the <code class="code docutils literal notranslate"><span class="pre">main/vignettes/</span></code> directory, with the file names corresponding to the scenario names (e.g., <code class="code docutils literal notranslate"><span class="pre">doctor.html</span></code>, <code class="code docutils literal notranslate"><span class="pre">handyman.html</span></code>, etc.). In the screenshots below, the corresponding text is highlighted in <strong>green</strong>.</p>
+<p>After the description of the vignette, one of the three possible endings is displayed, depending on the service level of the vignette. The endings are also included in these html files, and they are dynamically rendered based on the service level of the vignette. This was done by formulating conditional statements in the HTML files based on the value of the <code class="code docutils literal notranslate"><span class="pre">outcome</span></code> variable: <code class="code docutils literal notranslate"><span class="pre">{%</span> <span class="pre">if</span> <span class="pre">outcome</span> <span class="pre">==</span> <span class="pre">C.POS</span> <span class="pre">%}</span></code>, <code class="code docutils literal notranslate"><span class="pre">{%</span> <span class="pre">elif</span> <span class="pre">outcome</span> <span class="pre">==</span> <span class="pre">C.NEG</span> <span class="pre">%}</span></code>, and <code class="code docutils literal notranslate"><span class="pre">{%</span> <span class="pre">elif</span> <span class="pre">outcome</span> <span class="pre">==</span> <span class="pre">C.CORRUPT</span> <span class="pre">%}</span></code>. The endings are highlighted in <strong>blue</strong> in the screenshots below.</p>
+<p>In case of the <strong>corrupt outcome</strong>, the vignette text is displayed with a repeated ending, which is also defined in the <code class="code docutils literal notranslate"><span class="pre">C.CORRUPT_ENDINGS</span></code> variable. This variable loads the endings from a YAML file called <code class="code docutils literal notranslate"><span class="pre">data/corrupt_endings.yaml</span></code>, which contains the text for the repeated ending for each scenario. The endings are displayed in the vignette text using the <code class="code docutils literal notranslate"><span class="pre">corrupt_ending</span></code> variable, which is set to the value of the <code class="code docutils literal notranslate"><span class="pre">C.CORRUPT_ENDINGS</span></code> dictionary for the current scenario. The text for the repeated ending is displayed after the main vignette text, and it is only shown if the service level of the vignette is corrupt. This way, the participants are presented with a vignette that describes a situation in which they try to access a service in Novaland, and they are asked to answer questions about their experience with the service. The second screenshot shows the vignette page with the repeated ending for the corrupt outcome, which is highlighted in <strong>orange</strong>.</p>
+<p>Below the text of the vignette, a <strong>survey</strong> is displayed, which consists of questions that are dynamically rendered based on the current scenario and service level. The survey is created using the SurveyJS library, which allows for the dynamic rendering of surveys based on JSON data. The survey content is defined in the <code class="code docutils literal notranslate"><span class="pre">rendered_yaml</span></code> variable in the <code class="code docutils literal notranslate"><span class="pre">render_survey</span></code> method. The <code class="code docutils literal notranslate"><span class="pre">rendered_yaml</span></code> variable is a string that contains the YAML content for the survey from the <code class="code docutils literal notranslate"><span class="pre">data/vignette_q.yaml</span></code> file, which is then converted to a JSON string for use in the template. The file path is defined in the <code class="code docutils literal notranslate"><span class="pre">C</span></code> class as <code class="code docutils literal notranslate"><span class="pre">file_path</span> <span class="pre">=</span> <span class="pre">'data/vignette_q.yaml'</span></code>, and it is read using the <code class="code docutils literal notranslate"><span class="pre">yaml.safe_load</span></code> function. The YAML template contains the questions and answer options for each vignette scenario.</p>
+<p>The <strong>survey questions</strong> are defined in the YAML template, and they are dynamically rendered based on the current scenario and service level. The survey questions include questions about satisfaction with the service, government spending, and (when the outcome of the current vignette is corrupt) corruption behavior. At the end of the <code class="code docutils literal notranslate"><span class="pre">render_survey</span></code> method, the rendered YAML content is converted to a JSON string and returned as <code class="code docutils literal notranslate"><span class="pre">yaml_content</span></code> variable, which is then passed to the template.</p>
+<p>In the <code class="code docutils literal notranslate"><span class="pre">vars_for_template</span></code> method, the <strong>variables that are passed to the template</strong> are defined. These variables include the path to the vignette image, the vignette text, the outcome of the vignette, and the vignette header. The path to the vignette image is constructed based on the name of the current scenario, and it is used to display the vignette image on the page. The vignette text is included in the template using the <code class="code docutils literal notranslate"><span class="pre">include</span></code> tag in the HTML file, which allows for the dynamic rendering of the vignette text based on the current scenario.</p>
+<p>In the <code class="code docutils literal notranslate"><span class="pre">get_form_fields</span></code> method, the form fields (questions) that are displayed on the vignette page are defined. This method is only used for browser bots (testing purposes) and is not used for participants. The form fields are defined based on the current scenario and service level, and they include questions about satisfaction with the service, government spending, and corruption behavior.</p>
+<p>The survey is displayed on the vignette page using the <strong>SurveyJS library</strong>, which allows for the dynamic rendering of surveys based on JSON data. In the template, the survey is initialized with the JSON data using the <cite>Survey.Model</cite> class from the SurveyJS library. The survey is then rendered in the <cite>surveyElement</cite> div, and the survey results are submitted to the server when the survey is completed. The survey results are stored in a hidden input field with the ID <cite>surveyResults</cite>, which is then submitted to the server when the form is submitted. This way, the survey results are available for further processing in the <code class="code docutils literal notranslate"><span class="pre">post</span></code> method of the <code class="code docutils literal notranslate"><span class="pre">Vignette</span></code> page class. Specifically, the <code class="code docutils literal notranslate"><span class="pre">post</span></code> method processes the survey results submitted by the participant and saves them to the player object. The survey results are parsed from the JSON string stored in the hidden input field <code class="code docutils literal notranslate"><span class="pre">surveyResults</span></code>, and the individual answers are saved to the corresponding player attributes. If an answer is not defined in the player model, an error message is printed to the console for debugging purposes. The screenshots display some of the survey questions in <strong>purple</strong>.</p>
+<p>Finally, the <code class="code docutils literal notranslate"><span class="pre">before_next_page</span></code> method is used to check if a bribe was given by the participant. This is done by checking if the <code class="code docutils literal notranslate"><span class="pre">corruption_bin</span></code> field is set, which indicates that the participant has given a bribe. The result is stored in the <code class="code docutils literal notranslate"><span class="pre">bribe_is_given</span></code> attribute of the player object.</p>
+<p>Here is what the vignette page looks like for the participants:</p>
+<a class="reference internal image-reference" href="_images/VignetteScreenshot.jpeg"><img alt="Vignette Screenshot" class="align-center" src="_images/VignetteScreenshot.jpeg" style="width: 75%;" />
+</a>
+<p>And this is what the vignette page looks like when the outcome of the vignette is corrupt, with a repeated ending before the corruption behavior question:</p>
+<a class="reference internal image-reference" href="_images/VignetteScreenshotRepeatEnding.jpeg"><img alt="Vignette Screenshot with repeated ending" class="align-center" src="_images/VignetteScreenshotRepeatEnding.jpeg" style="width: 75%;" />
+</a>
+</section>
+<section id="the-outcome-page">
+<h2>The Outcome Page<a class="headerlink" href="#the-outcome-page" title="Link to this heading">¶</a></h2>
+<p>After the participants submitted the vignette page, they were redirected to the <code class="code docutils literal notranslate"><span class="pre">EndOfDay</span></code> page. This page was displayed after each smokescreen and vignette and was used to inform participants about the outcome of the vignette they just experienced and thereby to increase participants’ immersion and feeling of self-efficacy. As this page is the same one used for the outcomes of the smokescreens, see the <a class="reference internal" href="CodeStructureMain2_Smokescreens.html#outcome-pages"><span class="std std-ref">Outcome Page Section</span></a> for more detail.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">NovalandCorruptionGuide</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Novaland2Layout.html">The fictional country of Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ProjectStructure.html">Structure of the oTree project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RunLocally.html">Running the Novaland Project Locally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AddVignettes.html">Adding New Vignettes and Smokescreens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureGlobalFiles.html">Part 0: Project-wide files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureIntro.html">Part 1: The Introduction App</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="CodeStructureMain.html">Part 2: The Stay in Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureElection.html">Part 3: The Election in Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructurePost.html">Part 4: The Post-Experimental Questionnaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deploying the oTree project</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="CodeStructureMain.html">Part 2: The Stay in Novaland</a><ul>
+      <li>Previous: <a href="CodeStructureMain3_Quiz.html" title="previous chapter">The newspaper quiz pages</a></li>
+      <li>Next: <a href="CodeStructureMain5_Pollster.html" title="next chapter">The pollster pages</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, POLITSOLID Project Team.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/CodeStructureMain4_Vignettes.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>The introduction to the Novaland stay &#8212; NovalandCorruptionGuide 2025 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <script src="_static/documentation_options.js?v=cb975c41"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Structure of the Novaland stay pages" href="CodeStructureMain1.5_Background.html" />
+    <link rel="prev" title="Part 2: The Stay in Novaland" href="CodeStructureMain.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="the-introduction-to-the-novaland-stay">
+<h1>The introduction to the Novaland stay<a class="headerlink" href="#the-introduction-to-the-novaland-stay" title="Link to this heading">¶</a></h1>
+<p>The introductory part of the main app consists of four <strong>NovalandIntro</strong> pages, on which participants are informed about their stay in Novaland as citizens of the fictional country and about some characteristics of the country itself. The text that was included on these pages can be found in the <code class="code docutils literal notranslate"><span class="pre">main/instructions/</span></code> folder. There is one file for each of these four information pages.</p>
+<p>On the fourth NovalandIntro page, the first experimental treatment takes place. Participants were randomly assigned to two groups: the first group is informed about the social norm of bribing in Novaland (6 out of 10 citizens of Novaland are willing to pay a bribe for a service). Participants in the second group do not receive any information. The variable that determines if participants received this information is called <code class="code docutils literal notranslate"><span class="pre">corruption_info</span></code> and is stored in the <code class="code docutils literal notranslate"><span class="pre">Participant</span></code> object. The variable is set to 1 if participants received the information and 0 if they did not. This variable is used to determine which text is displayed on the page and is passed to the HTML template (<code class="code docutils literal notranslate"><span class="pre">main/instructions/instructions_4.html</span></code>). There, the conditional statement of showing the social norm information works with this variable: <code class="code docutils literal notranslate"><span class="pre">{{</span> <span class="pre">if</span> <span class="pre">participant.vars.corruption_info</span> <span class="pre">==</span> <span class="pre">1</span> <span class="pre">}}</span></code>.</p>
+<p>The next page is the <strong>Comprehension</strong> page. On this page, participants had to answer three comprehension questions correctly in order to continue with the questionnaire. The questions are about the information that was provided on the previous pages. The questions are defined in the player models <code class="code docutils literal notranslate"><span class="pre">comprehension_citizen</span></code>, <code class="code docutils literal notranslate"><span class="pre">comprehension_income</span></code>, and <code class="code docutils literal notranslate"><span class="pre">comprehension_financing</span></code>. These three questions are defined as <code class="code docutils literal notranslate"><span class="pre">form_fields</span></code> in the <code class="code docutils literal notranslate"><span class="pre">Comprehension</span></code> page class and called by the page’s HTML template using <code class="code docutils literal notranslate"><span class="pre">{{formfields}}</span></code>.</p>
+<p>We gave participants the possibility to receive the respective pieces of information again using an “instructions” button that was embedded on the page. For this, we used the <code class="code docutils literal notranslate"><span class="pre">live_method</span></code> in the init file and the following code in the HTML template to dynamically animate the window with the text from the <code class="code docutils literal notranslate"><span class="pre">main/instructions/</span></code> HTML files that were also used to display the information on the previous pages. The code runs as soon as participants click on the instructions button:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="linenos">2</span><span class="w">    </span><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">3</span><span class="w">        </span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#instruction_button&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">4</span><span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s1">&#39;button clicked&#39;</span><span class="p">);</span>
+<span class="linenos">5</span><span class="w">            </span><span class="nx">liveSend</span><span class="p">(</span><span class="s1">&#39;button_clicked&#39;</span><span class="p">);</span>
+<span class="linenos">6</span><span class="w">        </span><span class="p">});</span>
+<span class="linenos">7</span><span class="w">    </span><span class="p">});</span>
+<span class="linenos">8</span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Participants had two attempts to answer all comprehension questions correctly. If they tried to submit the page with incorrect answers, the <code class="code docutils literal notranslate"><span class="pre">error_counter</span></code> increases and an error message appears. The page is then reloaded. They are then informed that they have one attempt left. If they submit the page again with incorrect answers for the second time, they will be filtered out. We also set a timeout counter on this page to prevent participants from spending too much time on it. If they exceed the time limit, they were also filtered out. The timeout counter is set to five minutes, which is more than enough time to answer the questions.</p>
+<p>If participants failed to answer the comprehension questions correctly two times, or if they exceeded the time limit, they were next redirected to the <strong>TerminationPage</strong>. This page is not shown to participants, but is only used for background functionality. Only participants who fulfill one of these two criteria are redirected to this page, the other ones skip it, as defined in</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nd">@staticmethod</span>
+<span class="linenos">2</span><span class="k">def</span> <span class="nf">is_displayed</span><span class="p">(</span><span class="n">player</span><span class="p">:</span> <span class="n">Player</span><span class="p">):</span>
+<span class="linenos">3</span>    <span class="k">return</span> <span class="n">player</span><span class="o">.</span><span class="n">error_counter</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">player</span><span class="o">.</span><span class="n">comprehension_timeouted</span>
+</pre></div>
+</div>
+<p>As soon as participants reached this page, they were directly redirected using a link provided by the panel provider, defined in <code class="code docutils literal notranslate"><span class="pre">TERMINATION_LINK</span></code>. Participants were then informed that they failed to comply with the requirements of the study and were thus filtered out.</p>
+<p>Those participants who answered all three comprehension questions correctly, reached the last page of the introduction to Novaland. On the <strong>IntroVignette</strong> page, participants were informed that they will encounter several situations on the next pages, that they are a citizen of Novaland in this context and that they should answer the questions as themselves.</p>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">NovalandCorruptionGuide</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Novaland2Layout.html">The fictional country of Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ProjectStructure.html">Structure of the oTree project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RunLocally.html">Running the Novaland Project Locally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AddVignettes.html">Adding New Vignettes and Smokescreens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureGlobalFiles.html">Part 0: Project-wide files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureIntro.html">Part 1: The Introduction App</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="CodeStructureMain.html">Part 2: The Stay in Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureElection.html">Part 3: The Election in Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructurePost.html">Part 4: The Post-Experimental Questionnaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deploying the oTree project</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="CodeStructureMain.html">Part 2: The Stay in Novaland</a><ul>
+      <li>Previous: <a href="CodeStructureMain.html" title="previous chapter">Part 2: The Stay in Novaland</a></li>
+      <li>Next: <a href="CodeStructureMain1.5_Background.html" title="next chapter">Structure of the Novaland stay pages</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, POLITSOLID Project Team.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/CodeStructureMain1_Intro.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

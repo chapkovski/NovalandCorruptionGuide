@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Structure of the Novaland stay pages &#8212; NovalandCorruptionGuide 2025 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <script src="_static/documentation_options.js?v=cb975c41"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The smokescreen pages" href="CodeStructureMain2_Smokescreens.html" />
+    <link rel="prev" title="The introduction to the Novaland stay" href="CodeStructureMain1_Intro.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="structure-of-the-novaland-stay-pages">
+<h1>Structure of the Novaland stay pages<a class="headerlink" href="#structure-of-the-novaland-stay-pages" title="Link to this heading">¶</a></h1>
+<p>After receiving the information and passing the comprehension checks in the introductory part, participants began their stay in Novaland. For an overview of the fictional stay, please refer to the <a class="reference internal" href="Novaland2Layout.html#flowchart"><span class="std std-ref">flowchart of the Novaland stay</span></a>.</p>
+<p>Before we discuss how the experience on each page was created, we first have to take a step back and talk about the underlying logic of the main app. While participants experience their fictional stay as one continuous trip, the app does not run only once. Instead, oTree runs the <code class="code docutils literal notranslate"><span class="pre">main</span></code> app seven rounds. The flow of the Novaland stay is created by defining for each page in which round it is displayed.
+The different rounds of the main app contain the following pages:</p>
+<ol class="arabic simple">
+<li><p>Round: NovalandIntro Pages, Comprehension Page, IntroVignette Page, First Smokescreen Page</p></li>
+<li><p>Round: Quiz Page, Quiz Results Page</p></li>
+<li><p>Round: First Vignette Page, First Vignette Results Page</p></li>
+<li><p>Round: Second Vignette Page, Second Vignette Results Page</p></li>
+<li><p>Round: Second Smokescreen Page</p></li>
+<li><p>Round: Third Vignette Page, Third Vignette Results Page</p></li>
+<li><p>Round: Fourth Vignette Page, Fourth Vignette Results Page, Pollster Pages, Pollster Results Page</p></li>
+</ol>
+<p><strong>Order of the smokescreens and vignettes</strong></p>
+<p>This order is defined in the <code class="code docutils literal notranslate"><span class="pre">timeline</span></code> variable in <code class="code docutils literal notranslate"><span class="pre">creating_session</span></code> function. By using the list objects for the order of the smokescreens and vignettes, we can define the order in which they are displayed to the participants. Each entry of the list contains a string that identifies the corresponding vignette or smokescreen scenario. This part of the <code class="code docutils literal notranslate"><span class="pre">creating_session</span></code> is executed only once at the beginning of the first round. We will discuss the functionality of these pages in more detail below.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">p</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;timeline&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+<span class="linenos">2</span>        <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;smokescreen_order&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span>  <span class="c1"># note that the quiz page comes after the first smokescreen</span>
+<span class="linenos">3</span>        <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;quiz_page&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span>  <span class="c1"># quiz page</span>
+<span class="linenos">4</span>        <span class="n">p</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;vignette_order&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span>  <span class="c1"># the first two vignettes</span>
+<span class="linenos">5</span>        <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;smokescreen_order&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span>  <span class="c1"># the second smokescreen</span>
+<span class="linenos">6</span>        <span class="n">p</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="s1">&#39;vignette_order&#39;</span><span class="p">][</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>  <span class="c1"># the last two vignettes</span>
+<span class="linenos">7</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The second part of the <code class="code docutils literal notranslate"><span class="pre">creating_session</span></code> function is executed at the beginning of each round. Here, we access the order of vignettes, smokescreens, and dependent variables for each player. This is done by accessing the <code class="code docutils literal notranslate"><span class="pre">Participant</span></code> object and storing the name of the current scenario in the <code class="code docutils literal notranslate"><span class="pre">current_scenario</span></code> variable. This variable is then used to determine which page should be displayed to the participant in the current round. This process allows us to only have one page for the smokescreens and one for the vignettes, which are then dynamically filled with the content of the current scenario. This is done by using the <code class="code docutils literal notranslate"><span class="pre">current_scenario</span></code> variable in the <code class="code docutils literal notranslate"><span class="pre">vars_for_template</span></code> method of the respective page class.</p>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">NovalandCorruptionGuide</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Novaland2Layout.html">The fictional country of Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ProjectStructure.html">Structure of the oTree project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RunLocally.html">Running the Novaland Project Locally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AddVignettes.html">Adding New Vignettes and Smokescreens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureGlobalFiles.html">Part 0: Project-wide files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureIntro.html">Part 1: The Introduction App</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="CodeStructureMain.html">Part 2: The Stay in Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureElection.html">Part 3: The Election in Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructurePost.html">Part 4: The Post-Experimental Questionnaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deploying the oTree project</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="CodeStructureMain.html">Part 2: The Stay in Novaland</a><ul>
+      <li>Previous: <a href="CodeStructureMain1_Intro.html" title="previous chapter">The introduction to the Novaland stay</a></li>
+      <li>Next: <a href="CodeStructureMain2_Smokescreens.html" title="next chapter">The smokescreen pages</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, POLITSOLID Project Team.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/CodeStructureMain1.5_Background.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

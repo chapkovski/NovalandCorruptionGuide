@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>The newspaper quiz pages &#8212; NovalandCorruptionGuide 2025 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <script src="_static/documentation_options.js?v=cb975c41"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The vignette pages" href="CodeStructureMain4_Vignettes.html" />
+    <link rel="prev" title="The smokescreen pages" href="CodeStructureMain2_Smokescreens.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="the-newspaper-quiz-pages">
+<h1>The newspaper quiz pages<a class="headerlink" href="#the-newspaper-quiz-pages" title="Link to this heading">¶</a></h1>
+<p>The <strong>Quiz</strong> was used to both test participants’ attention, to check if they understood the information provided on the previous pages, and to distract them from the main purpose of the questionnaire by making this check an in-experience situation. The quiz was presented as a news quiz about Novaland, which participants had to answer correctly in order to continue with the questionnaire. The quiz was displayed in the second round of the main app, after the first smokescreen and before the first vignette.</p>
+<p>This page is implemented in the <code class="code docutils literal notranslate"><span class="pre">Quiz</span></code> page class.. The quiz consists of two questions, which are defined as <code class="code docutils literal notranslate"><span class="pre">form_fields</span></code> in the page class. The questions are: First, <code class="code docutils literal notranslate"><span class="pre">quiz_event</span></code>, asking which public event is scheduled in the next days in Novaland.The correct answer was the national election. And second, <code class="code docutils literal notranslate"><span class="pre">quiz_income</span></code>, asking about the average income in Novaland. The correct answer being 3000 Nova Dollars.</p>
+<p>Those participants who received the information about the social norm of bribing in Novaland on the previous pages were also asked a third question, <code class="code docutils literal notranslate"><span class="pre">quiz_corr</span></code>, asking how many citizens of Novaland were willing to pay a bribe for a service. The correct answer was 6 out of 10 citizens. This is done by using two pieces of code. In the <code class="code docutils literal notranslate"><span class="pre">get_form_fields</span></code> method, we check whether the participant received the information about the social norm of bribing in Novaland. If they did, we add the third question to the list of form fields that are displayed on the page. This is done by checking the <code class="code docutils literal notranslate"><span class="pre">corruption_info</span></code> variable in the <code class="code docutils literal notranslate"><span class="pre">Participant</span></code> object, which is set to 1 if participants received the information and 0 if they did not.
+In the page’s HTML template, we then check whether the <code class="code docutils literal notranslate"><span class="pre">corruption_info</span></code> variable is set to 1. If it is, we display the third question. This is done using the conditional statement <code class="code docutils literal notranslate"><span class="pre">{{</span> <span class="pre">if</span> <span class="pre">corruption_info</span> <span class="pre">==</span> <span class="pre">1</span> <span class="pre">}}</span> <span class="pre">{{</span> <span class="pre">formfield</span> <span class="pre">player.quiz_corr</span> <span class="pre">}}</span></code>.</p>
+<p>This is what the layout of the quiz page looks like:</p>
+<a class="reference internal image-reference" href="_images/QuizScreenshot.jpeg"><img alt="Vignette Screenshot with repeated ending" class="align-center" src="_images/QuizScreenshot.jpeg" style="width: 75%;" />
+</a>
+<p>Note that the second question is displayed only if the participant received the information about the social norm of bribing in Novaland. If they did not, only the first and the third question are displayed.</p>
+<p>After participants submitted their answers, some calculations were automatically conducted by oTree to analyse the quiz results. Within the page class, the <code class="code docutils literal notranslate"><span class="pre">before_next_page</span></code> function is used to calculate the number of correct answers and whether the participant answered all questions correctly. This is done by comparing the participants’ answers with the correct answers defined in the <code class="code docutils literal notranslate"><span class="pre">quiz_correspondence</span></code> dictionary, which contains the correct answers for each question.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">def</span> <span class="nf">before_next_page</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">timeout_happened</span><span class="p">):</span>
+<span class="linenos">2</span>    <span class="n">fields</span> <span class="o">=</span> <span class="n">Quiz</span><span class="o">.</span><span class="n">get_form_fields</span><span class="p">(</span><span class="n">player</span><span class="p">)</span> <span class="c1"># get questions</span>
+<span class="linenos">3</span>    <span class="n">correct_answers</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">quiz_correspondence</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">}</span> <span class="c1"># compare answers with correct answers defined in the quiz_correspondence dictionary</span>
+<span class="linenos">4</span>    <span class="n">answers</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">}</span> <span class="c1"># get participants&#39; answers</span>
+<span class="linenos">5</span>    <span class="n">are_answers_correct</span> <span class="o">=</span> <span class="p">[</span><span class="n">answers</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">==</span> <span class="n">correct_answers</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">]</span> <span class="c1"># check if answers are correct</span>
+<span class="linenos">6</span>    <span class="n">player</span><span class="o">.</span><span class="n">quiz_correct_answers</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">are_answers_correct</span><span class="p">)</span> <span class="c1"># calculate number of correct answers</span>
+<span class="linenos">7</span>    <span class="n">player</span><span class="o">.</span><span class="n">quiz_num_questions</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span> <span class="c1"># calculate number of questions</span>
+<span class="linenos">8</span>    <span class="n">player</span><span class="o">.</span><span class="n">quiz_fully_correct</span> <span class="o">=</span> <span class="nb">all</span><span class="p">(</span><span class="n">are_answers_correct</span><span class="p">)</span> <span class="c1"># check if all answers are correct</span>
+</pre></div>
+</div>
+<p>After the quiz page, participants saw the <strong>QuizResults</strong> page. On this page, they were informed about the correct answers to the quiz questions. Again, we used the <code class="code docutils literal notranslate"><span class="pre">corruption_info</span></code> variable to determine whether the third question was displayed. If it was, the correct answer to this question was also displayed on the page. After the participants submitted the page, they were redirected to the first vignette page.</p>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">NovalandCorruptionGuide</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Novaland2Layout.html">The fictional country of Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ProjectStructure.html">Structure of the oTree project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RunLocally.html">Running the Novaland Project Locally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AddVignettes.html">Adding New Vignettes and Smokescreens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureGlobalFiles.html">Part 0: Project-wide files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureIntro.html">Part 1: The Introduction App</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="CodeStructureMain.html">Part 2: The Stay in Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureElection.html">Part 3: The Election in Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructurePost.html">Part 4: The Post-Experimental Questionnaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deploying the oTree project</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="CodeStructureMain.html">Part 2: The Stay in Novaland</a><ul>
+      <li>Previous: <a href="CodeStructureMain2_Smokescreens.html" title="previous chapter">The smokescreen pages</a></li>
+      <li>Next: <a href="CodeStructureMain4_Vignettes.html" title="next chapter">The vignette pages</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, POLITSOLID Project Team.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/CodeStructureMain3_Quiz.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

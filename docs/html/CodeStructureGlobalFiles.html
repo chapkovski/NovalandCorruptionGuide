@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Part 0: Project-wide files &#8212; NovalandCorruptionGuide 2025 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <script src="_static/documentation_options.js?v=cb975c41"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Part 1: The Introduction App" href="CodeStructureIntro.html" />
+    <link rel="prev" title="Adding New Vignettes and Smokescreens" href="AddVignettes.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="part-0-project-wide-files">
+<h1>Part 0: Project-wide files<a class="headerlink" href="#part-0-project-wide-files" title="Link to this heading">¶</a></h1>
+<section id="global-settings">
+<h2>Global settings<a class="headerlink" href="#global-settings" title="Link to this heading">¶</a></h2>
+<p>The global settings of the project are defined in the <code class="file docutils literal notranslate"><span class="pre">settings.py</span></code> file. This file contains the configuration settings for the entire project, including database settings, static files, and other global settings that apply to all apps within the project. It is important to ensure that this file is correctly configured to ensure the proper functioning of the project.</p>
+<section id="room">
+<h3>Room<a class="headerlink" href="#room" title="Link to this heading">¶</a></h3>
+<p>There are a couple of options on how to launch an oTree project for a data collection. Here, setting up a “room” in which the questionnaire is embedded is the most robust one and thus used for this project. Several of these rooms were defined, each of which can be used to launch a separate instance of the questionnaire. The room used in the final data collection is called “study” and is defined as follows.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">ROOMS</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos">2</span>    <span class="nb">dict</span><span class="p">(</span>
+<span class="linenos">3</span>        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;study&#39;</span><span class="p">,</span>
+<span class="linenos">4</span>        <span class="n">display_name</span><span class="o">=</span><span class="s2">&quot;Study&quot;</span>
+<span class="linenos">5</span>    <span class="p">),</span>
+<span class="linenos">6</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="session">
+<h3>Session<a class="headerlink" href="#session" title="Link to this heading">¶</a></h3>
+<p>Within a room, we have to define a session. A session is a single instance of the questionnaire that participants can join. Each session can have its own configuration, including the number of participants, the apps included in the session, and other settings. The session used in the final data collection is called “Full_game” and is defined as follows.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">SESSION_CONFIGS</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos">2</span><span class="nb">dict</span><span class="p">(</span>
+<span class="linenos">3</span>    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Full_game&#39;</span><span class="p">,</span>
+<span class="linenos">4</span>    <span class="n">app_sequence</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;intro&#39;</span><span class="p">,</span> <span class="s1">&#39;main&#39;</span><span class="p">,</span> <span class="s1">&#39;election&#39;</span><span class="p">,</span> <span class="s1">&#39;post&#39;</span><span class="p">],</span> <span class="c1"># defines the apps used in the session</span>
+<span class="linenos">5</span>    <span class="n">num_demo_participants</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="c1">#used for development only</span>
+<span class="linenos">6</span><span class="p">),</span>
+<span class="linenos">7</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="participant-redirection-to-sample-provider">
+<h3>Participant redirection to sample provider<a class="headerlink" href="#participant-redirection-to-sample-provider" title="Link to this heading">¶</a></h3>
+<p>The participants of our study were recruited from the sample provider Prolific. From the providers’ website, they were directed to our survey and they were redirected back after completing the questionnaire. To ensure that the participants are redirected back to the provider’s website after completing the questionnaire, we need to define a return URL in the session configuration. This URL is used to redirect participants back to the provider’s website after they have completed the questionnaire. The return URL is defined dynamically, as each participant was assigned a unique URL after completion.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">PROLIFIC_RETURN_CODE</span> <span class="o">=</span> <span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;PROLIFIC_RETURN_CODE&#39;</span><span class="p">,</span> <span class="s1">&#39;NO_CODE&#39;</span><span class="p">)</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">SESSION_CONFIG_DEFAULTS</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+<span class="linenos">4</span>    <span class="n">prolific_return_url</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;https://app.prolific.com/submissions/complete?cc=</span><span class="si">{</span><span class="n">PROLIFIC_RETURN_CODE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="c1"># unique redirection URL for each participant</span>
+<span class="linenos">5</span>    <span class="n">for_prolific</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">6</span>    <span class="n">real_world_currency_per_point</span><span class="o">=</span><span class="mf">1.00</span><span class="p">,</span> <span class="n">participation_fee</span><span class="o">=</span><span class="mf">0.00</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;&quot;</span> <span class="c1"># not relevant</span>
+<span class="linenos">7</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>There are more options defined in the <code class="file docutils literal notranslate"><span class="pre">settings.py</span></code>, but those are not relevant for conducting the data collection and are thus not explained here. For a complete overview of the settings, please refer to the <a class="reference external" href="https://otree.readthedocs.io/en/latest/index.html">official oTree documentation</a>.</p>
+</section>
+<section id="server-configuration">
+<h3>Server configuration<a class="headerlink" href="#server-configuration" title="Link to this heading">¶</a></h3>
+<p>There are several variables that are important to ensure that the oTree project can store the data on a server and runs securely.
+These variables are:</p>
+<ul class="simple">
+<li><p>ADMIN_USERNAME: The username of the admin user who can access the oTree admin interface.</p></li>
+<li><p>ADMIN_PASSWORD: The password of the admin user who can access the oTree admin interface.</p></li>
+<li><p>SECRET_KEY: A secret key used for cryptographic signing, which is important for the security of the project.</p></li>
+<li><p>DATABASE_URL: The URL of the database used to store the data collected from the questionnaire.</p></li>
+<li><p>OTREE_PRODUCTION: A boolean variable that indicates whether the project is running in production mode or not. This is important for ensuring that the project is secure and that sensitive data is not exposed. For conducting the data collection, this variable should be set to True.</p></li>
+</ul>
+</section>
+</section>
+<section id="aesthetics-of-the-web-questionnaire">
+<h2>Aesthetics of the web questionnaire<a class="headerlink" href="#aesthetics-of-the-web-questionnaire" title="Link to this heading">¶</a></h2>
+<p>The aesthetics of the web questionnaire are defined in the <code class="file docutils literal notranslate"><span class="pre">_templates/global/Page.html</span></code> file. This file contains the HTML code that defines the overall layout and design of the questionnaire pages. It includes style elements such fonts, colors, and outlays used on each project. To ensure a consistent appearance of the questionnaire’s web pages, nearly all pages build on this template and only specify their content and functionality in their designated HTML files, of which one exist for each page of the questionnaire. The <code class="code docutils literal notranslate"><span class="pre">Page.html</span></code> file calls the <code class="file docutils literal notranslate"><span class="pre">_static/NovalandStyle.css</span></code> file, in which the appearance of certain visual parts of the questionnaire pages are defined. The CSS file includes styles for various elements such as buttons, text, and layout, ensuring a consistent look and feel across all pages of the questionnaire. We aimed to create a visually appealing and user-friendly minimalistic interface for the questionnaire.
+For more detail, please refer to the <a class="reference external" href="https://otree.readthedocs.io/en/latest/templates.html">official oTree documentation on HTML templates</a> section of this documentation.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">NovalandCorruptionGuide</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Novaland2Layout.html">The fictional country of Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ProjectStructure.html">Structure of the oTree project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RunLocally.html">Running the Novaland Project Locally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AddVignettes.html">Adding New Vignettes and Smokescreens</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Part 0: Project-wide files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureIntro.html">Part 1: The Introduction App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureMain.html">Part 2: The Stay in Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureElection.html">Part 3: The Election in Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructurePost.html">Part 4: The Post-Experimental Questionnaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deploying the oTree project</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="AddVignettes.html" title="previous chapter">Adding New Vignettes and Smokescreens</a></li>
+      <li>Next: <a href="CodeStructureIntro.html" title="next chapter">Part 1: The Introduction App</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, POLITSOLID Project Team.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/CodeStructureGlobalFiles.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

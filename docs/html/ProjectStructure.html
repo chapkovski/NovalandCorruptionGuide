@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Structure of the oTree project &#8212; NovalandCorruptionGuide 2025 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <script src="_static/documentation_options.js?v=cb975c41"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Running the Novaland Project Locally" href="RunLocally.html" />
+    <link rel="prev" title="The fictional country of Novaland" href="Novaland2Layout.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="structure-of-the-otree-project">
+<h1>Structure of the oTree project<a class="headerlink" href="#structure-of-the-otree-project" title="Link to this heading">¶</a></h1>
+<p>The project is structured into several folders and files, each serving a specific purpose. The main components of the project are explained below.</p>
+<section id="visualisation-of-the-project-file-structure">
+<h2>Visualisation of the project file structure<a class="headerlink" href="#visualisation-of-the-project-file-structure" title="Link to this heading">¶</a></h2>
+<p>The following filetree provides an overview of the project’s file structure. Each of the elements will be explained in detail in the following sections. The oTree project itself is named ‘novaland2’. This is because this is the oTree project for the second study that utilizes the virtual state ‘Novaland’.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>  novaland2/
+<span class="linenos"> 2</span>  ├── settings.py
+<span class="linenos"> 3</span>  ├── requirements.txt
+<span class="linenos"> 4</span>  ├── intro/
+<span class="linenos"> 5</span>  │   ├── __init__.py
+<span class="linenos"> 6</span>  │   ├── tests.py
+<span class="linenos"> 7</span>  │   └── XXXXX.html
+<span class="linenos"> 8</span>  ├── main/
+<span class="linenos"> 9</span>  │   ├── instructions/
+<span class="linenos">10</span>  │   │   └── XXXXX.html
+<span class="linenos">11</span>  │   ├── outcomes/
+<span class="linenos">12</span>  │   │   └── XXXXX.html
+<span class="linenos">13</span>  │   ├── smokescreens/
+<span class="linenos">14</span>  │   │   └── XXXXX.html
+<span class="linenos">15</span>  │   ├── vignettes/
+<span class="linenos">16</span>  │   │   └── XXXXX.html
+<span class="linenos">17</span>  │   ├── __init__.py
+<span class="linenos">18</span>  │   ├── tests.py
+<span class="linenos">19</span>  │   └── XXXXX.html
+<span class="linenos">20</span>  ├── election/
+<span class="linenos">21</span>  │   ├── __init__.py
+<span class="linenos">22</span>  │   ├── tests.py
+<span class="linenos">23</span>  │   └── XXXXX.html
+<span class="linenos">24</span>  ├── post/
+<span class="linenos">25</span>  │   ├── __init__.py
+<span class="linenos">26</span>  │   ├── tests.py
+<span class="linenos">27</span>  │   └── XXXXX.html
+<span class="linenos">28</span>  ├── data/
+<span class="linenos">29</span>  │   └── XXXXX.yaml
+<span class="linenos">30</span>  ├── templates/
+<span class="linenos">31</span>  │   ├── global/
+<span class="linenos">32</span>  │   │   ├── XXXXX.html
+<span class="linenos">33</span>  └── _static/
+<span class="linenos">34</span>      ├── certificates/
+<span class="linenos">35</span>      │   └── XXXXX.pdf
+<span class="linenos">36</span>      ├── global/
+<span class="linenos">37</span>      │   └── XXXXX.css
+<span class="linenos">38</span>      ├── images/
+<span class="linenos">39</span>      │   ├── smokeescreens/
+<span class="linenos">40</span>      │   │   └── XXXXX.jpg
+<span class="linenos">41</span>      │   └── vignettes/
+<span class="linenos">42</span>      │       └── XXXXX.jpg
+<span class="linenos">43</span>      ├── surveyjs/
+<span class="linenos">44</span>      │   ├── XXXXX.js
+<span class="linenos">45</span>      │   └── XXXXX.css
+<span class="linenos">46</span>      ├── XXXXX.css
+<span class="linenos">47</span>      └── XXXXX.png
+</pre></div>
+</div>
+<p><strong>Note:</strong> ‘XXXXX’ is a placeholder for the name of one or more files with the corresponding extension in the respective folder. The actual file names are not relevant for understanding the project’s structure and functionality, so they are not listed here. The functionality of these files is explained below.</p>
+</section>
+<section id="explanation-of-the-project-file-structure">
+<h2>Explanation of the project file structure<a class="headerlink" href="#explanation-of-the-project-file-structure" title="Link to this heading">¶</a></h2>
+<p>In this section, the different folders and files in the project are explained in detail. The explanation is structured according to the file structure shown above.</p>
+<section id="files-to-define-project-wide-settings">
+<h3>Files to define project-wide settings<a class="headerlink" href="#files-to-define-project-wide-settings" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><strong>settings.py</strong>: This file contains the settings and configuration for the oTree project. It defines the project’s name, version, and other global settings.</p></li>
+<li><p><strong>requirements.txt</strong>: This file lists the dependencies and packages required to run the oTree project. It is used to install the necessary libraries and modules.</p></li>
+</ol>
+</div></blockquote>
+</section>
+<section id="folders-for-creating-the-questionnaire-and-experiment-apps-intro-main-election-post">
+<h3>Folders for creating the questionnaire and experiment (apps): intro, main, election, post<a class="headerlink" href="#folders-for-creating-the-questionnaire-and-experiment-apps-intro-main-election-post" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><ol class="arabic simple">
+<li><dl class="simple">
+<dt>The <strong>intro</strong> folder contains the files for the introduction pages of the project. The following pages are produces by this app:</dt><dd><ol class="arabic simple">
+<li><p>one introduction page that participants see when they first enter the project and that contains information about their participation</p></li>
+<li><p>one page for the informed consent</p></li>
+<li><p>one page with information about the upcoming comprehension questions and the filtering of participants</p></li>
+<li><p>four pages with questions on participants’ socio-demographic characteristics</p></li>
+<li><p>one page with information about the layout of the study</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>The <strong>main</strong> folder contains the files for the main part of the study. This is also where our experimental treatments take place. The main app specifically produces</dt><dd><ol class="arabic simple">
+<li><p>several pages that introduce participants to Novaland</p></li>
+<li><p>one page with comprehension questions based on this information</p></li>
+<li><p>two smokescreen pages</p></li>
+<li><p>one newspaper quiz page and the corresponding result page</p></li>
+<li><p>four vignette pages</p></li>
+<li><p>four vignette result pages</p></li>
+<li><p>three pages with questions from a virtual pollster and the pollster result page</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>The <strong>election</strong> folder contains the files for the election app. This app produces</dt><dd><ol class="arabic simple">
+<li><p>one page with information about the election</p></li>
+<li><p>two pages for introducing the two parties</p></li>
+<li><p>one page with the election ballot</p></li>
+<li><p>one page with the referendum vote</p></li>
+<li><p>one page with the debrief from Novaland</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>The <strong>post</strong> folder contains the files for the post-experimental questionnaire. This app produces</dt><dd><ol class="arabic simple">
+<li><p>one page with the post-experimental questionnaire</p></li>
+<li><p>one page on which participants receive their certificate of participation if they requested one</p></li>
+<li><p>one outro-page of the study</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+</ol>
+<ul class="simple">
+<li><dl class="simple">
+<dt>File types in the app folders:</dt><dd><ol class="arabic simple">
+<li><p><strong>__init__.py</strong>: This file is the heart of every oTree app: Here, the variables used to handle data and the pages of the questionnaire are defined. Also, this is where the randomization of the treatments takes place. The __init__.py file is the first file that is executed when an app is loaded.</p></li>
+<li><p><strong>tests.py</strong>: This file is used to define test cases for the project. It can be used to test the functionality and behavior of the project using bots. These files are not relevant for the main data collection and will not be explained in detail here.</p></li>
+<li><p><strong>XXXXX.html</strong>: These HTML files define the appearance and layout of the web pages used in the project. They define the content and structure of the pages that participants will see during the experiment.</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="folders-for-storing-data-and-templates">
+<h3>Folders for storing data and templates<a class="headerlink" href="#folders-for-storing-data-and-templates" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><ol class="arabic">
+<li><p><strong>data/</strong>: The questions on the vignette pages were dynamically animated on the pages. The vignette_q.yaml file in this folder contains these questions. Also, in the corrupt versions of the vignettes, the last paragraph of the vignette was shown to participants again before answering the question. The corrupt_ending.yaml file contains these paragraphs.</p></li>
+<li><p><strong>templates/</strong>: This folder contains the Page.html file that defines the structure and layout of the web pages used in the project. It is used to store global templates that can be reused across different apps. The other HTML file was not used in the final version of the project.</p></li>
+<li><p><strong>_static/</strong>: This folder contains all the static files used in the project, such as images, CSS files, and JavaScript files. These files are used to customize the appearance and behavior of the web pages. The _static folder is divided into several subfolders:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><strong>certificates/</strong>: This folder contains the PDF files that is generated for participants who requested a certificate of participation. Participants’ could enter their names on these certificates and the PDF files which were generated for them were automatically deleted upon their completion. Certificates stored in this folder derive from manual or bots testing.</p></li>
+<li><p><strong>global/</strong>: This folder contains the CSS file that defines the styles and layout of the web pages used in the project. As custom CSS files are used in the project, this file was not used in the final version of the project.</p></li>
+<li><p><strong>images/</strong>: This folder contains all images which were embedded into the web pages of the questionnaire. The images of the smokescreens and vignettes are stored in the respective subfolders.</p></li>
+<li><p><strong>surveyjs/</strong>: The questions of the post-experimental questionnaire were all displayed one after another on the same page. This folder contains the JavaScript and CSS files used to create dynamic elements on the web pages, i.e. to show the next question as soon as participants had answered the previous one. The questionnaire was animated using the SurveyJS library. The JavaScript file contains the code for the SurveyJS library, which is used to create and manage surveys and questionnaires. The list of questions in the survey can be found in survey_definition.js. The CSS in this folder file defines the styles and layout of the survey elements.</p></li>
+<li><p><strong>XXXXX.css</strong>: These CSS files were used to define the styles and layout of the web pages used in the project.</p></li>
+<li><p><strong>XXXXX.png</strong>: These images are the logos of the fictional parties.</p></li>
+<li><p><strong>Certificate.pdf</strong>: This is the raw version of the certificate without participants’ name written on it. This PDF file is overlaid with a second PDF that only contains participants’ name. This is done to ensure that the certificate is generated in a way that participants cannot manipulate it. The overlaying of the two PDF files is done using the PyPDF2 library in Python. The final PDF file is then saved in the ‘_static/certificates’ folder.</p></li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+<p><strong>Note:</strong> There are additional folders and files in the project to those listed in the filetree above. Some of those were used purely for the development and testing of the project. Others contribute to the functionality of oTree itself. As none of these are necessary to understand, modify or run the project, they will not be discussed here.</p>
+</section>
+</section>
+<section id="the-file-types-used-in-the-project">
+<h2>The file types used in the project<a class="headerlink" href="#the-file-types-used-in-the-project" title="Link to this heading">¶</a></h2>
+<p>Before going into detail about the project structure, it is important to understand the different file types used in the project.</p>
+<ol class="arabic simple">
+<li><p><strong>.py</strong> files: These are Python files that contain the code for the oTree project. They define the underlying functionality of the project. A short summary of these init files is given in the section below.</p></li>
+<li><p><strong>.html</strong> files: These are HTML files that define the structure and layout of the web pages used in the project. They can include both static and dynamic content. Each html file is a template that can be rendered by oTree to display the corresponding page to the participants. For more information about how the HTML files are structured, please refer to the <a class="reference external" href="https://otree.readthedocs.io/en/latest/templates.html">official oTree documentation on HTML templates</a>.</p></li>
+<li><p><strong>.yaml</strong> files: These are YAML files that contain configuration data for the project. They are used to define settings and parameters that can be easily modified without changing the code.</p></li>
+<li><p><strong>.css</strong> files: These are CSS files that define the styles and layout of the web pages used in the project. They are used to customize the appearance of the project.</p></li>
+<li><p><strong>.js</strong> files: These are JavaScript files that contain code for client-side functionality. They are used to add interactivity and dynamic behavior to the web pages.</p></li>
+<li><p><strong>.png</strong>, <strong>.jpg</strong> files: These are image files used in the project. They are used for displaying images or icons on the web pages.</p></li>
+<li><p><strong>.txt</strong> files: These are text files that contain plain text data. They are used for various purposes, such as storing configuration settings or documentation.</p></li>
+<li><p><strong>.pdf</strong> files: These PDF files are used to create participation certificates.</p></li>
+</ol>
+<section id="the-init-py-files">
+<h3>The __init__.py files<a class="headerlink" href="#the-init-py-files" title="Link to this heading">¶</a></h3>
+<p>The __init__.py files are the main files of the apps. They contain the code that defines the structure and functionality of the app. The __init__.py files are used to define the pages, models, and other components of the app. The __init__.py files are divided into several sections, each of which is used to define a specific aspect of the app.</p>
+<p>The <strong>sections of the __init__.py files</strong> are as follows:</p>
+<ol class="arabic simple">
+<li><p><strong>Imports</strong>: At the beginning of the file, all necessary libraries and modules are imported. This includes the oTree libraries, as well as any other libraries that are used in the app.</p></li>
+<li><p><strong>Models</strong>: The models section defines the data structure of the app. This includes the variables that are used to store data. oTree defines a set of classes and functions for defining these data storage models.</p></li>
+<li><p><strong>Pages</strong>: In this section, the content and behavior of the pages are defined. Each page is defined as a class, which inherits from the oTree Page parent class. The page classes define the content and behavior of the pages, including the variables that are used to store data, the functions that are used to process data. Each page class corresponds to one HTML file that defines the layout and design of the page.</p></li>
+<li><p><strong>Page sequence</strong>: At the end of the file, the page sequence is defined. This is a list of the pages that will be displayed in the app, in the order in which they will be displayed.</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>Additional constants and functions</strong>: In addition to these sections, the __init__.py files may also include additional constants and functions that are used in the app. An example for this is the <code class="code docutils literal notranslate"><span class="pre">create_session</span></code> function, which was used in this study to conduct the treatment randomization at the beginning of the main app.</p></li>
+</ul>
+<p>For a more detailed documentation on the structure of the __init__.py files, please refer to the <a class="reference external" href="https://otree.readthedocs.io/en/latest/index.html">official oTree documentation</a>.</p>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">NovalandCorruptionGuide</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Novaland2Layout.html">The fictional country of Novaland</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Structure of the oTree project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RunLocally.html">Running the Novaland Project Locally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AddVignettes.html">Adding New Vignettes and Smokescreens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureGlobalFiles.html">Part 0: Project-wide files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureIntro.html">Part 1: The Introduction App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureMain.html">Part 2: The Stay in Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureElection.html">Part 3: The Election in Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructurePost.html">Part 4: The Post-Experimental Questionnaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deploying the oTree project</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="Novaland2Layout.html" title="previous chapter">The fictional country of Novaland</a></li>
+      <li>Next: <a href="RunLocally.html" title="next chapter">Running the Novaland Project Locally</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, POLITSOLID Project Team.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/ProjectStructure.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

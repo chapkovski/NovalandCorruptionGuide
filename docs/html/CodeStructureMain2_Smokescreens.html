@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>The smokescreen pages &#8212; NovalandCorruptionGuide 2025 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <script src="_static/documentation_options.js?v=cb975c41"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The newspaper quiz pages" href="CodeStructureMain3_Quiz.html" />
+    <link rel="prev" title="Structure of the Novaland stay pages" href="CodeStructureMain1.5_Background.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="the-smokescreen-pages">
+<span id="smokescreens"></span><h1>The smokescreen pages<a class="headerlink" href="#the-smokescreen-pages" title="Link to this heading">¶</a></h1>
+<p>The smokescreen pages are designed to immerse participants more into the virtual country and to reduce demand effects by distracting participants from the main purpose of the questionnaire,. They are presented as everyday situations that participants might encounter in Novaland. The smokescreens are displayed in the first and fifth rounds of the main app. The first smokescreen is displayed after the introduction to Novaland, while the second smokescreen is displayed after the second vignette.</p>
+<p>The scenarios of the smokescreens contain arbitrary situations that are not directly related to the main purpose of the questionnaire. One smokescreen is about adopting a pet, while the other smokescreen is about visiting a restaurant. The order of these two scenarios was randomized for each participant.</p>
+<p>Let’s have a detailed look into the code of the smokescreen pages - how they are created, how they are randomized and how they are displayed to the participants.</p>
+<p>In the <code class="code docutils literal notranslate"><span class="pre">C</span></code> section, the rounds in which the smokescreens are displayed are defined in <code class="code docutils literal notranslate"><span class="pre">SMOKESCREEN_ROUNDS</span> <span class="pre">=</span> <span class="pre">[1,</span> <span class="pre">5]</span></code>.
+The smokescreens are then defined in the <code class="code docutils literal notranslate"><span class="pre">smokescreens</span></code> variable as a list of strings: <code class="code docutils literal notranslate"><span class="pre">smokescreens</span> <span class="pre">=</span> <span class="pre">['pets',</span> <span class="pre">'restaurant']</span></code>. The first smokescreen is called “pets” and the second smokescreen is called “restaurant”.
+In the <code class="code docutils literal notranslate"><span class="pre">creating_session</span></code> function, the order of the smokescreens is randomized for each participant. This is done by using the <code class="code docutils literal notranslate"><span class="pre">smokescreens</span></code> object and then shuffling it using the <code class="code docutils literal notranslate"><span class="pre">random.shuffle()</span></code> function. The randomized order is then stored in the <code class="code docutils literal notranslate"><span class="pre">Participant</span></code> object as <code class="code docutils literal notranslate"><span class="pre">p.vars['smokescreen_order']</span></code>.</p>
+<p>The code for the smokescreen pages is implemented in the <code class="code docutils literal notranslate"><span class="pre">Smokescreen</span></code> page class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">Smokescreen</span><span class="p">(</span><span class="n">Page</span><span class="p">):</span>
+<span class="linenos"> 2</span>    <span class="n">form_model</span> <span class="o">=</span> <span class="s1">&#39;player&#39;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span>    <span class="nd">@staticmethod</span>
+<span class="linenos"> 5</span>    <span class="k">def</span> <span class="nf">is_displayed</span><span class="p">(</span><span class="n">player</span><span class="p">):</span>
+<span class="linenos"> 6</span>        <span class="k">return</span> <span class="n">player</span><span class="o">.</span><span class="n">round_number</span> <span class="ow">in</span> <span class="n">C</span><span class="o">.</span><span class="n">SMOKESCREEN_ROUNDS</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>    <span class="k">def</span> <span class="nf">get_form_fields</span><span class="p">(</span><span class="n">player</span><span class="p">):</span>
+<span class="linenos"> 9</span>        <span class="k">return</span> <span class="p">[</span><span class="n">player</span><span class="o">.</span><span class="n">current_scenario</span><span class="p">]</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span>    <span class="nd">@staticmethod</span>
+<span class="linenos">12</span>    <span class="k">def</span> <span class="nf">vars_for_template</span><span class="p">(</span><span class="n">player</span><span class="p">:</span> <span class="n">Player</span><span class="p">):</span>
+<span class="linenos">13</span>        <span class="k">return</span> <span class="p">{</span>
+<span class="linenos">14</span>            <span class="s1">&#39;smokescreen&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;main/smokescreens/</span><span class="si">{</span><span class="n">player</span><span class="o">.</span><span class="n">current_scenario</span><span class="si">}</span><span class="s1">.html&#39;</span><span class="p">,</span>
+<span class="linenos">15</span>            <span class="s1">&#39;smokescreen_header&#39;</span><span class="p">:</span> <span class="n">C</span><span class="o">.</span><span class="n">scenario_headers</span><span class="p">[</span><span class="n">player</span><span class="o">.</span><span class="n">round_number</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The <code class="code docutils literal notranslate"><span class="pre">is_displayed</span></code> method is used to determine whether the page should be displayed to the participant. This is done by checking whether the current round number is in the list of smokescreen rounds defined in the <code class="code docutils literal notranslate"><span class="pre">C</span></code> class.</p>
+<p>The <code class="code docutils literal notranslate"><span class="pre">get_form_fields</span></code> method is used to define the form fields that are displayed on the page. In this case, it returns the current scenario of the participant, which is stored in the <code class="code docutils literal notranslate"><span class="pre">current_scenario</span></code> variable. This variable is set in the <code class="code docutils literal notranslate"><span class="pre">creating_session</span></code> function and contains the name of the current smokescreen scenario for the participant. This dynamic variable function is used to ensure that the correct smokescreen scenario is displayed to the participant. It is required because there is only one HTML template for both smokescreens, which is dynamically filled with the content of the current smokescreen scenario.</p>
+<p>The <code class="code docutils literal notranslate"><span class="pre">vars_for_template</span></code> method is used to pass variables to the HTML template. In this case, it passes the path to the HTML template of the current smokescreen scenario and the header for the smokescreen page. This is used because the HTML template for the smokescreen pages is the same for both smokescreens and the content is dynamically filled with the current smokescreen scenario.</p>
+<p>The path to the HTML template is constructed using the <code class="code docutils literal notranslate"><span class="pre">main/smokescreens/</span></code> folder and the name of the current scenario, as this folder contains the two HTML files (<code class="code docutils literal notranslate"><span class="pre">pets.html</span></code> and <code class="code docutils literal notranslate"><span class="pre">restaurant.html</span></code>) that define the text of the smokescreen pages.
+The header of the page is defined in the <code class="code docutils literal notranslate"><span class="pre">scenario_headers</span></code> variable in the <code class="code docutils literal notranslate"><span class="pre">C</span></code> class and contains the name of the day on which the smokescreen is displayed. This dynamic variable function is used to ensure that the correct header is displayed on the page, depending on the round number in which the smokescreen is displayed. It contains the number of the day in Novaland and the current day of the week.</p>
+<p>The participants were asked to answer a question about the smokescreen scenario - either to adopt a pet or to choose the restaurant they want to visit. Again, we used a dynamic variable function to ensure that the correct question is displayed to the participant. The question object were defined in the <code class="code docutils literal notranslate"><span class="pre">Player</span></code> model as <code class="code docutils literal notranslate"><span class="pre">pets</span></code> and <code class="code docutils literal notranslate"><span class="pre">restaurant</span></code>, respectively. The question is then displayed in the HTML template using the <code class="code docutils literal notranslate"><span class="pre">{{</span> <span class="pre">formfields</span> <span class="pre">}}</span></code> variable, which is defined in the <code class="code docutils literal notranslate"><span class="pre">get_form_fields</span></code> method of the <code class="code docutils literal notranslate"><span class="pre">Smokescreen</span></code> page class.</p>
+<p>With this setup, we ensure that the smokescreen pages are displayed correctly to the participants - at the correct time, and with the correct content according to the randomized order of the smokescreens.</p>
+<section id="the-outcome-page">
+<span id="outcome-pages"></span><h2>The Outcome Page<a class="headerlink" href="#the-outcome-page" title="Link to this heading">¶</a></h2>
+<p>After the participants submitted the smokescreen page, they were redirected to the <code class="code docutils literal notranslate"><span class="pre">EndOfDay</span></code> page. This page is used to inform participants about the outcome of the smokescreen scenario they just experienced. They are dynamically filled with the content of the current scenario and adjusted to the decision that participants made in that scenario. They were not only used after the smokescreen pages, but also after the vignette pages. They were implemented to increase participants’ immersion and feeling of self-efficacy.</p>
+<p>The code for the <code class="code docutils literal notranslate"><span class="pre">EndOfDay</span></code> HTML template looks like this:</p>
+<div class="highlight-HTML notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;content-box&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 2</span>    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>{{ vignette_header }}. Tag {{ player.round_number }} von {{ C.NUM_DAYS }}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="linenos"> 3</span>    {{ if img_desc}}
+<span class="linenos"> 4</span>        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;text-center lead m-3 border-1&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 5</span>            <span class="p">&lt;</span><span class="nt">img</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;img-fluid img-thumbnail&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;{{static path_to_image}}&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot; {{img_desc}}&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;300&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 6</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 7</span>    {{ endif }}
+<span class="linenos"> 8</span>    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;text-image-container&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span>        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;text-content&quot;</span><span class="p">&gt;</span>
+<span class="linenos">12</span>            {{ include end_of_day_text }}
+<span class="linenos">13</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">14</span>    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">15</span>    <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Weiter<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="linenos">16</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Here, the <code class="code docutils literal notranslate"><span class="pre">vignette_header</span></code> variable is used to display the header of the page, which is defined in the <code class="code docutils literal notranslate"><span class="pre">C</span></code> class. The <code class="code docutils literal notranslate"><span class="pre">img_desc</span></code> variable contains the file name of the <code class="code docutils literal notranslate"><span class="pre">.jpg</span></code> file corresponding to the current scenario. The file path to the image is constructed using the <code class="code docutils literal notranslate"><span class="pre">path_to_image</span></code> variable. These variables are defined using the following code in the <code class="code docutils literal notranslate"><span class="pre">vars_for_template</span></code> method of the <code class="code docutils literal notranslate"><span class="pre">EndOfDay</span></code> page class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">img_desc</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">player</span><span class="o">.</span><span class="n">current_scenario</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="linenos">2</span><span class="n">path_to_image</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;images/smokescreens/</span><span class="si">{</span><span class="n">img_desc</span><span class="si">}</span><span class="s1">.jpg&#39;</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="c1"># and then:</span>
+<span class="linenos">5</span><span class="k">return</span> <span class="p">{</span>
+<span class="linenos">6</span>    <span class="s1">&#39;img_desc&#39;</span><span class="p">:</span> <span class="n">img_desc</span><span class="p">,</span>
+<span class="linenos">7</span>    <span class="s1">&#39;path_to_image&#39;</span><span class="p">:</span> <span class="n">path_to_image</span>
+<span class="linenos">8</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The text of the page is dynamically added using the <code class="code docutils literal notranslate"><span class="pre">include</span></code> statement, which includes the content of the corresponding HTML file for the current scenario. The content of the HTML file is defined in the <code class="code docutils literal notranslate"><span class="pre">end_of_day_text</span></code> variable, which is also defined in the <code class="code docutils literal notranslate"><span class="pre">vars_for_template</span></code> method of the <code class="code docutils literal notranslate"><span class="pre">EndOfDay</span></code> page class and contains the path to the HTML file for the current scenario:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">return</span> <span class="p">{</span>
+<span class="linenos">2</span>    <span class="s1">&#39;end_of_day_text&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;main/outcomes/</span><span class="si">{</span><span class="n">player</span><span class="o">.</span><span class="n">current_scenario</span><span class="si">}</span><span class="s1">.html&#39;</span>
+<span class="linenos">3</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The HTML files for the <code class="code docutils literal notranslate"><span class="pre">EndOfDay</span></code> page are located in the <code class="code docutils literal notranslate"><span class="pre">main/outcomes/</span></code> folder and are named according to the current scenario (e.g., <code class="code docutils literal notranslate"><span class="pre">pets.html</span></code> and <code class="code docutils literal notranslate"><span class="pre">restaurant.html</span></code>). In these HTML files, conditional statements are used to display the correct content depending on the decision that participants made in the smokescreen scenario. For example, if participants decided to adopt a pet, they would see a text that describes the outcome of their decision and how it affects their life in Novaland.</p>
+<p>These pages are also used to display the outcome of the vignette scenarios. The functionality is the same as for the smokescreen pages, but the content of the HTML files is slightly more complex: The conditional statements that are used to display the content of this page depend not only on the decision that participants made in the vignette scenario, but also on the outcome of the vignette itself. For example, if participants encountered the corruption vignette and decided to report the corruption, they would see a text that describes the service quality received and the consequences of their decision.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">NovalandCorruptionGuide</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Novaland2Layout.html">The fictional country of Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ProjectStructure.html">Structure of the oTree project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RunLocally.html">Running the Novaland Project Locally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AddVignettes.html">Adding New Vignettes and Smokescreens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureGlobalFiles.html">Part 0: Project-wide files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureIntro.html">Part 1: The Introduction App</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="CodeStructureMain.html">Part 2: The Stay in Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureElection.html">Part 3: The Election in Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructurePost.html">Part 4: The Post-Experimental Questionnaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deploying the oTree project</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="CodeStructureMain.html">Part 2: The Stay in Novaland</a><ul>
+      <li>Previous: <a href="CodeStructureMain1.5_Background.html" title="previous chapter">Structure of the Novaland stay pages</a></li>
+      <li>Next: <a href="CodeStructureMain3_Quiz.html" title="next chapter">The newspaper quiz pages</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, POLITSOLID Project Team.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/CodeStructureMain2_Smokescreens.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

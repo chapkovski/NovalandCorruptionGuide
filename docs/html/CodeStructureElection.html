@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Part 3: The Election in Novaland &#8212; NovalandCorruptionGuide 2025 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <script src="_static/documentation_options.js?v=cb975c41"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Part 4: The Post-Experimental Questionnaire" href="CodeStructurePost.html" />
+    <link rel="prev" title="Additional code for extended background functionality" href="CodeStructureMain6_AdditionalCode.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="part-3-the-election-in-novaland">
+<h1>Part 3: The Election in Novaland<a class="headerlink" href="#part-3-the-election-in-novaland" title="Link to this heading">¶</a></h1>
+<p>After participants completed the fourth vignette, the part of the Novaland stay that revolves around the national election started. The respective pages are part of the <cite>election</cite> app in the oTree project. In this election, participants could vote for onw of two parties, the <strong>Soziale Partei Novaland</strong> or the <strong>Konservative Partei Novaland</strong>. The election was designed to test the effects of public service quality and corruption on electoral behavior and incumbent punishment.</p>
+<dl class="simple">
+<dt>The election app is structured as follows:</dt><dd><ol class="arabic simple">
+<li><p>The first page introduces the election and the political system of Novaland.</p></li>
+<li><p>The second pages presents one of the two parties.</p></li>
+<li><p>The third page presents the other party.</p></li>
+<li><p>The fourth page is the ballot page, where participants can cast their vote.</p></li>
+<li><p>The fifth page contains a referendum, where participants can vote to change the income tax in Novaland.</p></li>
+<li><p>On the sixth page, participants were informed that their stay in Novaland ends and were debriefed.</p></li>
+</ol>
+</dd>
+</dl>
+<section id="randomization-in-the-election-app">
+<h2>Randomization in the election app<a class="headerlink" href="#randomization-in-the-election-app" title="Link to this heading">¶</a></h2>
+<p>The information that was provided to participants in the context of the election was randomized in two instances. The first randomization was the order of the party pages. Participants were randomly assigned to one of two groups: one group saw the <strong>Soziale Partei Novaland</strong> page first, while the other group saw the <strong>Konservative Partei Novaland</strong> page first. This was done by using the <code class="code docutils literal notranslate"><span class="pre">random.choice()</span></code> function in the <code class="code docutils literal notranslate"><span class="pre">creating_session</span></code> function to randomly assign participants to one of the two groups and then storing the information of which party page they saw first in the <code class="code docutils literal notranslate"><span class="pre">Player</span></code> object as <code class="code docutils literal notranslate"><span class="pre">first_party</span></code>.</p>
+<p>The second randomization was the incumbency of the parties. Participants were randomly assigned to one of two groups: one group saw the <strong>Soziale Partei Novaland</strong> as the incumbent party, while the other group saw the <strong>Konservative Partei Novaland</strong> as the incumbent party. This was also done by using the <code class="code docutils literal notranslate"><span class="pre">random.choice()</span></code> function in the <code class="code docutils literal notranslate"><span class="pre">creating_session</span></code> function to randomly assign participants to one of the two groups and then storing the information of which party was the incumbent in the <code class="code docutils literal notranslate"><span class="pre">Player</span></code> object as <code class="code docutils literal notranslate"><span class="pre">incumbent_party</span></code>.</p>
+</section>
+<section id="the-pages-of-the-election-app">
+<h2>The pages of the election app<a class="headerlink" href="#the-pages-of-the-election-app" title="Link to this heading">¶</a></h2>
+<section id="the-introduction-of-the-election">
+<h3>1. The introduction of the election<a class="headerlink" href="#the-introduction-of-the-election" title="Link to this heading">¶</a></h3>
+<p>The first page of the election app is the <strong>election_intro</strong> page. Here, participants were told that they will now take part in the national election of Novaland. They were informed that the head of government will be elected from the parliament and needs the majority of the votes in the parliament to be elected. The page also mentions which of the two parties is the incumbent party, depending on the randomization of the incumbency by calling the <code class="code docutils literal notranslate"><span class="pre">incumbent_party</span></code> variable on the HTML page using <code class="code docutils literal notranslate"><span class="pre">{{</span> <span class="pre">incumbent_party</span> <span class="pre">}}</span></code>.</p>
+</section>
+<section id="the-introduction-of-the-parties">
+<h3>2. &amp; 3. The introduction of the parties<a class="headerlink" href="#the-introduction-of-the-parties" title="Link to this heading">¶</a></h3>
+<p>The second and third pages are the <strong>party_1</strong> and <strong>party_2</strong> pages, respectively. On these pages, participants were presented with the information about the two parties. The order of the pages was randomized, so that participants either saw the <strong>Soziale Partei Novaland</strong> first or the <strong>Konservative Partei Novaland</strong>. This is done by setting conditional statements in the HTML templates which call the values of the <code class="code docutils literal notranslate"><span class="pre">first_party</span></code> variable.</p>
+<p>The second and third pages are the <strong>party_1</strong> and <strong>party_2</strong> pages, respectively. On these pages, participants were presented with the information about the two parties. The order of the pages was randomized, so that participants either saw the <strong>Soziale Partei Novaland</strong> first or the <strong>Konservative Partei Novaland</strong>. This is done by setting conditional statements in the HTML templates which call the values of the <code class="code docutils literal notranslate"><span class="pre">first_party</span></code> variable. This is how the <strong>party_1</strong> page is created:</p>
+<div class="highlight-HTML notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span> <span class="cm">&lt;!-- Builds on the global Page.html template --&gt;</span>
+<span class="linenos">  2</span> {{ extends &#39;global/Page.html&#39; }}
+<span class="linenos">  3</span>
+<span class="linenos">  4</span> <span class="cm">&lt;!-- Style settings for embedding the parties&#39; images --&gt;</span>
+<span class="linenos">  5</span> {% block style %}
+<span class="linenos">  6</span> <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="linenos">  7</span><span class="w">     </span><span class="p">.</span><span class="nc">text-image-container</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">  8</span><span class="w">         </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+<span class="linenos">  9</span><span class="w">         </span><span class="k">flex-direction</span><span class="p">:</span><span class="w"> </span><span class="kc">column</span><span class="p">;</span>
+<span class="linenos"> 10</span><span class="w">     </span><span class="p">}</span>
+<span class="linenos"> 11</span><span class="w"> </span><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="linenos"> 12</span> {% endblock %}
+<span class="linenos"> 13</span>
+<span class="linenos"> 14</span> <span class="cm">&lt;!-- Title of the page (not defined here)--&gt;</span>
+<span class="linenos"> 15</span> {% block title %}
+<span class="linenos"> 16</span>
+<span class="linenos"> 17</span> {% endblock %}
+<span class="linenos"> 18</span>
+<span class="linenos"> 19</span> <span class="cm">&lt;!-- Content of the page, depending on &quot;first_party&quot; --&gt;</span>
+<span class="linenos"> 20</span> {% block content %}
+<span class="linenos"> 21</span>
+<span class="linenos"> 22</span> <span class="cp">&lt;! Checks if the first party is the &quot;Soziale Partei Novaland&quot; --&gt;</span>
+<span class="linenos"> 23</span> {% if first_party == &quot;Soziale Partei Novaland&quot; %}
+<span class="linenos"> 24</span> <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;content-box&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 25</span>     <span class="cm">&lt;!-- Title of the page, adjusted to the Soziale Partei Novaland --&gt;</span>
+<span class="linenos"> 26</span>     <span class="p">&lt;</span><span class="nt">h1</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;h1&quot;</span><span class="p">&gt;</span>Soziale Partei Novaland. Tag 9 von 9<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="linenos"> 27</span>     <span class="cm">&lt;!-- Define area for the text and images --&gt;</span>
+<span class="linenos"> 28</span>     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;text-image-container&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 29</span>         <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;text-content&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 30</span>             <span class="cm">&lt;!-- Create table for containing the text and the image in one row --&gt;</span>
+<span class="linenos"> 31</span>             <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;row&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 32</span>                 <span class="cp">&lt;! Column for the text --&gt;</span>
+<span class="linenos"> 33</span>                 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col col-sm-9 col-12&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 34</span>                     <span class="cm">&lt;!-- Text about the Soziale Partei Novaland --&gt;</span>
+<span class="linenos"> 35</span>                     Die SPN (Soziale Partei Novaland) will mehr sozialstaatliche Leistungen, auch wenn das mehr
+<span class="linenos"> 36</span>                     Steuern und Abgaben bedeutet. Sie will mehr staatliche Lösungen für die Probleme der Menschen
+<span class="linenos"> 37</span>                     organisieren und finanzieren. <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+<span class="linenos"> 38</span>
+<span class="linenos"> 39</span>                     Für Menschen in Novaland mit Ihrer Einkommenshöhe würde das verfügbare Einkommen sinken,
+<span class="linenos"> 40</span>                     allerdings hätten Sie möglicherweise Zugang zu mehr Dienstleistungen oder Sozialleistungen
+<span class="linenos"> 41</span>                     des Staates.
+<span class="linenos"> 42</span>                 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 43</span>                 <span class="cp">&lt;! Column for the image --&gt;</span>
+<span class="linenos"> 44</span>                 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col col-sm-3 col-12&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 45</span>                     <span class="cm">&lt;!-- Image of the Soziale Partei Novaland --&gt;</span>
+<span class="linenos"> 46</span>                     <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;{% static &#39;SPN.png&#39; %}&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;80%&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 47</span>                 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 48</span>             <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 49</span>         <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 50</span>     <span class="cm">&lt;!-- Button to continue to the next page --&gt;</span>
+<span class="linenos"> 51</span>     <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 52</span>
+<span class="linenos"> 53</span>     <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Weiter<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="linenos"> 54</span>
+<span class="linenos"> 55</span> <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 56</span> <span class="cm">&lt;!-- End of the if statement for the first party being Soziale Partei Novaland --&gt;</span>
+<span class="linenos"> 57</span> {% endif %}
+<span class="linenos"> 58</span>
+<span class="linenos"> 59</span> <span class="cp">&lt;! Checks if the first party is the &quot;Konservative Partei Novaland&quot; --&gt;</span>
+<span class="linenos"> 60</span> {% if first_party == &quot;Konservative Partei Novaland&quot; %}
+<span class="linenos"> 61</span>
+<span class="linenos"> 62</span> <span class="cm">&lt;!-- Content for the Konservative Partei Novaland (same logic as above with some replacements --&gt;</span>
+<span class="linenos"> 63</span> <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;content-box&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 64</span>     <span class="cm">&lt;!-- Title of the page, adjusted to the Konservative Partei Novaland --&gt;</span>
+<span class="linenos"> 65</span>     <span class="p">&lt;</span><span class="nt">h1</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;h1&quot;</span><span class="p">&gt;</span> Konservative Partei Novaland.<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>Tag 9 von 9<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="linenos"> 66</span>     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;text-image-container&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 67</span>         <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;text-content&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 68</span>
+<span class="linenos"> 69</span>
+<span class="linenos"> 70</span>             <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;row&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 71</span>                 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col col-sm-9 col-12&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 72</span>                     <span class="cm">&lt;!-- Text about the Konservative Partei Novaland --&gt;</span>
+<span class="linenos"> 73</span>                     <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;p&quot;</span><span class="p">&gt;</span>Die KPN (Konservative Partei Novaland) will Steuern und Abgaben senken, auch wenn das
+<span class="linenos"> 74</span>                         weniger
+<span class="linenos"> 75</span>                         sozialstaatliche Leistungen bedeutet. Sie will Menschen in die Lage versetzen,
+<span class="linenos"> 76</span>                         eigenverantwortlich Lösungen für ihre Probleme zu suchen. <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+<span class="linenos"> 77</span>
+<span class="linenos"> 78</span>                         Für Menschen in Novaland mit Ihrer Einkommenshöhe würde das verfügbare Einkommen steigen,
+<span class="linenos"> 79</span>                         allerdings hätten Sie möglicherweise Zugang zu weniger Dienstleistungen oder Sozialleistungen
+<span class="linenos"> 80</span>                         des Staates.
+<span class="linenos"> 81</span>
+<span class="linenos"> 82</span>                     <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="linenos"> 83</span>                 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 84</span>                 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col col-sm-3 col-12&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 85</span>                     <span class="cm">&lt;!-- Image of the Konservative Partei Novaland --&gt;</span>
+<span class="linenos"> 86</span>                     <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;{% static &#39;CPN.png&#39; %}&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;80%&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 87</span>                 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 88</span>             <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 89</span>         <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 90</span>         <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;row&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 91</span>             <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 92</span>                 <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Weiter<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="linenos"> 93</span>             <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 94</span>         <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 95</span>     <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 96</span>
+<span class="linenos"> 97</span> <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 98</span>
+<span class="linenos"> 99</span> {% endif %}
+<span class="linenos">100</span>
+<span class="linenos">101</span> {% endblock %}
+</pre></div>
+</div>
+<p>The same code is repeated for the <strong>party_2</strong> page, with the only difference being that the text and image of the parties are swapped, depending on which party was presented first. This means that if the value of the <code class="code docutils literal notranslate"><span class="pre">first_party</span></code> variable is <strong>Soziale Partei Novaland</strong>, the text and image of the <strong>Konservative Partei Novaland</strong> are displayed on the <strong>party_2</strong> page, and vice versa.
+The images of the parties are stored in the <code class="code docutils literal notranslate"><span class="pre">static</span></code> folder of the oTree project, so that they can be accessed by the HTML template using the <code class="code docutils literal notranslate"><span class="pre">{%</span> <span class="pre">static</span> <span class="pre">%}</span></code> tag. The name of the image files are <strong>SPN.png</strong> for the <strong>Soziale Partei Novaland</strong> and <strong>CPN.png</strong> for the <strong>Konservative Partei Novaland</strong>.</p>
+</section>
+<section id="the-election-ballot">
+<h3>4. The election ballot<a class="headerlink" href="#the-election-ballot" title="Link to this heading">¶</a></h3>
+<p>After participants were introduced to the two parties, they were directed to the <strong>voting_page</strong> page. On this page, they could cast their vote for one of the two parties. This page follows a similar logic as the party pages, also embedding randomized orders and conditional statements to display the correct party name and image. It is more complex, however, including clickable images and buttons that participants could use to cast their vote. And a table-like layout to display the ballot.</p>
+<p>The layout of the page is structured like so: As always, the header of the page is defined in the <code class="code docutils literal notranslate"><span class="pre">h1</span></code> element, which contains the current day and the day count in Novaland. The main text below explains that participants can now vote for one of the two parties. The information about which of the two parties is the incumbent party is also displayed here, using <code class="code docutils literal notranslate"><span class="pre">{{</span> <span class="pre">incumbent_party</span> <span class="pre">}}</span></code> again.
+Below this explanatory text, a table with multiple columns is created that contains the party image and the party name. Participants could click on either parties’ image or name below the image to vote for that party. On the bottom of the page there is a button that participants can click to continue to the next page.</p>
+<p>This is what the ballot page looks like:</p>
+<a class="reference internal image-reference" href="_images/ElectionScreenshot.jpeg"><img alt="Vignette Screenshot with repeated ending" class="align-center" src="_images/ElectionScreenshot.jpeg" style="width: 75%;" />
+</a>
+<p>This is how the <strong>election_page</strong> page is created:</p>
+<p>In page class of the init file, the <code class="code docutils literal notranslate"><span class="pre">vars_for_template</span></code> method is used to pass the information about the incumbent party (<code class="code docutils literal notranslate"><span class="pre">incumbent_party</span></code>) and the identifier of the first party (<code class="code docutils literal notranslate"><span class="pre">first_party</span></code>) to the HTML template. The <code class="code docutils literal notranslate"><span class="pre">Partei</span></code> variable from the <code class="code docutils literal notranslate"><span class="pre">Player</span></code> object is used to store the party that the participant voted for.</p>
+<p>In the HTML template, there is a style block at the top that define the appearance of the buttons and the table layout in which the parties’ images and names are displayed. After that, the title of the page is defined in the <code class="code docutils literal notranslate"><span class="pre">h1</span></code> element, which contains the current day and the day count in Novaland. The main text below explains that participants can now vote for one of the two parties. The information about which of the two parties is the incumbent party is also displayed here, using <code class="code docutils literal notranslate"><span class="pre">{{</span> <span class="pre">incumbent_party</span> <span class="pre">}}</span></code> again.</p>
+<p>Below this paragraph, a table with multiple columns is created that contains the party images and the party namen. Participants could click on either parties’ image or name below the image to vote for that party. The images of the parties are displayed using the <code class="code docutils literal notranslate"><span class="pre">img</span></code> element, which uses the <code class="code docutils literal notranslate"><span class="pre">{%</span> <span class="pre">static</span> <span class="pre">%}</span></code> tag to access the images stored in the <code class="code docutils literal notranslate"><span class="pre">static</span></code> folder of the oTree project, as it was done on the previous pages. The names of the parties are displayed in a paragraph element below the images. The order of the parties (which party is displayed in the left and which in the right column) is determined by the value of the <code class="code docutils literal notranslate"><span class="pre">first_party</span></code> variable. If the value is <strong>Konservative Partei Novaland</strong>, the <strong>Konservative Partei Novaland</strong> is displayed in the left column and the <strong>Soziale Partei Novaland</strong> in the right column, and vice versa.</p>
+<p>The following code snippet shows how the parties are displayed in the HTML template. This code is repeated for both parties, with the only difference being the party name and image:</p>
+<div class="highlight-HTML notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="cm">&lt;!-- Display the image of the Konservative Partei Novaland --&gt;</span>
+<span class="linenos">2</span><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;{% static &#39;CPN.png&#39; %}&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;30%&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;center&quot;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;SHOWCPN()&quot;</span><span class="p">&gt;</span>
+<span class="linenos">3</span> <span class="cm">&lt;!-- Display the name of the Konservative Partei Novaland --&gt;</span>
+<span class="linenos">4</span><span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;p&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;text-align: center&quot;</span><span class="p">&gt;&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;radio&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;wahlen1&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;Partei&quot;</span>
+<span class="linenos">5</span>                                               <span class="na">required</span>
+<span class="linenos">6</span>                                               <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;SHOWCPN()&quot;</span>
+<span class="linenos">7</span>                                               <span class="na">value</span><span class="o">=</span><span class="s">&quot;Konservative Partei Novaland&quot;</span><span class="p">&gt;</span> Konservative Partei Novaland <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Here, the <code class="code docutils literal notranslate"><span class="pre">onclick</span></code> attribute is used to call the <code class="code docutils literal notranslate"><span class="pre">SHOWCPN()</span></code> function when participants click on the image or the party name. This function is defined at the bottom of the HTML page and is used to make the images of the party logos clickable and to store participants’ data as soon as they submit the page. The code for the <strong>Soziale Partei Novaland</strong> looks the same, only the file name of the image and the party name are changed to <strong>SPN.png</strong> and <strong>Soziale Partei Novaland</strong>, respectively and the <code class="code docutils literal notranslate"><span class="pre">onclick</span></code> attribute calls the <code class="code docutils literal notranslate"><span class="pre">SHOWSPN()</span></code> function instead of the <code class="code docutils literal notranslate"><span class="pre">SHOWCPN()</span></code> function.</p>
+<p>The functions that are called as soon as a party’s image or name is clicked are defined at the bottom of the HTML template. These functions are used to make the images of the party logos clickable and to store participants’ data as soon as they submit the page:</p>
+<div class="highlight-HTML notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>{% block script %}
+<span class="linenos"> 2</span><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="linenos"> 3</span><span class="w">   </span><span class="c">&lt;!--</span><span class="w"> </span><span class="nb">Function</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">show</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">next</span><span class="w"> </span><span class="nx">button</span><span class="w"> </span><span class="nx">and</span><span class="w"> </span><span class="nx">set</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">vote</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="s2">&quot;Konservative Partei Novaland&quot;</span><span class="w"> </span><span class="o">--&gt;</span>
+<span class="linenos"> 4</span><span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">SHOWCPN</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 5</span><span class="w">        </span><span class="c">&lt;!--</span><span class="w"> </span><span class="nb">Set</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">radio</span><span class="w"> </span><span class="nx">button</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">Konservative</span><span class="w"> </span><span class="nx">Partei</span><span class="w"> </span><span class="nx">Novaland</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">checked</span><span class="w"> </span><span class="o">--&gt;</span>
+<span class="linenos"> 6</span><span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;wahlen1&quot;</span><span class="p">).</span><span class="nx">checked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="linenos"> 7</span><span class="w">        </span><span class="c">&lt;!--</span><span class="w"> </span><span class="nx">Show</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">submit</span><span class="w"> </span><span class="nx">button</span><span class="w"> </span><span class="o">--&gt;</span>
+<span class="linenos"> 8</span><span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;weiter-btn&quot;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;inline-block&quot;</span><span class="p">;</span>
+<span class="linenos"> 9</span><span class="w">        </span><span class="c">&lt;!--</span><span class="w"> </span><span class="nb">Set</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">submit</span><span class="w"> </span><span class="nx">button</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">Konservative</span><span class="w"> </span><span class="nx">Partei</span><span class="w"> </span><span class="nx">Novaland</span><span class="w"> </span><span class="o">--&gt;</span>
+<span class="linenos">10</span><span class="w">        </span><span class="c">&lt;!--</span><span class="w"> </span><span class="nx">Meaning</span><span class="w"> </span><span class="nx">that</span><span class="w"> </span><span class="nx">their</span><span class="w"> </span><span class="nx">vote</span><span class="w"> </span><span class="nx">is</span><span class="w"> </span><span class="nx">cast</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">this</span><span class="w"> </span><span class="nx">party</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">soon</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">they</span><span class="w"> </span><span class="nx">click</span><span class="w"> </span><span class="nx">on</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">next</span><span class="w"> </span><span class="nx">button</span><span class="w"> </span><span class="o">--&gt;</span>
+<span class="linenos">11</span><span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;weiter-btn&quot;</span><span class="p">).</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Konservative Partei Novaland&quot;</span><span class="p">;</span>
+<span class="linenos">12</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">13</span><span class="w">   </span><span class="c">&lt;!--</span><span class="w"> </span><span class="nb">Function</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">show</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">next</span><span class="w"> </span><span class="nx">button</span><span class="w"> </span><span class="nx">and</span><span class="w"> </span><span class="nx">set</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">vote</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="s2">&quot;Soziale Partei Novaland&quot;</span><span class="w"> </span><span class="o">--&gt;</span>
+<span class="linenos">14</span><span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">SHOWSPN</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">15</span><span class="w">        </span><span class="c">&lt;!--</span><span class="w"> </span><span class="nb">Set</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">radio</span><span class="w"> </span><span class="nx">button</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">Soziale</span><span class="w"> </span><span class="nx">Partei</span><span class="w"> </span><span class="nx">Novaland</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">checked</span><span class="w"> </span><span class="o">--&gt;</span>
+<span class="linenos">16</span><span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;wahlen3&quot;</span><span class="p">).</span><span class="nx">checked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="linenos">17</span><span class="w">        </span><span class="c">&lt;!--</span><span class="w"> </span><span class="nx">Show</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">submit</span><span class="w"> </span><span class="nx">button</span><span class="w"> </span><span class="o">--&gt;</span>
+<span class="linenos">18</span><span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;weiter-btn&quot;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;inline-block&quot;</span><span class="p">;</span>
+<span class="linenos">19</span><span class="w">        </span><span class="c">&lt;!--</span><span class="w"> </span><span class="nb">Set</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">submit</span><span class="w"> </span><span class="nx">button</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">Soziale</span><span class="w"> </span><span class="nx">Partei</span><span class="w"> </span><span class="nx">Novaland</span><span class="w"> </span><span class="o">--&gt;</span>
+<span class="linenos">20</span><span class="w">        </span><span class="c">&lt;!--</span><span class="w"> </span><span class="nx">Meaning</span><span class="w"> </span><span class="nx">that</span><span class="w"> </span><span class="nx">their</span><span class="w"> </span><span class="nx">vote</span><span class="w"> </span><span class="nx">is</span><span class="w"> </span><span class="nx">cast</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">this</span><span class="w"> </span><span class="nx">party</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">soon</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">they</span><span class="w"> </span><span class="nx">click</span><span class="w"> </span><span class="nx">on</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">next</span><span class="w"> </span><span class="nx">button</span><span class="w"> </span><span class="o">--&gt;</span>
+<span class="linenos">21</span><span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;weiter-btn&quot;</span><span class="p">).</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Soziale Partei Novaland&quot;</span><span class="p">;</span>
+<span class="linenos">22</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">23</span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="linenos">24</span>{% endblock %}
+</pre></div>
+</div>
+<p>These functions are used to display the next button when participants click on the party images or names. The <code class="code docutils literal notranslate"><span class="pre">SHOWCPN()</span></code> function is called when participants click on the image or name of the <strong>Konservative Partei Novaland</strong>, while the <code class="code docutils literal notranslate"><span class="pre">SHOWSPN()</span></code> function is called when they click on the image or name of the <strong>Soziale Partei Novaland</strong>. The functions set the value of the <code class="code docutils literal notranslate"><span class="pre">weiter-btn</span></code> button to the name of the respective party and make it visible. This ensures a consistent user experience, as participants can click on either the party image or the party name to cast their vote.</p>
+</section>
+<section id="the-referendum">
+<h3>5. The referendum<a class="headerlink" href="#the-referendum" title="Link to this heading">¶</a></h3>
+<p>The referendum page is much simpler than the ballot page. I only contains the header of the page, some text explaining the referendum, and a question asking participants if they want to change the income tax in Novaland.
+The header is defined as usual containing the day of the week and the day count in Novaland. The question text is defined in the HTML template of the <code class="code docutils literal notranslate"><span class="pre">Referendum</span></code> page class. Participants were asked whether they want to change the income tax in Novaland and were given the option to raise them by one percentage point, to lower them by one percentage point, or to keep them the same. The question was implemented as a radio button group, where participants could select one of the three options. The selected option was stored in the <code class="code docutils literal notranslate"><span class="pre">referendum</span></code> variable of the <code class="code docutils literal notranslate"><span class="pre">Player</span></code> object.</p>
+</section>
+<section id="the-debrief-from-novaland">
+<h3>6. The debrief from Novaland<a class="headerlink" href="#the-debrief-from-novaland" title="Link to this heading">¶</a></h3>
+<p>This is the last page of the election app and the last page of the Novaland stay. On this page, participants were informed that their stay in Novaland is over and they will be redirected to the end of the questionnaire. The page es defined in the <code class="code docutils literal notranslate"><span class="pre">election_outro</span></code> page class.
+The page only contains the header of the page, which is defined as usual and some text body. The text informs participants that their stay in Novaland is over and they will be redirected to the end of the questionnaire. They were specifically told that Novaland is a fictional place and does not exist in reality. They were also informed that the upcoming questionnaire would be about their real life.</p>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">NovalandCorruptionGuide</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Novaland2Layout.html">The fictional country of Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ProjectStructure.html">Structure of the oTree project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RunLocally.html">Running the Novaland Project Locally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AddVignettes.html">Adding New Vignettes and Smokescreens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureGlobalFiles.html">Part 0: Project-wide files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureIntro.html">Part 1: The Introduction App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureMain.html">Part 2: The Stay in Novaland</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Part 3: The Election in Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructurePost.html">Part 4: The Post-Experimental Questionnaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deploying the oTree project</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="CodeStructureMain6_AdditionalCode.html" title="previous chapter">Additional code for extended background functionality</a></li>
+      <li>Next: <a href="CodeStructurePost.html" title="next chapter">Part 4: The Post-Experimental Questionnaire</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, POLITSOLID Project Team.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/CodeStructureElection.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

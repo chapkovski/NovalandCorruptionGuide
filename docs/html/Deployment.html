@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Deploying the oTree project &#8212; NovalandCorruptionGuide 2025 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <script src="_static/documentation_options.js?v=cb975c41"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Part 4: The Post-Experimental Questionnaire" href="CodeStructurePost.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="deploying-the-otree-project">
+<h1>Deploying the oTree project<a class="headerlink" href="#deploying-the-otree-project" title="Link to this heading">¶</a></h1>
+<section id="deploying-locally-for-testing">
+<h2>Deploying locally for testing<a class="headerlink" href="#deploying-locally-for-testing" title="Link to this heading">¶</a></h2>
+<p>For testing purposes, you can deploy the oTree project locally on your computer. This allows you to run the project in a controlled environment and test its functionality before deploying it to a production server.
+To deploy the oTree project locally, follow these steps:</p>
+<ol class="arabic simple">
+<li><p>Install oTree on your local machine by following the instructions in the <a class="reference external" href="https://otree.readthedocs.io/en/latest/install.html">oTree documentation</a>.</p></li>
+<li><p>Clone the Novaland project repository from GitHub to your local machine.</p></li>
+<li><p>Navigate to the project directory in your terminal.</p></li>
+<li><p>Run the command <code class="code docutils literal notranslate"><span class="pre">otree</span> <span class="pre">devserver</span></code> to start the local server.</p></li>
+<li><p>Open your web browser and go to <code class="code docutils literal notranslate"><span class="pre">http://localhost:8000</span></code> to access the oTree project.</p></li>
+<li><p>You can now test the functionality of the project and make any necessary changes before deploying it to a production server.</p></li>
+</ol>
+<p>Deploying the oTree project to a production server is essential for making it accessible to participants and collecting data.
+To deploy the oTree project to a production server, you can use various hosting platforms such as Heroku, AWS, or DigitalOcean. In this documentation, we will focus on deploying the project on Heroku, which is a popular Platform-as-a-Service (PaaS) solution that simplifies the deployment process.</p>
+</section>
+<section id="deploying-on-heroku">
+<h2>Deploying on Heroku<a class="headerlink" href="#deploying-on-heroku" title="Link to this heading">¶</a></h2>
+<p>Heroku is a Platform-as-a-Service (PaaS) solution that allows developers to host, manage, and scale applications
+in the cloud.
+Heroku supports a variety of programming languages and provides an easy, fast, and reliable way to deploy applications
+without having to worry about infrastructure.</p>
+<p>To deploy the oTree project on Heroku, follow these steps:</p>
+<ol class="arabic">
+<li><p><strong>Create a Heroku account</strong>: Visit the <a href="#id1"><span class="problematic" id="id2">`Heroku website&lt;https://www.heroku.com/&gt;`_</span></a> and sign in to your Heroku account. Create one if you don’t have an account yet.</p></li>
+<li><p><strong>Install the Heroku CLI</strong>: Download and <a class="reference external" href="https://devcenter.heroku.com/articles/heroku-cli">install the Heroku Command Line Interface (CLI)</a>.</p></li>
+<li><p><strong>Login to Heroku</strong>: Open your terminal and run the command <code class="code docutils literal notranslate"><span class="pre">heroku</span> <span class="pre">login</span></code> to log in to your Heroku account.</p></li>
+<li><p><strong>Create a new Heroku app</strong>: Run the command <code class="code docutils literal notranslate"><span class="pre">heroku</span> <span class="pre">create</span> <span class="pre">&lt;your-app-name&gt;</span></code> to create a new Heroku app. Replace <code class="code docutils literal notranslate"><span class="pre">&lt;your-app-name&gt;</span></code> with a unique name for your app.</p></li>
+<li><p><strong>Add the Heroku Postgres add-on</strong>: Go to the <cite>Resources</cite> tab in your app on Heroku and add a Postgres database to your app via the add-on.</p></li>
+<li><dl>
+<dt><strong>Configure environment variables</strong>: Set the necessary environment variables for your app by running the following commands:</dt><dd><div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>heroku config:set ADMIN_USERNAME=&lt;your-admin-username&gt;
+<span class="linenos">2</span>heroku config:set ADMIN_PASSWORD=&lt;your-admin-password&gt;
+<span class="linenos">3</span>heroku config:set SECRET_KEY=&lt;your-secret-key&gt;
+<span class="linenos">4</span>heroku config:set OTREE_PRODUCTION=True
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>Replace <code class="code docutils literal notranslate"><span class="pre">&lt;your-admin-username&gt;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&lt;your-admin-password&gt;</span></code>, and <code class="code docutils literal notranslate"><span class="pre">&lt;your-secret-key&gt;</span></code> with your desired values.</p>
+</li>
+<li><dl>
+<dt><strong>Push your code to Heroku</strong>: Make sure you have a Git repository set up for your oTree project. Then, run the following commands to push your code to Heroku:</dt><dd><div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>git add .
+<span class="linenos">2</span>git commit -m &quot;Deploy oTree project to Heroku&quot;
+<span class="linenos">3</span>git push heroku main
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><p><strong>Migrate the database</strong>: Run the command <code class="code docutils literal notranslate"><span class="pre">heroku</span> <span class="pre">run</span> <span class="pre">otree</span> <span class="pre">migrate</span></code> to apply any database migrations required by your oTree project.</p></li>
+<li><p><strong>Open your app</strong>: After the deployment is complete, you can open your app by running the command <code class="code docutils literal notranslate"><span class="pre">heroku</span> <span class="pre">open</span></code> or by visiting <code class="code docutils literal notranslate"><span class="pre">https://&lt;your-app-name&gt;.herokuapp.com</span></code> in your web browser.</p></li>
+<li><p><strong>Access the oTree admin interface</strong>: You can access the oTree admin interface by visiting <code class="code docutils literal notranslate"><span class="pre">https://&lt;your-app-name&gt;.herokuapp.com/admin</span></code> in your web browser. Use the admin username and password you set earlier to log in.</p></li>
+</ol>
+<p>After completing these steps, your oTree project will be deployed on Heroku and accessible to participants.</p>
+</section>
+<section id="your-project-on-heroku">
+<h2>Your Project on Heroku<a class="headerlink" href="#your-project-on-heroku" title="Link to this heading">¶</a></h2>
+<section id="overview-of-your-app">
+<h3>Overview of your App:<a class="headerlink" href="#overview-of-your-app" title="Link to this heading">¶</a></h3>
+<p>The overview of a Heroku app shows the following information:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>App name and its unique URL</p></li>
+<li><p>Application status (running or crashed)</p></li>
+<li><p>Dynos (number of web or worker processes running)</p></li>
+<li><p>Add-ons (list of any installed add-ons)</p></li>
+<li><p>Collaborators (list of people who have access to the app)</p></li>
+<li><p>Last release (when the app was last updated and the status of the update)</p></li>
+<li><p>Metrics (resource usage of the app, including memory, CPU, and bandwidth usage)</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="open-your-project">
+<h3>Open your project<a class="headerlink" href="#open-your-project" title="Link to this heading">¶</a></h3>
+<p>Just click on the ‘Open app’ Button at the top right of the screen.</p>
+</section>
+</section>
+<section id="monitoring">
+<h2>Monitoring<a class="headerlink" href="#monitoring" title="Link to this heading">¶</a></h2>
+<p>At Heroku, there are several options for monitoring applications.
+The Heroku Dashboard allows real-time monitoring of application status, displaying error messages and warnings to quickly respond to issues.
+Additionally, Heroku provides the ability to monitor various metrics such as CPU usage, memory consumption, and network activity.
+Monitoring add-ons such as “papertrail” can be used to provide detailed performance data of applications.
+This helps identify potential bottlenecks and problems early on to ensure smooth application operation.</p>
+</section>
+<section id="resources">
+<h2>Resources<a class="headerlink" href="#resources" title="Link to this heading">¶</a></h2>
+<p>In the context of Heroku, resources refer to the various add-ons and services that you can use to extend the functionality of your application. Some of the common resources on Heroku include:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Databases: Heroku provides several options for managed databases, including PostgreSQL, MySQL, and MongoDB.</p></li>
+<li><p>Analytics: You can use resources such as Heroku Metrics, Logs, and Monitoring to track the performance of your application and identify any issues.</p></li>
+</ol>
+</div></blockquote>
+<p>By adding these resources to your Heroku app, you can enhance the functionality and performance of your application, making it easier to manage and scale.</p>
+<section id="add-a-ressource-to-your-app">
+<h3>Add a ressource to your app<a class="headerlink" href="#add-a-ressource-to-your-app" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>To add an add-on, go to the “Resources” tab in your Heroku app dashboard and search for the add-on you want to use.</p></li>
+<li><p>Then, simply click on the add-on to add it to your app.</p></li>
+</ol>
+</div></blockquote>
+</section>
+</section>
+<section id="heroku-postgres">
+<h2>Heroku Postgres<a class="headerlink" href="#heroku-postgres" title="Link to this heading">¶</a></h2>
+<p>Postgres on Heroku is a managed database service provided by Heroku that enables you to run your PostgreSQL database in the cloud.
+PostgreSQL is an open-source relational database management system, and the Postgres service on Heroku provides a fully managed, scalable, and secure database solution for applications hosted on the Heroku platform.</p>
+<p>With Postgres on Heroku, you can manage and scale your database, ensuring that your application always has the necessary resources to handle high traffic and large amounts of data.
+Additionally, Heroku provides several tools and services to monitor, backup, and recover your PostgreSQL database, making it a reliable and scalable option for your database needs.</p>
+<section id="save-the-participant-data">
+<h3>Save the participant data<a class="headerlink" href="#save-the-participant-data" title="Link to this heading">¶</a></h3>
+<p>If you have added Heroku Postgres as an add-on to your app, it will serve as the database for storing all the variables and functions associated with your oTree project.
+The naming of these variables is determined within your PyCharm project or another development environment and cannot be altered in the Heroku Postgres database.</p>
+</section>
+<section id="download-the-participant-data">
+<h3>Download the participant data<a class="headerlink" href="#download-the-participant-data" title="Link to this heading">¶</a></h3>
+<p>You can download a backup of your database directly from the Heroku Dashboard.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Go to the “Resources” tab in your app dashboard</p></li>
+<li><p>Select the Heroku Postgres database</p></li>
+<li><p>click on the “Backups” section</p></li>
+<li><p>then, click on the “Download” button to download the latest backup</p></li>
+</ol>
+</div></blockquote>
+</section>
+<section id="reset-the-database">
+<h3>Reset the Database<a class="headerlink" href="#reset-the-database" title="Link to this heading">¶</a></h3>
+<p>If you need to reset your Heroku Postgres database, you can do so easily through the Heroku Dashboard.
+Resetting the database will permanently erase all data stored within it.</p>
+<p>To reset your Heroku Postgres database, follow these steps:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Go to the “Resources” tab in your app dashboard.</p></li>
+<li><p>Select the Heroku Postgres database.</p></li>
+<li><p>Click on the “Settings” tab.</p></li>
+<li><p>Scroll down to the “Danger Zone” section and click on the “Reset Database” button.</p></li>
+<li><p>Confirm that you want to reset the database by typing the name of your Heroku app in the confirmation field.</p></li>
+<li><p>Click on the “Reset” button.</p></li>
+</ol>
+</div></blockquote>
+<p>After you reset your Heroku Postgres database, it will be empty and ready for you to start adding data again.</p>
+</section>
+</section>
+<section id="papertrail">
+<h2>Papertrail<a class="headerlink" href="#papertrail" title="Link to this heading">¶</a></h2>
+<p>Papertrail is a great tool that you can use to manage logs for your applications.
+With Papertrail’s centralized log management, you can easily find and fix issues without having to search through multiple log sources.
+Using Papertrail, you can quickly and conveniently view all of your Heroku logs in one place.</p>
+</section>
+<section id="sentry">
+<h2>Sentry<a class="headerlink" href="#sentry" title="Link to this heading">¶</a></h2>
+<p>By integrating Sentry with Heroku, you can receive notifications about any errors or performance issues that occur within your Heroku-hosted applications.
+This way, you can resolve any issues before they affect your users, ensuring that your applications run smoothly and efficiently.</p>
+</section>
+<section id="metrics">
+<h2>Metrics<a class="headerlink" href="#metrics" title="Link to this heading">¶</a></h2>
+<p>Metrics of an app on Heroku can provide valuable insights into the performance and state of your application.
+With this information, you can identify and resolve issues before they become serious problems for your users.</p>
+<section id="how-to-read-and-interpret-the-metrics-of-your-heroku-app-to-optimize-and-improve-your-application">
+<h3>How to read and interpret the metrics of your Heroku app to optimize and improve your application.<a class="headerlink" href="#how-to-read-and-interpret-the-metrics-of-your-heroku-app-to-optimize-and-improve-your-application" title="Link to this heading">¶</a></h3>
+<p>Overview of Metrics:
+Heroku offers a variety of metrics that you can access through the dashboard or the Command Line Interface (CLI).
+Some of the key metrics include:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Web and Worker Dyno Metrics: This metric indicates how many dynos are active for your web and worker tests.</p></li>
+<li><p>HTTP Requests: This metric indicates how many HTTP requests your application has processed.</p></li>
+<li><p>Memory Usage: This metric indicates how much memory your application has used.</p></li>
+<li><p>CPU Utilization: This metric indicates how much CPU power your application has used.</p></li>
+</ol>
+</div></blockquote>
+<p>Understanding these metrics can help you to monitor and improve the performance of your Heroku app.
+By regularly reviewing these metrics, you can identify and address any issues before they impact your users, ensuring that your application runs smoothly and efficiently.</p>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">NovalandCorruptionGuide</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Novaland2Layout.html">The fictional country of Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ProjectStructure.html">Structure of the oTree project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RunLocally.html">Running the Novaland Project Locally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AddVignettes.html">Adding New Vignettes and Smokescreens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureGlobalFiles.html">Part 0: Project-wide files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureIntro.html">Part 1: The Introduction App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureMain.html">Part 2: The Stay in Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructureElection.html">Part 3: The Election in Novaland</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeStructurePost.html">Part 4: The Post-Experimental Questionnaire</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Deploying the oTree project</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="CodeStructurePost.html" title="previous chapter">Part 4: The Post-Experimental Questionnaire</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, POLITSOLID Project Team.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/Deployment.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
