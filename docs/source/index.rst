@@ -41,6 +41,8 @@ Contents
 
    Novaland2Layout
    ProjectStructure
+   RunLocally
+   AddVignettes
    CodeStructureGlobalFiles
    CodeStructureIntro
    CodeStructureMain
